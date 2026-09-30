@@ -48,7 +48,10 @@
 	requirejs.config({
 		baseUrl: "js",
 		paths: {
-			activity: "../js"
+			activity: "../js",
+			// libraries of lib/l10n.js, whatever the baseUrl when they load
+			"i18next.min": "../lib/i18next.min",
+			"axios.min": "../lib/axios.min"
 		}
 	});
 	var l10n = null;

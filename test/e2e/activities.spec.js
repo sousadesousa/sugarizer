@@ -29,8 +29,7 @@ for (const activity of helpers.activities) {
 		await page.waitForLoadState("load");
 		// let the activity initialize
 		await page.waitForTimeout(2500);
-		if (process.env.DEBUG_E2E) console.log(activity.id, errors.all, errors.failedRequests);
-		expect(errors.real()).toEqual([]);
+		expect(errors.real(), errors.report()).toEqual([]);
 		await context.close();
 	});
 }

@@ -16,7 +16,7 @@ test("create a user and reach the home view", async function({ page }) {
 		return JSON.parse(window.localStorage.getItem("sugar_settings"));
 	});
 	expect(settings.name).toBe("Tester");
-	expect(errors.real()).toEqual([]);
+	expect(errors.real(), errors.report()).toEqual([]);
 });
 
 test("open an activity, stop it and find it in the journal", async function({ page }) {
@@ -37,5 +37,5 @@ test("open an activity, stop it and find it in the journal", async function({ pa
 		});
 	});
 	expect(journal).toContain(paint.id);
-	expect(errors.real()).toEqual([]);
+	expect(errors.real(), errors.report()).toEqual([]);
 });

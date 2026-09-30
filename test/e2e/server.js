@@ -14,7 +14,7 @@ const types = {
 	".xml": "application/xml", ".ini": "text/plain", ".md": "text/plain", ".pdf": "application/pdf"
 };
 
-http.createServer(function(req, res) {
+const server = http.createServer(function(req, res) {
 	let file = path.join(root, decodeURIComponent(new URL(req.url, "http://localhost").pathname));
 	if (!file.startsWith(root)) {
 		res.writeHead(403);
@@ -31,6 +31,11 @@ http.createServer(function(req, res) {
 		res.writeHead(200, {"Content-Type": types[path.extname(file).toLowerCase()] || "application/octet-stream"});
 		res.end(data);
 	});
-}).listen(port, "127.0.0.1", function() {
+});
+// keep idle connections longer than the browser does: a connection closed by
+// the server while the browser reuses it makes a script fail to load
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 125000;
+server.listen(port, "127.0.0.1", function() {
 	console.log("Serving " + root + " on http://127.0.0.1:" + port);
 });

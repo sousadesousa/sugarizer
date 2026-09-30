@@ -6,7 +6,8 @@ const path = require("path");
 exports.activities = JSON.parse(fs.readFileSync(path.join(__dirname, "../../activities.json"), "utf8"));
 
 // Errors caused by the test machine having no Internet access, not by Sugarizer
-const networkErrors = /net::ERR_|Network Error|Failed to fetch|ERR_TUNNEL|ERR_NAME_NOT_RESOLVED|ERR_INTERNET_DISCONNECTED|status of 404/;
+// (including web sites refusing requests coming from the test server origin)
+const networkErrors = /net::ERR_|Network Error|Failed to fetch|ERR_TUNNEL|ERR_NAME_NOT_RESOLVED|ERR_INTERNET_DISCONNECTED|status of 404|blocked by CORS policy/;
 
 // Run Sugarizer without server, like the desktop and mobile apps
 exports.useNoServerMode = async function(page) {
@@ -23,7 +24,6 @@ exports.watchErrors = function(page) {
 	const failedRequests = [];
 	page.on("pageerror", function(error) {
 		errors.push(error.message);
-		if (process.env.DEBUG_E2E) console.log(error.stack);
 	});
 	page.on("requestfailed", function(request) {
 		failedRequests.push(request.url() + " " + request.failure().errorText);
@@ -40,6 +40,10 @@ exports.watchErrors = function(page) {
 			return errors.filter(function(error) {
 				return !networkErrors.test(error);
 			});
+		},
+		// describe errors and failed requests, to explain a failure
+		report: function() {
+			return "Errors:\n" + errors.join("\n") + "\nFailed requests:\n" + failedRequests.join("\n");
 		}
 	};
 };
