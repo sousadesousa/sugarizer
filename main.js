@@ -4,11 +4,11 @@ var electron = require('electron'),
 	fs = require('fs'),
 	temp = require('tmp'),
 	path = require('path'),
-	requirejs = require('requirejs'),
 	activities = require('./activities.json'),
 	l10n = require('./lib/l10n');
 
 var app = electron.app;
+var shell = electron.shell;
 var BrowserWindow = electron.BrowserWindow;
 var Menu = electron.Menu;
 var ipc = electron.ipcMain;
@@ -31,7 +31,7 @@ function saveFile(file, arg, sender) {
 		buf = arg.text;
 	} else {
 		var data = arg.binary.replace(/^data:.+;base64,/, "");
-		buf = new Buffer(data, 'base64');
+		buf = Buffer.from(data, 'base64');
 	}
 	fs.writeFile(file, buf, function(err) {
 		sender.send('save-file-reply', {err: err, filename: file});
@@ -55,6 +55,29 @@ function LoadFile(event, file) {
 		var text = (json ? data : "data:"+fileProperty.type+";base64,"+data.toString('base64'));
 		event.sender.send('choose-files-reply', fileProperty, err, text);
 	});
+}
+
+// Temporary files created for the page, the only local files it can open outside the app
+var tempFiles = [];
+
+// Check if an URL is a page of the app
+function isAppUrl(url) {
+	var appUrl = 'file://' + app.getAppPath() + '/';
+	return typeof url === 'string' && url.indexOf(appUrl) == 0 && url.indexOf('..') == -1;
+}
+
+// Open an URL with the system default application: web and mail links, or temporary files
+function openExternal(url) {
+	if (typeof url !== 'string') {
+		return;
+	}
+	if (/^(https?|mailto):/i.test(url)) {
+		shell.openExternal(url);
+	} else if (url.indexOf('file://') == 0 && tempFiles.indexOf(url.substr(7)) != -1) {
+		shell.openPath(url.substr(7));
+	} else {
+		console.log('Warning: URL "' + url + '" not opened');
+	}
 }
 
 function createWindow () {
@@ -100,9 +123,13 @@ function createWindow () {
 		fullscreen: frameless,
 		frame: !frameless,
 		webPreferences: {
-			webSecurity: false,
-			contextIsolation: false,
-			nodeIntegration: true
+			// Pages get no Node.js: native features go through preload.js
+			preload: path.join(__dirname, 'preload.js'),
+			contextIsolation: true,
+			nodeIntegration: false,
+			sandbox: true,
+			// Needed to load local files from file:// pages; navigation stays limited to the app below
+			webSecurity: false
 		},
 		icon: nativeImage.createFromPath('./res/icon/electron/icon-1024.png')
 	});
@@ -115,6 +142,21 @@ function createWindow () {
 	if (frameless) {
 		mainWindow.maximize();
 	}
+
+	// Only app pages are displayed in Sugarizer, web links open in the default browser
+	mainWindow.webContents.on('will-navigate', function(event, url) {
+		if (!isAppUrl(url)) {
+			event.preventDefault();
+			openExternal(url);
+		}
+	});
+	mainWindow.webContents.setWindowOpenHandler(function(details) {
+		if (isAppUrl(details.url)) {
+			return {action: 'allow'};
+		}
+		openExternal(details.url);
+		return {action: 'deny'};
+	});
 
 	// Wait for 'ready-to-show' to display our window
 	mainWindow.webContents.once('did-finish-load', function() {
@@ -184,10 +226,14 @@ function createWindow () {
 					var data = arg.text.replace(/^data:.+;base64,/, "");
 					var buf = Buffer.from(data, 'base64');
 					fs.writeFile(fd, buf, function(err) {
+						tempFiles.push(path);
 						event.sender.send('create-tempfile-reply', path);
 					});
 				}
 			});
+		});
+		ipc.on('open-external', function(event, url) {
+			openExternal(url);
 		});
 
 		// Build menu
