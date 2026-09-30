@@ -21,7 +21,10 @@
 		"test:unit": "vue-cli-service test:unit",
 		"test:coverage": "vue-cli-service test:unit --coverage",
 		"lint": "vue-cli-service lint",
-		"docs": "rm -rf docs && jsdoc --verbose -d docs -c .jsdoc.js"
+		"docs": "rm -rf docs && jsdoc --verbose -d docs -c .jsdoc.js",
+		"test:e2e": "playwright test",
+		"libs:update": "node scripts/activity-libs.js update",
+		"libs:check": "node scripts/activity-libs.js check"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
@@ -42,7 +45,19 @@
 		"jsdoc-vuejs": "^4.0.0",
 		"grunt": "~1.6.0",
 		"terser": "~5.16.0",
-		"grunt-terser": "~2.0.0"
+		"grunt-terser": "~2.0.0",
+		"@playwright/test": "^1.63.0",
+		"mocha": "^11.8.0",
+		"expect.js": "^0.3.1",
+		"lib-axios-0.34": "npm:axios@0.34.0",
+		"lib-humane-js": "npm:humane-js@3.2.2",
+		"lib-i18next-20": "npm:i18next@20.2.2",
+		"lib-intro.js-5": "npm:intro.js@5.1.0",
+		"lib-lz-string": "npm:lz-string@1.5.0",
+		"lib-mustache": "npm:mustache@4.2.0",
+		"lib-requirejs": "npm:requirejs@2.3.8",
+		"lib-requirejs-text": "npm:requirejs-text@2.0.16",
+		"lib-vue-3": "npm:vue@3.5.43"
 	},
 	"eslintConfig": {
 		"root": true,
