@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Paint rewritten with Vue.js 3 and the Sugar components of the Vue.js activities (toolbar, localization, tutorial, popups); paper.js removed, drawing uses pointer events (mouse, touch and pen). Journal format and network messages are unchanged: drawings saved with the previous version open, and users of both versions can draw together
+- Desktop app updated from Electron 41 to 44 (Electron 41 is no longer supported: only the latest three major versions get security fixes)
 
 ### Added
 - Web app caches the files it uses with a service worker ([sw.js](sw.js)): faster loads on slow networks, home screen and opened activities load offline
