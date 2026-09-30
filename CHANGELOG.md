@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Playwright end-to-end tests (`npm run test:e2e`): first launch, home screen, journal, every activity opens without errors, datastore unit tests. Run by GitHub Actions for every push and pull request
+- `npm run libs:update` / `libs:check`: activity libraries listed in a `libs.json` are copied from pinned npm packages, local patches are declared in the manifest
+- Paint end-to-end tests: draw, save and reopen from the Journal, palettes, localization
+
+### Security
+- Paint libraries updated: RequireJS 2.1.4 to 2.3.8 (prototype pollution, CVE-2024-38999), text 2.0.16, mustache 4.2.0, lz-string 1.5.0 (same compressed output), paper.js 0.9.25, axios 0.34.0; unused easel.js and interact.js removed
+
+### Fixed
+- Paint: endless loop when a regional locale (e.g. en-GB) had no translation file, it now falls back to the base language then English
 
 ## [2.0.0] - 2026-07-17
 ### Added

@@ -22,7 +22,9 @@
 		"test:coverage": "vue-cli-service test:unit --coverage",
 		"lint": "vue-cli-service lint",
 		"docs": "rm -rf docs && jsdoc --verbose -d docs -c .jsdoc.js",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"libs:update": "node scripts/activity-libs.js update",
+		"libs:check": "node scripts/activity-libs.js check"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.16",
@@ -46,7 +48,17 @@
 		"grunt-terser": "~2.0.0",
 		"@playwright/test": "^1.63.0",
 		"mocha": "^11.8.0",
-		"expect.js": "^0.3.1"
+		"expect.js": "^0.3.1",
+		"lib-axios-0.34": "npm:axios@0.34.0",
+		"lib-humane-js": "npm:humane-js@3.2.2",
+		"lib-i18next-20": "npm:i18next@20.2.2",
+		"lib-intro.js-5": "npm:intro.js@5.1.0",
+		"lib-lz-string": "npm:lz-string@1.5.0",
+		"lib-mustache": "npm:mustache@4.2.0",
+		"lib-paper-0.9": "npm:paper@0.9.25",
+		"lib-requirejs": "npm:requirejs@2.3.8",
+		"lib-requirejs-domready": "npm:requirejs-domready@2.0.3",
+		"lib-requirejs-text": "npm:requirejs-text@2.0.16"
 	},
 	"eslintConfig": {
 		"root": true,

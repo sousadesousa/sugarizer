@@ -61,7 +61,7 @@ exports.createUser = async function(page, name) {
 	await page.locator("input[name=name]").fill(name);
 	// name, color, then Done
 	for (let i = 0; i < 4 && !await page.locator(".home-icon").first().isVisible().catch(function() { return false; }); i++) {
-		await page.getByText(/^(Next|Done)$/).first().click().catch(function() {});
+		await page.locator("#next-btn").click().catch(function() {});
 		await page.waitForTimeout(800);
 	}
 	await page.locator(".home-icon").first().waitFor({state: "attached", timeout: 20000});
