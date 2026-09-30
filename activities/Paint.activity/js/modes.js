@@ -31,6 +31,9 @@ function addFloatingElement(paint, element, point) {
 	element.style.position = "absolute";
 	element.style.padding = "0px";
 	element.style.border = "5px dotted #500";
+	// The pointer stays on the canvas: an image under it would start a native drag and cancel the pointer
+	element.style.pointerEvents = "none";
+	element.draggable = false;
 	document.body.appendChild(element);
 	var rect = element.getBoundingClientRect();
 	element.style.left = point.x - rect.width / 2 + "px";
