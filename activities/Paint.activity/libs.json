@@ -1,6 +1,5 @@
 {
 	"lib/axios.min.js": "lib-axios-0.34/dist/axios.min.js",
-	"lib/domReady.js": "lib-requirejs-domready/domReady.js",
 	"lib/humane.js": {
 		"from": "lib-humane-js/humane.js",
 		"patches": [
@@ -15,7 +14,7 @@
 	"lib/intro.js": "lib-intro.js-5/intro.js",
 	"lib/lzstring.js": "lib-lz-string/libs/lz-string.js",
 	"lib/mustache.js": "lib-mustache/mustache.js",
-	"lib/paper-core.js": "lib-paper-0.9/dist/paper-core.min.js",
 	"lib/require.js": "lib-requirejs/require.js",
-	"lib/text.js": "lib-requirejs-text/text.js"
+	"lib/text.js": "lib-requirejs-text/text.js",
+	"lib/vue.global.prod.js": "lib-vue-3/dist/vue.global.prod.js"
 }

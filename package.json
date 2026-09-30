@@ -55,10 +55,9 @@
 		"lib-intro.js-5": "npm:intro.js@5.1.0",
 		"lib-lz-string": "npm:lz-string@1.5.0",
 		"lib-mustache": "npm:mustache@4.2.0",
-		"lib-paper-0.9": "npm:paper@0.9.25",
 		"lib-requirejs": "npm:requirejs@2.3.8",
-		"lib-requirejs-domready": "npm:requirejs-domready@2.0.3",
-		"lib-requirejs-text": "npm:requirejs-text@2.0.16"
+		"lib-requirejs-text": "npm:requirejs-text@2.0.16",
+		"lib-vue-3": "npm:vue@3.5.43"
 	},
 	"eslintConfig": {
 		"root": true,
