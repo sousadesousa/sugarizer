@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Web app caches the files it uses with a service worker ([sw.js](sw.js)): faster loads on slow networks, home and opened activities load offline
 - ESLint (`npm run lint`) and Playwright end-to-end tests (`npm test`), run on GitHub Actions for every push and pull request
 
 ### Security

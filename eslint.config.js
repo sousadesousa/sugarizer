@@ -63,5 +63,16 @@ module.exports = [
 		rules: {
 			...js.configs.recommended.rules
 		}
+	},
+	{
+		files: ["sw.js"],
+		languageOptions: {
+			ecmaVersion: 2018,
+			sourceType: "script",
+			globals: { ...globals.serviceworker }
+		},
+		rules: {
+			...js.configs.recommended.rules
+		}
 	}
 ];

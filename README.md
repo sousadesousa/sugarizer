@@ -103,7 +103,7 @@ For **Safari** go to the `Safari/Preferences...` menu, under Advanced panel chec
 
 Sugarizer Web App is a web application that runs on any device with a recent version of Chrome, Firefox or Safari browser.
 
-As a web application, it does not run offline and requires a permanent network connection to a **Sugarizer Server**.
+As a web application, it requires a network connection to a **Sugarizer Server**. It keeps the files it has already used in the browser cache (see [sw.js](sw.js)): pages and activities load faster on slow networks, and the home view and the activities already opened still load when the connection drops. Features that need the server (login, journal synchronization, sharing) still need the connection. The cache is not used on `localhost` unless the page is opened with `?sw=1`, so it does not get in the way when developing.
 
 Sugarizer Server allows deployment of Sugarizer on a local server, for example on a school server, so exposes locally Web Application (without Internet access). Sugarizer Server can also be used to provide collaboration features for Sugarizer Application on the network.
 
