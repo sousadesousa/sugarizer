@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed
+- Desktop app updated from Electron 41 to 44 (Electron 41 is no longer supported: only the latest three major versions get security fixes)
+
 ## [2.0.0] - 2026-07-17
 ### Added
 - Human Body activity
