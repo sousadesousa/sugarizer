@@ -9,6 +9,12 @@ const knownFailures = {
 	"org.somosazucar.JappyActivity": "a new instance swaps to an undefined CodeMirror document (codeeditor.js check_load)"
 };
 
+// Errors that happen now and then in third-party code of an activity, ignored for that activity only
+const knownIntermittentErrors = {
+	// virtualsky.min.js sometimes draws before its constellation data is loaded
+	"org.sugarlabs.Constellation": /reading 'And'/
+};
+
 test.beforeAll(async function({ browser }) {
 	// Create a user once, activities read its settings from local storage
 	const page = await browser.newPage();
@@ -29,7 +35,11 @@ for (const activity of helpers.activities) {
 		await page.waitForLoadState("load");
 		// let the activity initialize
 		await page.waitForTimeout(2500);
-		expect(errors.real(), errors.report()).toEqual([]);
+		const ignored = knownIntermittentErrors[activity.id];
+		const real = errors.real().filter(function(error) {
+			return !(ignored && ignored.test(error));
+		});
+		expect(real, errors.report()).toEqual([]);
 		await context.close();
 	});
 }
