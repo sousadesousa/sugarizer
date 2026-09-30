@@ -132,13 +132,189 @@ test.describe("in British English", function() {
 	test("a regional locale falls back to its language", async function({ page }) {
 		await helpers.createUser(page, "Painter");
 		await page.goto("/" + paint.directory + "/index.html?aid=paint-e2e&a=" + paint.id + "&n=" + paint.name);
-		// the English translations are loaded, not only the default texts of the page
-		await expect.poll(function() {
-			return page.evaluate(function() {
-				const i18next = require("i18next.min");
-				return i18next.language + " " + i18next.hasResourceBundle("en", "translation");
+		// titles come from the English translations: the page has no default texts
+		await expect(page.locator("#pen-button")).toHaveAttribute("title", "Pen", {timeout: 10000});
+	});
+});
+
+// Every tool of the toolbar, on a new drawing
+test.describe("tools", function() {
+	test.use({viewport: {width: 1280, height: 800}});
+
+	let errors;
+	let box;
+
+	// Count pixels of the canvas: painted (not white or transparent), or of a color
+	function pixels(page, color) {
+		return page.evaluate(function(color) {
+			const canvas = document.getElementById("paint-canvas");
+			const data = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data;
+			let count = 0;
+			for (let i = 0; i < data.length; i += 4) {
+				if (color ? Math.abs(data[i] - color[0]) < 30 && Math.abs(data[i + 1] - color[1]) < 30 && Math.abs(data[i + 2] - color[2]) < 30 && data[i + 3] > 200
+					: data[i + 3] > 0 && (data[i] < 200 || data[i + 1] < 200 || data[i + 2] < 200)) {
+					count++;
+				}
+			}
+			return count;
+		}, color);
+	}
+
+	// Drag on the canvas, positions relative to the canvas
+	async function drag(page, from, to, steps) {
+		await page.mouse.move(box.x + from[0], box.y + from[1]);
+		await page.mouse.down();
+		steps = steps || 10;
+		for (let step = 1; step <= steps; step++) {
+			await page.mouse.move(box.x + from[0] + (to[0] - from[0]) * step / steps, box.y + from[1] + (to[1] - from[1]) * step / steps);
+		}
+		await page.mouse.up();
+	}
+
+	test.beforeEach(async function({ page }) {
+		errors = helpers.watchErrors(page);
+		await helpers.createUser(page, "Painter");
+		await page.goto("/" + paint.directory + "/index.html?aid=paint-e2e&a=" + paint.id + "&n=" + paint.name);
+		await expect(page.locator("#pen-button")).toHaveAttribute("title", "Pen", {timeout: 10000});
+		await page.waitForTimeout(500);
+		box = await page.locator("#paint-canvas").boundingBox();
+	});
+
+	test.afterEach(function() {
+		expect(errors.real(), errors.report()).toEqual([]);
+	});
+
+	test("pen uses the fill color and the size", async function({ page }) {
+		await page.locator("#colors-button-fill").click();
+		await page.locator(".palette .colors button").nth(9).click();
+		await expect(page.locator("#colors-button-fill")).toHaveCSS("background-color", "rgb(0, 0, 0)");
+		await drag(page, [100, 100], [400, 100]);
+		const thin = await pixels(page, [0, 0, 0]);
+		expect(thin).toBeGreaterThan(1000);
+
+		await page.locator("#undo-button").click();
+		await expect.poll(function() { return pixels(page); }).toBe(0);
+		await page.locator("#size-button").click();
+		await page.locator("#size-button").click();
+		await expect(page.locator("#size-button")).toHaveCSS("background-image", /size-3\.svg/);
+		await drag(page, [100, 100], [400, 100]);
+		expect(await pixels(page, [0, 0, 0])).toBeGreaterThan(thin * 2);
+	});
+
+	test("undo and redo", async function({ page }) {
+		await expect(page.locator("#undo-button")).toBeDisabled();
+		await expect(page.locator("#redo-button")).toBeDisabled();
+		await drag(page, [100, 100], [400, 100]);
+		const drawn = await pixels(page);
+		await drag(page, [100, 200], [400, 200]);
+		expect(await pixels(page)).toBeGreaterThan(drawn * 1.5);
+
+		await page.locator("#undo-button").click();
+		await expect.poll(function() { return pixels(page); }).toBe(drawn);
+		await page.locator("#undo-button").click();
+		await expect.poll(function() { return pixels(page); }).toBe(0);
+		await expect(page.locator("#undo-button")).toBeDisabled();
+		await page.locator("#redo-button").click();
+		await page.locator("#redo-button").click();
+		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(drawn * 1.5);
+		await expect(page.locator("#redo-button")).toBeDisabled();
+	});
+
+	test("eraser and clear", async function({ page }) {
+		await drag(page, [100, 100], [400, 100]);
+		const drawn = await pixels(page);
+		await page.locator("#eraser-button").click();
+		await expect(page.locator("#eraser-button")).toHaveClass(/active/);
+		await expect(page.locator("#pen-button")).not.toHaveClass(/active/);
+		await drag(page, [100, 100], [250, 100], 20);
+		const erased = await pixels(page);
+		expect(erased).toBeLessThan(drawn * 0.7);
+		expect(erased).toBeGreaterThan(0);
+
+		await page.locator("#clear-button").click();
+		expect(await pixels(page)).toBe(0);
+	});
+
+	test("bucket fills an area", async function({ page }) {
+		// a closed square, filled inside
+		await drag(page, [100, 100], [300, 100]);
+		await drag(page, [300, 100], [300, 300]);
+		await drag(page, [300, 300], [100, 300]);
+		await drag(page, [100, 300], [100, 100]);
+		const border = await pixels(page);
+		await page.locator("#bucket-button").click();
+		await page.mouse.click(box.x + 200, box.y + 200);
+		const filled = await pixels(page);
+		expect(filled).toBeGreaterThan(border + 30000);
+		expect(filled).toBeLessThan(border + 45000);
+	});
+
+	test("stamps and text", async function({ page }) {
+		await page.locator("#stamps-button").click();
+		await page.locator(".palette .stamps button").nth(1).click();
+		await page.mouse.click(box.x + 200, box.y + 200);
+		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(500);
+		const stamp = await pixels(page);
+		// a bigger stamp when dragging
+		await drag(page, [600, 200], [680, 200]);
+		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(stamp * 3);
+		const stamps = await pixels(page);
+		await expect(page.locator("#paint-canvas ~ img")).toHaveCount(0);
+
+		await page.locator("#text-button").click();
+		await page.locator("#text-input").fill("Hello");
+		await page.locator("#text-button").click();
+		await expect(page.locator("#text-button")).toHaveClass(/active/);
+		await drag(page, [300, 450], [340, 450]);
+		expect(await pixels(page)).toBeGreaterThan(stamps + 300);
+		await expect(page.locator("body > span")).toHaveCount(0);
+	});
+
+	test("copy and paste", async function({ page }) {
+		await drag(page, [100, 100], [200, 150]);
+		const drawn = await pixels(page);
+		await page.locator("#copy-button").click();
+		await drag(page, [80, 80], [220, 170]);
+		// copying switches to paste
+		await expect(page.locator("#paste-button")).toHaveClass(/active/);
+		await drag(page, [500, 300], [600, 350]);
+		const pasted = await pixels(page);
+		expect(pasted).toBeGreaterThan(drawn * 1.8);
+		expect(pasted).toBeLessThan(drawn * 2.2);
+	});
+
+	test("filters, drawings and save as image", async function({ page }) {
+		const total = await page.evaluate(function() {
+			const canvas = document.getElementById("paint-canvas");
+			return canvas.width * canvas.height;
+		});
+		await page.locator("#filters-button").click();
+		await page.locator(".palette .filters button").nth(1).click();
+		expect(await pixels(page, [0, 0, 0])).toBe(total);
+		await page.locator("#filters-button").click();
+		await page.locator(".palette .filters button").nth(1).click();
+		expect(await pixels(page)).toBe(0);
+
+		await page.locator("#drawings-button").click();
+		await page.locator(".palette .drawings button").nth(3).click();
+		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(10000);
+
+		await page.locator("#save-image-button").click();
+		await expect(page.locator(".humane")).toContainText("Image saved to journal");
+		const titles = await page.evaluate(function() {
+			return require("sugar-web/datastore").find().filter(function(entry) {
+				return entry.metadata.mimetype == "image/png";
+			}).map(function(entry) {
+				return entry.metadata.title;
 			});
-		}, {timeout: 10000}).toBe("en true");
-		await expect(page.locator("#pen-button")).toHaveAttribute("title", "Pen");
+		});
+		expect(titles).toEqual(["Paint by Painter"]);
+	});
+
+	test("help shows the tutorial", async function({ page }) {
+		await page.locator("#help-button").click();
+		await expect(page.locator(".introjs-tooltip")).toContainText("Paint Activity");
+		await page.locator(".introjs-nextbutton").click();
+		await expect(page.locator(".introjs-tooltip")).toContainText("Pen color");
 	});
 });

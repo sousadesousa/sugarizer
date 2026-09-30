@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Paint rewritten with Vue.js 3 and the Sugar components of the Vue.js activities (toolbar, localization, tutorial, popups); paper.js removed, drawing uses pointer events (mouse, touch and pen). Journal format and network messages are unchanged: drawings saved with the previous version open, and users of both versions can draw together
+
 ### Added
 - ESLint (`npm run lint`) and Playwright end-to-end tests (`npm test`), run on GitHub Actions for every push and pull request
 - `npm run libs:update` / `libs:check`: activity libraries listed in a `libs.json` are copied from pinned npm packages, local patches are declared in the manifest
@@ -18,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Browser unit tests loaded mocha from the closed rawgit CDN
 - Wrong variables in journal error log, password `setPassword`, Cordova file write error, neighborhood position cache, and several accidental global variables
 - Paint: endless loop when a regional locale (e.g. en-GB) had no translation file, it now falls back to the base language then English
+- Paint: a quick tap with the stamp tool drew nothing, pasted areas were drawn 10 pixels too big, copy and paste halved the size on high density screens, when shared, other users only saw dots of the eraser instead of its path
 
 ## [1.9.0] - 2025-03-25
 ### Added

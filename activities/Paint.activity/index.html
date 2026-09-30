@@ -12,54 +12,119 @@
   <link rel="stylesheet" href="css/libnotify.css">
   <link rel="stylesheet" href="css/introjs.css">
   <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script src="lib/vue.global.prod.js"></script>
   <script src="lib/intro.js"></script>
   <script>if (window.module) module = window.module;</script>
-  <script data-main="js/loader" src="lib/require.js"></script>
+  <script src="lib/require.js"></script>
   <script type="text/javascript" src="../../cordova.js"></script>
 </head>
 
-<body style="background-color:#fff; color:#fff; height:100%; margin:0; overflow:hidden;">
-  <div id="main-toolbar" class="toolbar">
-    <button class="toolbutton" id="activity-button" title="My Activity"></button>
-    <button class="toolbutton" id="network-button" data-i18n="network" title="Network"></button>
-    <button class="toolbutton active" id="colors-button-fill" data-i18n="colorfill" title="Fill Color"></button>
-    <button class="toolbutton" id="colors-button-stroke" data-i18n="colorstroke" title="Stroke Color"></button>
-    <button class="toolbutton" id="undo-button" data-i18n="undo" title="Undo"></button>
-    <button class="toolbutton" id="redo-button" data-i18n="redo" title="Redo"></button>
-    <button class="toolbutton" id="size-button" data-i18n="size" title="Size"></button>
-    <button class="toolbutton" id="pen-button" data-i18n="pen" title="Pen"></button>
-    <button class="toolbutton" id="eraser-button" data-i18n="eraser" title="Eraser"></button>
-    <button class="toolbutton" id="stamps-button" data-i18n="stamps" title="Stamps"></button>
-    <button class="toolbutton" id="text-button" data-i18n="text" title="Text"></button>
-    <button class="toolbutton" id="insertimage-button" data-i18n="image" title="Insert image"></button>
-    <button class="toolbutton" id="drawings-button" data-i18n="drawing" title="Drawings"></button>
-    <button class="toolbutton" id="bucket-button" data-i18n="bucket" title="Bucket"></button>
-    <button class="toolbutton" id="filters-button" data-i18n="filters" title="Filters"></button>
-    <button class="toolbutton" id="copy-button" data-i18n="copy" title="Copy"></button>
-    <button class="toolbutton" id="paste-button" data-i18n="paste" title="Paste"></button>
-    <button class="toolbutton" id="save-image-button" data-i18n="save" title="Save As Image">
-    <button class="toolbutton" id="clear-button" data-i18n="clear" title="Clear"></button>
-    <button class="toolbutton pull-right" id="stop-button" data-i18n="stop" title="Stop"></button>
-    <button class="toolbutton pull-right" id="help-button" data-i18n="help" title="Help"></button>
+<body>
+  <div id="app">
+    <sugar-toolbar ref="SugarToolbar">
+      <sugar-toolitem id="activity-button" title="My Activity"></sugar-toolitem>
+      <sugar-toolitem
+        id="network-button"
+        ref="networkItem"
+        :title="t('network.title')"
+        palette-file="sugar-web/graphics/presencepalette"
+        palette-class="PresencePalette"
+        palette-event="shared"
+        @shared="onShared"
+      ></sugar-toolitem>
+      <sugar-toolitem
+        id="colors-button-fill"
+        :title="t('colorfill.title')"
+        :style="{ backgroundColor: fillColor }"
+        palette-file="js/palettes/colorpalette.js"
+        palette-class="ColorPalette"
+        palette-event="color-change"
+        @color-change="fillColor = $event.detail.color"
+      ></sugar-toolitem>
+      <sugar-toolitem
+        id="colors-button-stroke"
+        :title="t('colorstroke.title')"
+        :style="{ backgroundColor: strokeColor }"
+        palette-file="js/palettes/colorpalette.js"
+        palette-class="ColorPalette"
+        palette-event="color-change"
+        @color-change="strokeColor = $event.detail.color"
+      ></sugar-toolitem>
+      <sugar-toolitem id="undo-button" :title="t('undo.title')" :disabled="!canUndo" :style="{ opacity: canUndo ? 1 : 0.4 }" @click="undo"></sugar-toolitem>
+      <sugar-toolitem id="redo-button" :title="t('redo.title')" :disabled="!canRedo" :style="{ opacity: canRedo ? 1 : 0.4 }" @click="redo"></sugar-toolitem>
+      <sugar-toolitem id="size-button" :title="t('size.title')" :icon="'icons/size-' + (sizes.indexOf(size) + 1) + '.svg'" @click="nextSize"></sugar-toolitem>
+      <sugar-toolitem id="pen-button" :title="t('pen.title')" :active="mode == 'Pen'" @click="setMode('Pen')"></sugar-toolitem>
+      <sugar-toolitem id="eraser-button" :title="t('eraser.title')" :active="mode == 'Eraser'" @click="setMode('Eraser')"></sugar-toolitem>
+      <sugar-toolitem
+        id="stamps-button"
+        :title="t('stamps.title')"
+        :active="mode == 'Stamp'"
+        palette-file="js/palettes/stamppalette.js"
+        palette-class="StampPalette"
+        palette-event="stamp-change"
+        @stamp-change="stamp = $event.detail"
+        @click="setMode('Stamp')"
+      ></sugar-toolitem>
+      <sugar-toolitem
+        id="text-button"
+        :title="t('text.title')"
+        :active="mode == 'Text'"
+        palette-file="js/palettes/textpalette.js"
+        palette-class="TextPalette"
+        palette-event="text-change"
+        @text-change="text = $event.detail"
+        @click="setMode('Text')"
+      ></sugar-toolitem>
+      <sugar-toolitem id="insertimage-button" :title="t('image.title')" @click="insertImage"></sugar-toolitem>
+      <sugar-toolitem
+        id="drawings-button"
+        :title="t('drawing.title')"
+        palette-file="js/palettes/drawingspalette.js"
+        palette-class="DrawingsPalette"
+        palette-event="drawing-selected"
+        @drawing-selected="loadDrawing($event.detail.drawing)"
+      ></sugar-toolitem>
+      <sugar-toolitem id="bucket-button" :title="t('bucket.title')" :active="mode == 'Bucket'" @click="setMode('Bucket')"></sugar-toolitem>
+      <sugar-toolitem
+        id="filters-button"
+        ref="filtersItem"
+        :title="t('filters.title')"
+        palette-file="js/palettes/filterspalette.js"
+        palette-class="FiltersPalette"
+        palette-event="filter-selected"
+        @filter-selected="applyFilter($event.detail.filter)"
+      ></sugar-toolitem>
+      <sugar-toolitem id="copy-button" :title="t('copy.title')" :active="mode == 'Copy'" @click="setMode('Copy')"></sugar-toolitem>
+      <sugar-toolitem id="paste-button" :title="t('paste.title')" :active="mode == 'Paste'" @click="setMode('Paste')"></sugar-toolitem>
+      <sugar-toolitem id="save-image-button" :title="t('save.title')" @click="saveAsImage"></sugar-toolitem>
+      <sugar-toolitem id="clear-button" :title="t('clear.title')" @click="clear"></sugar-toolitem>
+      <sugar-toolitem id="stop-button" :title="t('stop.title')" class="pull-right" @click="onStop"></sugar-toolitem>
+      <sugar-toolitem id="help-button" :title="t('help.title')" class="pull-right" @click="onHelp"></sugar-toolitem>
+    </sugar-toolbar>
+
+    <canvas
+      id="paint-canvas"
+      ref="canvas"
+      @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @pointercancel="onPointerUp"
+    ></canvas>
+
+    <sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
+    <sugar-localization ref="SugarL10n"></sugar-localization>
+    <sugar-popup ref="SugarPopup"></sugar-popup>
+    <sugar-tutorial ref="SugarTutorial"></sugar-tutorial>
   </div>
-  <canvas id="paint-canvas" style="width:100%; "></canvas>
+
+  <script src="js/components/SugarActivity.js"></script>
+  <script src="js/components/SugarToolbar.js"></script>
+  <script src="js/components/SugarL10n.js"></script>
+  <script src="js/components/SugarPopup.js"></script>
+  <script src="js/components/SugarTutorial.js"></script>
+  <script src="js/modes.js"></script>
+  <script src="js/collaboration.js"></script>
+  <script src="js/tutorial.js"></script>
+  <script src="js/activity.js"></script>
 </body>
-<script type="text/javascript">
-	requirejs.config({
-		baseUrl: "js",
-		paths: {
-			activity: "../js",
-			// libraries of lib/l10n.js, whatever the baseUrl when they load
-			"i18next.min": "../lib/i18next.min",
-			"axios.min": "../lib/axios.min"
-		}
-	});
-	var l10n = null;
-	requirejs(["../lib/l10n"], function (il10n) {
-		l10n = il10n;
-	});
-	window.addEventListener('localized', function() {
-		l10n.updateDocument();
-	}, false);
-</script>
 </html>
