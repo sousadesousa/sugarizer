@@ -18,6 +18,8 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
+      - name: Check activity libraries
+        run: npm run libs:check
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: End-to-end tests

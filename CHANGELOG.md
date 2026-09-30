@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - ESLint (`npm run lint`) and Playwright end-to-end tests (`npm test`), run on GitHub Actions for every push and pull request
+- `npm run libs:update` / `libs:check`: activity libraries listed in a `libs.json` are copied from pinned npm packages, local patches are declared in the manifest
+- Paint end-to-end tests: draw, save and reopen from the Journal, palettes, localization
 
 ### Security
 - axios updated from 0.21.1 (0.18.0 in Game Of Life) to 0.34.0 in the app and all activities (CSRF token leak, SSRF, ReDoS and prototype pollution fixes)
+- Paint libraries updated: RequireJS 2.1.4 to 2.3.8 (prototype pollution, CVE-2024-38999), text 2.0.16, mustache 4.2.0, lz-string 1.5.0 (same compressed output), paper.js 0.9.25; unused easel.js and interact.js removed
 
 ### Fixed
 - Browser unit tests loaded mocha from the closed rawgit CDN
 - Wrong variables in journal error log, password `setPassword`, Cordova file write error, neighborhood position cache, and several accidental global variables
+- Paint: endless loop when a regional locale (e.g. en-GB) had no translation file, it now falls back to the base language then English
 
 ## [1.9.0] - 2025-03-25
 ### Added

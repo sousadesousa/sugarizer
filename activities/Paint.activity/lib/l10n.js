@@ -35,7 +35,10 @@ define(['i18next.min', 'axios.min'], function (i18next, axios) {
                     i18next.addResourceBundle(lang, "translation", locales);
                     i18next.changeLanguage(lang);
                     triggerLocalizedEvent();
-                } else {
+                } else if (lang.indexOf("-") != -1) {
+                    // no file for this region (en-US), use the language (en)
+                    l10n.init(lang.split("-")[0]);
+                } else if (lang != "en") {
                     l10n.init("en");
                 }
             });
