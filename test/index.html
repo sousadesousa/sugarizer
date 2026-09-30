@@ -2,16 +2,16 @@
   <head>
     <meta charset="utf-8"/>
     <title>Sugarizer Tests</title>
-    <link href="https://cdn.rawgit.com/mochajs/mocha/2.3.0/mocha.css" rel="stylesheet" />
+    <link href="../node_modules/mocha/mocha.css" rel="stylesheet" />
   </head>
   <body>
   <div id="mocha"></div>
 
+  <!-- mocha before require.js, or it registers as an AMD module instead of a global -->
+  <script src="../node_modules/expect.js/index.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
   <script src="../lib/require.js"></script>
   <script src="../lib/chai.js"></script>
-  <script src="../lib/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
-  <script src="https://cdn.rawgit.com/mochajs/mocha/2.3.0/mocha.js"></script>
 
   <script>mocha.setup('bdd')</script>
   <script src="datastore.js"></script>
@@ -48,8 +48,13 @@
 		chai = c;
 		presence = p;
 
-		// Run tests
-		mocha.run();
+		// Run tests, results are read by test/e2e/unit.spec.js
+		var failed = [];
+		mocha.run().on('fail', function(test, err) {
+			failed.push(test.fullTitle() + ': ' + err.message);
+		}).on('end', function() {
+			window.mochaResults = {passes: this.stats.passes, failures: this.stats.failures, failed: failed};
+		});
 	});
   </script>
   </body>

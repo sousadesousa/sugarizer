@@ -66,9 +66,9 @@ enyo.kind({
 	getPassword: function() {
 		var current = this.$.pass.getValue();
 		var password = "";
-		split = Array.from(current);
+		var split = Array.from(current);
 		for (var i=0; i<split.length; i++) {
-			char = split[i]
+			var char = split[i];
 			if (char !== "") {
 				password += this.convertToChar(char);
 			}
@@ -79,7 +79,7 @@ enyo.kind({
 	setPassword: function(newvalue) {
 		var value = "";
 		for (var i = 0; i < newvalue.length; i++) {
-			value += convertToEmoji(newvalue[i]);
+			value += this.convertToEmoji(newvalue[i]);
 		}
 		this.$.pass.setValue(value);
 	},

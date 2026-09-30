@@ -194,9 +194,16 @@ If you're interested in creating your own activity, a full tutorial will guide y
 Let's start [here](docs/tutorial.md).
 
 
-# Unit testing
+# Testing
 
-To run unit tests for Sugarizer Application, run "file:///PathToYourSugarizerRepo/test/index.html" in your browser.
+Install the development dependencies with `npm install`, then:
+
+* `npm run lint` checks Sugarizer's own JavaScript (not activities or third-party libraries) with ESLint.
+* `npm test` runs the end-to-end tests of [test/e2e](test/e2e) in Chromium: first launch, home view, journal, every activity opening without JavaScript error, and the datastore unit tests. Run `npx playwright install chromium` once before. To use a Chromium already installed, set `CHROMIUM_PATH` to its executable.
+
+The same checks run on GitHub Actions for every push and pull request.
+
+To run the unit tests by hand, including the presence tests that need a running Sugarizer Server, run `npm install` then open "test/index.html" from a local web server in your browser.
 
 
 # Build Application for Android and iOS

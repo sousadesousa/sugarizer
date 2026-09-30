@@ -901,7 +901,7 @@ enyo.kind({
 					callback(null, inResponse.entries[0].metadata, inResponse.entries[0].text);
 				},
 				function() {
-					console.log("WARNING: Error loading entry "+objectId+" in journal "+journalId);
+					console.log("WARNING: Error loading entry "+entry.objectId+" in journal "+journalId);
 				}
 			);
 		}

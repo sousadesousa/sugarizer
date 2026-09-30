@@ -678,7 +678,7 @@ enyo.kind({
 			{content: "contributors", classes: "computer-contributor-link", allowHtml: true, ontap: "viewContributors"},
 			{name: "license", content: "xxx", classes: "computer-licence"},
 			{name: "licenseplus", content: "xxx", classes: "computer-licence"},
-			{name: "warningmessage", showing: false, content: "xxx", classes: "computer-warningmessage", showing: false}
+			{name: "warningmessage", showing: false, content: "xxx", classes: "computer-warningmessage"}
 		]}
 	],
 

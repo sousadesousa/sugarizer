@@ -135,7 +135,7 @@ enyo.kind({
 	// Display current step items
 	displayStep: function() {
 		var vlogin = false,
-			vstop = false;
+			vstop = false,
 			vlogintext = false,
 			vnewuser = false,
 			vnewusertext = false,
@@ -798,8 +798,8 @@ enyo.kind({
 				var angle = Math.PI/2.0;
 				var base_angle = PI2/parseFloat(24);
 				for (var i = 0 ; i < 24 ; i++) {
-					x = (centerx+Math.cos(angle)*radius);
-					y = (centery+Math.sin(angle)*radius);
+					var x = (centerx+Math.cos(angle)*radius);
+					var y = (centery+Math.sin(angle)*radius);
 					var dot = this.$.dots.createComponent({
 						kind: "Sugar.Icon",
 						icon: {directory: "icons", icon: "dot.svg"},

@@ -384,7 +384,7 @@ enyo.kind({
 		var maxX = 0, maxY = 0, minX = canvas_center.dx, minY = canvas_center.dy;
 		while (activitiesCount-- > 0) {
 			var circumference = PI2*radiusx;
-			n = circumference / icon_spacing;
+			var n = circumference / icon_spacing;
 			radiusx += (spiral_spacing / n);
 			var ix = canvas_center.x-semi_size+Math.sin(angle) * radiusx;
 			var iy = canvas_center.y+Math.cos(angle) * radiusx - semi_size;

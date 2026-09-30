@@ -656,13 +656,13 @@ enyo.kind({
 		}
 
 		// Add to cache
-		var len = networkItemsCache;
+		var len = networkItemsCache.length;
 		var found = false;
 		for(var i = 0 ; i < len ; i++) {
 			var networkItem = networkItemsCache[i];
 			if (networkItem.name == name) {
-				networkItem.x = x;
-				networkItem.y = y;
+				networkItem.x = item.x;
+				networkItem.y = item.y;
 				found = true;
 			}
 		}
@@ -709,7 +709,7 @@ enyo.kind({
 	components: [
 		{name: "neighborsearch", kind: "Sugar.SearchField", onTextChanged: "filterNetwork", classes: "neighbor-filter-text"},
 		{name: "helpbutton", kind: "Button", classes: "toolbutton help-button", title:"Help", ontap: "startTutorial"},
-		{name: "radialbutton", kind: "Button", classes: "toolbutton view-desktop-button", title:"Home", title:"Home", ontap: "gotoDesktop"}
+		{name: "radialbutton", kind: "Button", classes: "toolbutton view-desktop-button", title:"Home", ontap: "gotoDesktop"}
 	],
 
 	// Constructor
