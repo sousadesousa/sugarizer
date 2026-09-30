@@ -7,7 +7,7 @@ exports.activities = JSON.parse(fs.readFileSync(path.join(__dirname, "../../acti
 
 // Errors caused by the test machine having no Internet access, not by Sugarizer
 // (including web sites refusing requests coming from the test server origin)
-const networkErrors = /net::ERR_|Network Error|Failed to fetch|ERR_TUNNEL|ERR_NAME_NOT_RESOLVED|ERR_INTERNET_DISCONNECTED|status of 404|blocked by CORS policy/;
+const networkErrors = /net::ERR_|Network Error|Failed to fetch|ERR_TUNNEL|ERR_NAME_NOT_RESOLVED|ERR_INTERNET_DISCONNECTED|status of 404|blocked by CORS policy|AxiosError \(HTTP request failed\)/;
 
 // Run Sugarizer without server, like the desktop and mobile apps
 exports.useNoServerMode = async function(page) {
@@ -23,7 +23,8 @@ exports.watchErrors = function(page) {
 	const errors = [];
 	const failedRequests = [];
 	page.on("pageerror", function(error) {
-		errors.push(error.message);
+		// axios only rejects for HTTP or network failures
+		errors.push(error.name == "AxiosError" ? "AxiosError (HTTP request failed): " + error.message : error.message);
 	});
 	page.on("requestfailed", function(request) {
 		failedRequests.push(request.url() + " " + request.failure().errorText);

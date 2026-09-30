@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - ESLint (`npm run lint`) and Playwright end-to-end tests (`npm test`), run on GitHub Actions for every push and pull request
 
+### Security
+- axios updated from 0.21.1 (0.18.0 in Game Of Life) to 0.34.0 in the app and all activities (CSRF token leak, SSRF, ReDoS and prototype pollution fixes)
+
 ### Fixed
 - Browser unit tests loaded mocha from the closed rawgit CDN
 - Wrong variables in journal error log, password `setPassword`, Cordova file write error, neighborhood position cache, and several accidental global variables
