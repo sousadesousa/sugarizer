@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Web app caches the files it uses with a service worker ([sw.js](sw.js)): faster loads on slow networks, home and opened activities load offline
 - ESLint (`npm run lint`) and Playwright end-to-end tests (`npm test`), run on GitHub Actions for every push and pull request
 
+### Changed
+- Electron 44 (from 22, out of support since 2023); `electron` and `electron-builder` are now dev dependencies
+- Electron pages run without Node.js (`contextIsolation`, `sandbox`); native dialogs go through a preload bridge
+- Web links open in the default browser instead of inside Sugarizer
+- Dropped unused `semver`, `ini`, `normalize-url`, `hosted-git-info` and `requirejs` dependencies; `axios`, `i18next` and `tmp` updated
+
 ### Security
 - axios updated from 0.21.1 (0.18.0 in Game Of Life) to 0.34.0 in the app and all activities (CSRF token leak, SSRF, ReDoS and prototype pollution fixes)
 
