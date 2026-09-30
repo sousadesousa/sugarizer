@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Security
+- axios updated from 0.21.1 (0.18.0 in Game Of Life) to 0.34.0 in the app and all activities (CSRF token leak, SSRF, ReDoS and prototype pollution fixes)
+
 ## [2.0.0] - 2026-07-17
 ### Added
 - Human Body activity
