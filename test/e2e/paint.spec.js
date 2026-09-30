@@ -255,8 +255,14 @@ test.describe("tools", function() {
 		await page.mouse.click(box.x + 200, box.y + 200);
 		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(500);
 		const stamp = await pixels(page);
-		// a bigger stamp when dragging
-		await drag(page, [600, 200], [680, 200]);
+		// a bigger stamp when dragging: the stamp shows up once loaded, drag after that
+		await page.mouse.move(box.x + 600, box.y + 200);
+		await page.mouse.down();
+		await page.locator("body > img").waitFor({state: "attached"});
+		for (let step = 1; step <= 10; step++) {
+			await page.mouse.move(box.x + 600 + step * 8, box.y + 200);
+		}
+		await page.mouse.up();
 		await expect.poll(function() { return pixels(page); }).toBeGreaterThan(stamp * 3);
 		const stamps = await pixels(page);
 		await expect(page.locator("#paint-canvas ~ img")).toHaveCount(0);
