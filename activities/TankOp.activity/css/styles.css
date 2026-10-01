@@ -600,3 +600,16 @@
 		height: 200px;
 	}
 }
+
+/* Credits popup over a transparent layer: a click outside closes it */
+.tankop-scrim {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

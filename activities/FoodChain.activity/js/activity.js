@@ -1,104 +1,134 @@
-﻿
+// Rebase require directory
+requirejs.config({
+	baseUrl: "lib",
+	// Load templates with XHR even when Electron exposes Node.js to the page
+	config: {
+		text: {
+			env: "xhr"
+		}
+	},
+	paths: {
+		activity: "../js"
+	}
+});
 
-define(["sugar-web/activity/activity","l10n","sugar-web/graphics/radiobuttonsgroup","sugar-web/datastore","tutorial", "sugar-web/env"], function (activity, _l10n, radioButtonsGroup, datastore, tutorial, env) {
-	var app = null;
-	l10n = _l10n
+const app = Vue.createApp({
+	components: {
+		"sugar-activity": SugarActivity,
+		"sugar-toolbar": SugarToolbar,
+		"sugar-toolitem": SugarToolitem,
+		"sugar-localization": SugarLocalization,
+		"sugar-popup": SugarPopup,
+		"sugar-tutorial": SugarTutorial
+	},
 
-    // Manipulate the DOM only when it is ready.
-    requirejs(['domReady!'], function (doc) {
-		// Initialize the activity
-		FoodChain.activity = activity;
-		FoodChain.activity.setup();
-
-		// Initialize buttons
-		var languageRadio = new radioButtonsGroup.RadioButtonsGroup([
-			document.getElementById("en-button"),
-			document.getElementById("fr-button")]
-		);
-		document.getElementById("en-button").onclick = function() {
-			l10n.init("en");
-			l10n.language.code = "en";
-			FoodChain.setLocale();
+	data: function() {
+		return {
+			state: FoodChain.state,
+			// Screen displayed: "loading", "home", "credits", "LearnGame", "BuildGame" or "PlayGame"
+			screen: "loading",
+			level: 1
 		};
-		document.getElementById("fr-button").onclick = function() {
-			l10n.init("fr");
-			l10n.language.code = "fr";
-			FoodChain.setLocale();
-		};
-		document.getElementById("pt_BR-button").onclick = function() {
-			l10n.init("pt_BR");
-			l10n.language.code = "pt_BR";
-			FoodChain.setLocale();
-		};
-		// Launch tutorial
-		document.getElementById("help-button").addEventListener('click', function(e) {
-			tutorial.start();
-		});
+	},
 
-		// Wait for locale load
-		var localized_received = function() {
-			// Init activity
-			if (app == null) {
-				env.getEnvironment(function(err, environment) {
-					// Set current language to Sugarizer
-					var defaultLanguage = (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
-					var language = environment.user ? environment.user.language : defaultLanguage;
-					if (language == 'fr' || language == 'en') {
-						l10n.language.code = language;
-						l10n.init(language);
-					} else if (language == 'pt') {
-						l10n.language.code = "pt_BR";
-						l10n.init("pt_BR");
-					} else{
-						l10n.language.code = "en";
-						l10n.init("en");
-					}
+	created: function() {
+		FoodChain.sound = new FoodChain.Audio();
+		FoodChain.goHome = this.goHome;
+	},
 
-					// Init sound component
-					FoodChain.sound = new FoodChain.Audio();
-					FoodChain.sound.renderInto(document.getElementById("header"));
+	methods: {
+		onInitialized: function() {
+			var vm = this;
+			vm.activity = vm.$refs.SugarActivity.getActivity();
+			vm.environment = vm.$refs.SugarActivity.getEnvironment();
+			FoodChain.activity = vm.activity;
 
-					// Create and display first screen
-					FoodChain.context.home = app = new FoodChain.App().renderInto(document.getElementById("body"));
-					FoodChain.setLocale();
-
-					// Load context
-					FoodChain.loadContext(function() {
-						if(FoodChain.context.game!=""){
-							app.playGame({
-								name: FoodChain.context.game.replace("FoodChain.", ""),
-								level: FoodChain.context.level
-							});
-							FoodChain.context.object.pause();
-							FoodChain.context.object.play();
-						}
+			// Language of the activity: the one of the user
+			var defaultLanguage = (typeof chrome != "undefined" && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
+			var language = vm.environment.user ? vm.environment.user.language : defaultLanguage;
+			vm.state.lang = FoodChain.languageFor(language);
+			FoodChain.loadLanguage("en", function() {
+				FoodChain.loadLanguage(vm.state.lang, function() {
+					FoodChain.checkDatabase(function() {
+						vm.start();
 					});
 				});
-			} else {
-				// Just change locale
-				FoodChain.setLocale();
-			}
-		};
-		localized_received(); //invoke to init the app
-		window.addEventListener('localized', localized_received, false);
+			});
+		},
 
-        // Stop sound at end of game to sanitize media environment, specifically on Android
-        document.getElementById("stop-button").addEventListener('click', function (event) {
+		// Display the home screen or the game saved in the journal
+		start: function() {
+			var vm = this;
+			if (!vm.environment.objectId) {
+				vm.screen = "home";
+				return;
+			}
+			FoodChain.loadContext(function(context) {
+				vm.screen = "home";
+				if (!context) {
+					return;
+				}
+				var finish = function() {
+					if (context.score) vm.state.score = parseInt(context.score);
+					if (context.game) {
+						vm.playGame(context.game.replace("FoodChain.", ""), parseInt(context.level) || 1);
+					}
+				};
+				if (context.language && FoodChain.languages.indexOf(context.language) != -1) {
+					FoodChain.loadLanguage(context.language, function() {
+						vm.state.lang = context.language;
+						finish();
+					});
+				} else {
+					finish();
+				}
+			});
+		},
+
+		goHome: function() {
+			this.state.game = "";
+			this.screen = "home";
+		},
+
+		// Launch a game
+		playGame: function(name, level) {
+			FoodChain.sound.pause();
+			this.level = level || 1;
+			this.screen = name;
+		},
+
+		setLanguage: function(lang) {
+			FoodChain.setLanguage(lang);
+		},
+
+		onStop: function() {
 			FoodChain.sound.pause();
 			FoodChain.saveContext();
-        });
+		},
 
-	// Add Fullscreen/Unfullscreen functionality
-        document.getElementById("fullscreen-button").addEventListener('click', function() {
-			document.getElementById("main-toolbar").style.opacity = 1;
-			document.getElementById("canvas").style.top = "0px";
-			document.getElementById("unfullscreen-button").style.visibility = "visible";
-        });
-        document.getElementById("unfullscreen-button").addEventListener('click', function() {
-			document.getElementById("main-toolbar").style.opacity = 1;
-			document.getElementById("canvas").style.top = "55px";
-			document.getElementById("unfullscreen-button").style.visibility = "hidden";
-        });
-    });
+		setFullscreen: function(fullscreen) {
+			this.state.fullscreen = fullscreen;
+			if (fullscreen) {
+				this.$refs.SugarToolbar.hide();
+			} else {
+				this.$refs.SugarToolbar.show();
+			}
+		},
 
+		onHelp: function() {
+			var get = FoodChain.text;
+			this.$refs.SugarTutorial.show(FoodChainTutorial.steps(get, this.state.game));
+		}
+	}
 });
+
+app.component("fc-shadow-button", FcShadowButton);
+app.component("fc-status", FcStatus);
+app.component("fc-card", FcCard);
+app.component("fc-home", FcHome);
+app.component("fc-credits", FcCredits);
+app.component("fc-learn", FcLearn);
+app.component("fc-build", FcBuild);
+app.component("fc-play", FcPlay);
+
+app.mount("#app");

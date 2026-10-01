@@ -693,3 +693,46 @@ body {
 		height: 75px;
 	}
 }
+
+/* Vue version: dialogs over the whole screen */
+.vv-scrim {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 10;
+}
+
+.vv-library-list {
+	overflow-y: auto;
+}
+
+.video-dialog {
+	position: fixed;
+	left: 0px;
+	z-index: 11;
+}
+
+#viewer {
+	position: relative;
+}
+
+.main-content {
+	overflow-y: auto;
+}
+
+.viewer-footer {
+	position: relative;
+}
+
+.viewer-footer {
+	box-sizing: border-box;
+}
+
+.search-field-input {
+	box-sizing: border-box;
+	height: 26px;
+	padding: 0;
+	vertical-align: top;
+}

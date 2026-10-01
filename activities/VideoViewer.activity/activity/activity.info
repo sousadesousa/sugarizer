@@ -2,5 +2,5 @@
 name = Video Viewer
 activity_version = 2
 bundle_id = org.olpcfrance.videoviewer
-exec = sugar-activity activity.EnyoActivity
+exec = sugar-activity-web
 icon = activity-icon

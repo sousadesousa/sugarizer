@@ -1,0 +1,18 @@
+{
+	"lib/axios.min.js": "lib-axios-0.34/dist/axios.min.js",
+	"lib/humane.js": {
+		"from": "lib-humane-js/humane.js",
+		"patches": [
+			{
+				"reason": "Always load with define(): with module defined (Electron), humane was not registered as a RequireJS module",
+				"find": "   if (typeof module !== 'undefined') module.exports = definition(name, context)\n   else if (typeof define === 'function' && typeof define.amd  === 'object') define(definition)\n   else context[name] = definition(name, context)",
+				"replace": "   define(definition)"
+			}
+		]
+	},
+	"lib/i18next.min.js": "lib-i18next-20/dist/umd/i18next.min.js",
+	"lib/intro.js": "lib-intro.js-5/intro.js",
+	"lib/require.js": "lib-requirejs/require.js",
+	"lib/text.js": "lib-requirejs-text/text.js",
+	"lib/vue.global.prod.js": "lib-vue-3/dist/vue.global.prod.js"
+}
