@@ -10,42 +10,65 @@
 <link rel="stylesheet" media="screen and (device-width: 1200px) and (device-height: 900px)"
 	href="lib/sugar-web/graphics/css/sugar-200dpi.css">
 <link rel="stylesheet" href="css/activity.css">
-<link rel="stylesheet" href="./css/introjs.css">
-<script src="./lib/intro.js"></script>
+<link rel="stylesheet" href="css/introjs.css">
+<link rel="stylesheet" href="css/styles.css">
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="lib/vue.global.prod.js"></script>
+<script src="lib/intro.js"></script>
 <script src="lib/Tone.js"></script>
 <script>if (window.module) module = window.module;</script>
-<link href="lib/enyo/enyo.css" rel="stylesheet" type="text/css" />
-<script src="lib/enyo/enyo.js" type="text/javascript"></script>
-<script src="database.js" type="text/javascript"></script>
-<script src="item.js" type="text/javascript"></script>
-<script src="collection.js" type="text/javascript"></script>
-<script src="piano.js" type="text/javascript"></script>
-<script src="simon.js" type="text/javascript"></script>
-<script src="audio.js" type="text/javascript"></script>
-<script src="app.js" type="text/javascript"></script>
+<script src="lib/require.js"></script>
 <script type="text/javascript" src="../../cordova.js"></script><!-- HACK: need only on Android -->
-<link href="css/styles.css" rel="stylesheet" type="text/css" />
-<script data-main="js/loader" src="lib/require.js"></script>
 </head>
 
 <body id="body">
-	<div id="main-toolbar" class="toolbar">
-	  <button class="toolbutton" id="activity-button" title="TamTam Micro"></button>
-	  <button class="toolbutton" id="instruments-button" title="Instruments Mode"></button>
-	  <button class="toolbutton" id="piano-button" title="Piano Mode"></button>
-	  <button class="toolbutton" id="simon-button" title="Simon Mode"></button>
-      <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
-		<button class="toolbutton pull-right" id="fullscreen-button" title="Fullscreen"></button>
-		<button class="toolbutton pull-right" id="help-button" title="Tutorial"></button>
+	<div id="app">
+		<sugar-toolbar ref="SugarToolbar">
+			<sugar-toolitem id="activity-button" title="TamTam Micro"></sugar-toolitem>
+			<sugar-toolitem id="instruments-button" title="Instruments Mode" :active="state.mode == 'instruments'" @click="setMode('instruments')"></sugar-toolitem>
+			<sugar-toolitem id="piano-button" title="Piano Mode" :active="state.mode == 'piano'" @click="setMode('piano')"></sugar-toolitem>
+			<sugar-toolitem id="simon-button" title="Simon Mode" :active="state.mode == 'simon'" @click="setMode('simon')"></sugar-toolitem>
+			<sugar-toolitem id="stop-button" title="Stop" class="pull-right" @click="onStop"></sugar-toolitem>
+			<sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
+			<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
+		</sugar-toolbar>
+
+		<div id="keyboard">
+			<div id="app_content" class="maincontent" :style="{height: contentHeight + 'px'}">
+				<div id="app_collections" class="collections" :style="{backgroundColor: background}">
+					<template v-if="state.mode == 'instruments'">
+						<tamtam-collection v-for="(collection, i) in collections" :key="collection.name" :name="collection.name" :selection="i == state.collection" @click="state.collection = i"></tamtam-collection>
+					</template>
+				</div>
+				<div id="app_items" class="items">
+					<template v-if="state.mode == 'instruments'">
+						<tamtam-item v-for="name in items" :key="state.collection + name" :name="name"></tamtam-item>
+					</template>
+					<template v-else>
+						<tamtam-item :name="state.mode == 'piano' ? state.currentPiano : state.currentSimon"></tamtam-item>
+						<tamtam-piano v-if="state.mode == 'piano'"></tamtam-piano>
+						<tamtam-simon v-else :strings="strings"></tamtam-simon>
+					</template>
+				</div>
+			</div>
+		</div>
+		<button class="toolbutton pull-right" id="unfullscreen-button" title="Unfullscreen" :style="{visibility: fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)"></button>
+
+		<sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
+		<sugar-localization ref="SugarL10n"></sugar-localization>
+		<sugar-popup ref="SugarPopup"></sugar-popup>
+		<sugar-tutorial ref="SugarTutorial"></sugar-tutorial>
 	</div>
 
-
-    <div id="keyboard">
-	</div>
-	<button class="toolbutton pull-right" id="unfullscreen-button" title="Unfullscreen"></button>
-	</div>
-
+	<script src="js/components/SugarActivity.js"></script>
+	<script src="js/components/SugarToolbar.js"></script>
+	<script src="js/components/SugarL10n.js"></script>
+	<script src="js/components/SugarPopup.js"></script>
+	<script src="js/components/SugarTutorial.js"></script>
+	<script src="js/tamtam.js"></script>
+	<script src="js/components/TamTamParts.js"></script>
+	<script src="js/tutorial.js"></script>
+	<script src="js/activity.js"></script>
 </body>
 
 </html>

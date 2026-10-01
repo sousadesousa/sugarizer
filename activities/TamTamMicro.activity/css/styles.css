@@ -343,3 +343,9 @@ ul li:last-child { border-radius:0 5px 5px 5px; }
     bottom: 5vh;
   }
 }
+/* Scrolling area under the toolbar */
+.maincontent {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
