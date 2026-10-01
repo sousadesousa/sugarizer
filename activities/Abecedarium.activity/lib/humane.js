@@ -9,11 +9,7 @@
  */
 
 ;!function (name, context, definition) {
-   // HACK: Force loading with define to avoid loading issue in Electron
-   //if (typeof module !== 'undefined') module.exports = definition(name, context)
-   //else if (typeof define === 'function' && typeof define.amd  === 'object') define(definition)
-   //else context[name] = definition(name, context)
-   define(definition);
+   define(definition)
 }('humane', this, function (name, context) {
    var win = window
    var doc = document
