@@ -21,7 +21,7 @@ define(["sugar-web/activity/activity","sugar-web/datastore","tutorial","sugar-we
 			var defaultLanguage = (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
 			var language = environment.user ? environment.user.language : defaultLanguage;
 			l10n.init(language);;
-			if (language == 'fr' || language == 'en' || language == 'es') {
+			if (language == 'pt' || language == 'en' || language == 'de') {
 				Abcd.context.lang = language;
 			}
 		});

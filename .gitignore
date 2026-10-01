@@ -7,6 +7,8 @@ node_modules/
 ## GIT ERROR
 #################
 # activities/
+# Archive files not needed now, but maybe in future
+activities/**/actArchive/
 
 #################
 ## Eclipse

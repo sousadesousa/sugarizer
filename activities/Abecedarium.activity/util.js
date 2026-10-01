@@ -12,8 +12,8 @@ Abcd.context = {
 	home: null,
 	object: null,
 	screen: "",
-	lang: "fr",
-	casevalue: 0,
+	lang: "de",
+	casevalue: 1,
 	screenContext: null
 };
 Abcd.saveContext = function() {
@@ -57,10 +57,10 @@ Abcd.setLocale = function(lang) {
 
 Abcd.getTextsFromLocal = function(lang) {
     switch (lang) {
-    case "fr":
-        return Abcd.frTexts;
-    case "es":
-        return Abcd.esTexts;
+    case "pt":
+        return Abcd.ptTexts;
+    case "de":
+        return Abcd.deTexts;
     default:
         return Abcd.enTexts;
     }
@@ -68,10 +68,10 @@ Abcd.getTextsFromLocal = function(lang) {
 
 Abcd.getLettersFromLocal = function(lang) {
     switch (lang) {
-    case "fr":
-        return Abcd.frLetters;
-    case "es":
-        return Abcd.esLetters;
+    case "pt":
+        return Abcd.ptLetters;
+    case "de":
+        return Abcd.deLetters;
     default:
         return Abcd.enLetters;
     }

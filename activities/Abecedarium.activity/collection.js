@@ -40,6 +40,7 @@ enyo.kind({
 	// Card setup
 	indexChanged: function() {
 		var collection = Abcd.collections[this.index];
+	
 		var entry = Abcd.entries[collection.img];
 		var image = Abcd.context.getDatabase()+"images/database/"+entry.code+".png";
 		var text = __$FC(collection.text);

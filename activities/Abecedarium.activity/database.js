@@ -10,10 +10,10 @@ Abcd.loadDatabase = function(callback) {
 		"database/db_collections.json",
 		"database/db_en.json",
 		"database/db_en_letters.json",
-		"database/db_fr.json",
-		"database/db_fr_letters.json",
-		"database/db_es.json",
-		"database/db_es_letters.json"
+		"database/db_pt.json",
+		"database/db_pt_letters.json",
+		"database/db_de.json",
+		"database/db_de_letters.json"
 	];
 	var count = 0;
 	var error = false;
@@ -38,15 +38,15 @@ Abcd.loadDatabase = function(callback) {
 		} else if (index == 5) {
 			Abcd.enLetters = value;
 		} else if (index == 6) {
-			Abcd.frTexts = value;
-			Abcd.texts = Abcd.frTexts;
+			Abcd.ptTexts = value;
+			Abcd.texts = Abcd.ptTexts;
 		} else if (index == 7) {
-			Abcd.frLetters = value;
-			Abcd.letters = Abcd.frLetters;
+			Abcd.ptLetters = value;
+			Abcd.letters = Abcd.ptLetters;
 		} else if (index == 8) {
-			Abcd.esTexts = value;
+			Abcd.deTexts = value;
 		} else if (index == 9) {
-			Abcd.esLetters = value;
+			Abcd.deLetters = value;
 		}
  	}
 	for (var i = 0 ; i < jsonFiles.length ; i++) {

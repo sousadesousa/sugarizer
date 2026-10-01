@@ -70,9 +70,7 @@ enyo.kind({
 	components: [
 		{name: "switchToPortuguese", kind: "Image", src: "images/ch.png", showing: false, classes: "standardButton switchLangButton", ontap: "localPortuguese"},
         {name: "switchToEnglish", kind: "Image", src: "images/pt.png", showing: false, classes: "standardButton switchLangButton", ontap: "localEnglish"},
-		{name: "switchToFrench", kind: "Image", src: "images/us.png", showing: false, classes: "standardButton switchLangButton", ontap: "localFrench"},
-		{name: "switchToSpanish", kind: "Image", src: "images/fr.png", classes: "standardButton switchLangButton", ontap: "localSpanish"},
-        {name: "switchToGermanCH", kind: "Image", src: "images/es.png", showing: false, classes: "standardButton switchLangButton", ontap: "localGermanCH"},
+		{name: "switchToGermanCH", kind: "Image", src: "images/us.png", showing: false, classes: "standardButton switchLangButton", ontap: "localGermanCH"},
 	],
 
 	// Constructor
@@ -81,40 +79,26 @@ enyo.kind({
   		if (document.getElementById("main-toolbar").style.visibility == "hidden")
 			Abcd.hideLang()
 		if (Abcd.context.lang == 'en')
-			Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: true, switchToSpanish: false, switchToswitchToGermanCHGerman: false, switchToPortuguese: false});
-		else if (Abcd.context.lang == 'fr')
-			Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: true, switchToGermanCH: false, switchToPortuguese: false});
-		else if (Abcd.context.lang == 'es')
-			Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: false, switchToGermanCH: true, switchToPortuguese: false});
-		else if (Abcd.context.lang == 'de-ch')
-			Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: false, switchToGermanCH: false, switchToPortuguese: true});
+			Abcd.changeVisibility(this, {switchToEnglish: false, switchToGermanCH: true, switchToPortuguese: false});
+		else if (Abcd.context.lang == 'de')
+			Abcd.changeVisibility(this, {switchToEnglish: false,  switchToGermanCH: false, switchToPortuguese: true});
 		else
-			Abcd.changeVisibility(this, {switchToEnglish: true, switchToFrench: false, switchToSpanish: false, switchToGermanCH: false, switchToPortuguese: false});
+			Abcd.changeVisibility(this, {switchToEnglish: true,  switchToGermanCH: false, switchToPortuguese: false});
 	},
 
 	// Change current language
 	localEnglish: function() {
-		Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: true, switchToSpanish: false, switchToGermanCH: false, switchToPortuguese: false});
+		Abcd.changeVisibility(this, {switchToEnglish: false, switchToGermanCH: true, switchToPortuguese: false});
 		Abcd.setLocale("en");
 	},
 
-	localFrench: function() {
-        Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: true, switchToGermanCH: false, switchToPortuguese: false});
-		Abcd.setLocale("fr");
-	},
-    
-    localSpanish: function() {
-        Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: false, switchToGermanCH: true, switchToPortuguese: false});
-        Abcd.setLocale("es");
-	},
-    
-    localGermanCH: function() {
-        Abcd.changeVisibility(this, {switchToEnglish: false, switchToFrench: false, switchToSpanish: false, switchToGermanCH: false, switchToPortuguese: true});
-        Abcd.setLocale("de-ch");
+	localGermanCH: function() {
+        Abcd.changeVisibility(this, {switchToEnglish: false, switchToGermanCH: false, switchToPortuguese: true});
+        Abcd.setLocale("de");
 	},
     
     localPortuguese: function() {
-        Abcd.changeVisibility(this, {switchToEnglish: true, switchToFrench: false, switchToSpanish: false, switchToGermanCH: false, switchToPortuguese: false});
+        Abcd.changeVisibility(this, {switchToEnglish: true, switchToGermanCH: false, switchToPortuguese: false});
         Abcd.setLocale("pt");
 	}
 });	

@@ -165,14 +165,18 @@ enyo.kind({
 		document.getElementById("png-button").removeEventListener("click", this.exportPNG);
 		document.getElementById("sound-button").removeEventListener("click", this.exportSOUND);
 		this.$.colorBar.addClass("themeColor"+this.theme);
+		
 		for (var i = 0 ; i < length ; i++) {
-			this.$.box.createComponent(
-				{ kind: "Abcd.Theme", index: i, ontap: "displayCollections" },
-				{ owner: this }
-			).render();
+			
+			if(Abcd.themes[i].visible){
+
+				this.$.box.createComponent(
+					{ kind: "Abcd.Theme", index: i, ontap: "displayCollections" },
+					{ owner: this }
+				).render();
+			}
 		}
 		this.$.box.createComponent({ classes: "linebreak" }).render();
-
 		// Display letters
 		for (var i = 0 ; i < 26 ; i++) {
 			this.$.box.createComponent(
@@ -204,7 +208,7 @@ enyo.kind({
 		this.$.box.createComponent({ classes: "linebreak" }).render();
 		this.$.box.createComponent({ classes: "linebreak" }).render();
 		for (var i = 0 ; i < length ; i++) {
-			if (Abcd.collections[i].theme != this.theme) continue;
+			if (Abcd.collections[i].theme != this.theme || !Abcd.collections[i].visible) continue;
 			this.$.box.createComponent({ kind: "Abcd.Collection", index: i, ontap: "displayEntries"}, {owner: this}).render();
 		}
 
