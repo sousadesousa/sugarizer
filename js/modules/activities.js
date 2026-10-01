@@ -81,6 +81,22 @@ define(["sugar-web/datastore"], function (datastore) {
 		return updated;
 	};
 
+	// A student connected to a server only gets the activities assigned to the classrooms
+	// of the student: the server sends only these ones, so drop the others (e.g. from the
+	// static activities list). Teachers and administrators keep all activities.
+	var restrictForStudent = function() {
+		if (serverActivityIds == null) {
+			return;
+		}
+		var settings = sugarizer.modules.settings.getUser();
+		if (!settings || settings.role != "student") {
+			return;
+		}
+		list = list.filter(function(activity) {
+			return Object.prototype.hasOwnProperty.call(serverActivityIds, activity.id);
+		});
+	};
+
 	// If we are in the SugarizerOS environment, load also the android apps into activities
 	var updateSugarizerOS = function(callback) {
 		if (window.sugarizerOS){
@@ -110,6 +126,7 @@ define(["sugar-web/datastore"], function (datastore) {
 					sugarizer.modules.server.getActivities(sugarizer.modules.user.getServerURL()).then(function(serverResponse) {
 						updateServerActivityIds(serverResponse);
 						updateList(serverResponse, false);
+						restrictForStudent();
 						updateSugarizerOS(function() {
 							resolve(list);
 						});
