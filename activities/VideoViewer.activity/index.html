@@ -10,42 +10,80 @@
 <link rel="stylesheet" media="screen and (device-width: 1200px) and (device-height: 900px)"
 	href="lib/sugar-web/graphics/css/sugar-200dpi.css">
 <link rel="stylesheet" href="css/activity.css">
-<link href="lib/enyo/enyo.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/introjs.css">
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+<script src="lib/vue.global.prod.js"></script>
 <script src="lib/intro.js"></script>
 <script>if (window.module) module = window.module;</script>
-<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-<script src="lib/enyo/enyo.js" type="text/javascript"></script>
-<script src="constant.js" type="text/javascript"></script>
-<script src="app.js" type="text/javascript"></script>
-<script src="item.js" type="text/javascript"></script>
-<script src="dialog.js" type="text/javascript"></script>
-<script src="util.js" type="text/javascript"></script>
-<script src="sugar.js" type="text/javascript"></script>
-<script src="searchfield.js" type="text/javascript"></script>
-<script>if (window.module) module = window.module;</script>
-<script data-main="js/loader" src="lib/require.js"></script>
-<script type="text/javascript" src="../../cordova.js"></script>
-
+<script src="lib/require.js"></script>
+<script type="text/javascript" src="../../cordova.js"></script><!-- HACK: need only on Android -->
 </head>
 
 <body id="body">
-	<div id="main-toolbar" class="toolbar" style="visibility: hidden;">
-	  <button class="toolbutton" id="activity-button" title="Video Viewer"></button>
-	  <button class="toolbutton" id="filter-button" title="Filter"></button>
-	  <button class="toolbutton" id="favorite-button" title="Favorite"></button>
-	  <button class="toolbutton" id="library-button" title="Library"></button>
-	  <button class="toolbutton" id="exportvideo-button" title="Export Video"></button>
-	  <div id="search"></div>
-	  <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
-	  <button class = "toolbutton pull-right" id = "fullscreen-button" title = "Fullscreen"></button>
-	  <button class="toolbutton pull-right" id="help-button" title="Tutorial"></button>
+	<div id="app">
+		<sugar-toolbar ref="SugarToolbar">
+			<sugar-toolitem id="activity-button" title="Video Viewer"></sugar-toolitem>
+			<sugar-toolitem
+				id="filter-button"
+				ref="filterItem"
+				title="Filter"
+				palette-file="filterpalette"
+				palette-class="FilterPalette"
+				palette-event="filter"
+				@filter="onFilter"
+			></sugar-toolitem>
+			<sugar-toolitem id="favorite-button" title="Favorite" :icon="context.filter.favorite ? 'icons/favorite.svg' : 'icons/notfavorite.svg'" @click="toggleFavorites"></sugar-toolitem>
+			<sugar-toolitem id="library-button" title="Library" @click="showLibraries"></sugar-toolitem>
+			<sugar-toolitem id="exportvideo-button" title="Export Video" :active="exportMode" @click="exportMode = !exportMode"></sugar-toolitem>
+			<div id="search">
+				<vv-search-field v-model="text"></vv-search-field>
+			</div>
+			<sugar-toolitem id="stop-button" title="Stop" class="pull-right"></sugar-toolitem>
+			<sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
+			<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
+		</sugar-toolbar>
+
+		<div id="viewer">
+			<img v-show="loading" src="images/spinner-light.gif" class="mainspinner">
+			<img v-show="failed" src="images/cloud-warning.svg" class="cloudwarning">
+			<div class="main-content" :style="{height: contentHeight + 'px', backgroundColor: background}">
+				<div class="items">
+					<vv-item
+						v-for="video in pageVideos"
+						:key="video.id"
+						:id="'video-' + video.id"
+						:video="video"
+						:favorite="!!favorites[video.id]"
+						:tojournal="exportMode"
+						@video-played="playVideo(video)"
+					></vv-item>
+				</div>
+			</div>
+			<div class="viewer-footer toolbar">
+				<button class="toolbutton previous-button pull-left" title="Previous" v-show="hasPrevious" @click="showPrevious"></button>
+				<div class="page-count">{{ currentPage }}/{{ lastPage }}</div>
+				<button class="toolbutton next-button pull-right" title="Next" v-show="hasNext" @click="showNext"></button>
+			</div>
+			<vv-library-dialog v-if="librariesShown && context.libraries" :libraries="context.libraries" :height="contentHeight" @close="hideLibraries" @select="selectLibrary" @remove="removeLibrary" @add="addDialog = true"></vv-library-dialog>
+			<vv-add-library-dialog v-if="addDialog" @close="addDialog = false" @added="librariesShown = true"></vv-add-library-dialog>
+			<vv-video-dialog v-if="video" :video="video" :favorite="!!favorites[video.id]" @favorite="setFavorite" @close="video = null"></vv-video-dialog>
+		</div>
+		<button class="toolbutton pull-right" id="unfullscreen-button" title="Unfullscreen" :style="{visibility: fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)"></button>
+
+		<sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
+		<sugar-localization ref="SugarL10n"></sugar-localization>
+		<sugar-popup ref="SugarPopup"></sugar-popup>
+		<sugar-tutorial ref="SugarTutorial"></sugar-tutorial>
 	</div>
 
-	<div id="viewer">
-	</div>
-	<button class = "toolbutton pull-right" id = "unfullscreen-button" title = "Unfullscreen"></button>
+	<script src="js/components/SugarActivity.js"></script>
+	<script src="js/components/SugarToolbar.js"></script>
+	<script src="js/components/SugarL10n.js"></script>
+	<script src="js/components/SugarPopup.js"></script>
+	<script src="js/components/SugarTutorial.js"></script>
+	<script src="js/videoviewer.js"></script>
+	<script src="js/components/VvParts.js"></script>
+	<script src="js/tutorial.js"></script>
+	<script src="js/activity.js"></script>
 </body>
-<script src="init.js" type="text/javascript"></script>
 </html>
