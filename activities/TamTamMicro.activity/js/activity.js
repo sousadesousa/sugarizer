@@ -1,103 +1,161 @@
-var app;
-var tonePlayer;
-var pianoMode = false;
-var simonMode = false;
+// Rebase require directory
+requirejs.config({
+	baseUrl: "lib",
+	// Load templates with XHR even when Electron exposes Node.js to the page
+	config: {
+		text: {
+			env: "xhr"
+		}
+	},
+	paths: {
+		activity: "../js"
+	}
+});
 
-define(["sugar-web/activity/activity", "sugar-web/env", "tutorial", "l10n"], function (activity, env, tutorial, l10n) {
+const app = Vue.createApp({
+	components: {
+		"sugar-activity": SugarActivity,
+		"sugar-toolbar": SugarToolbar,
+		"sugar-toolitem": SugarToolitem,
+		"sugar-localization": SugarLocalization,
+		"sugar-popup": SugarPopup,
+		"sugar-tutorial": SugarTutorial,
+		"tamtam-item": TamTamItem,
+		"tamtam-collection": TamTamCollection,
+		"tamtam-piano": TamTamPiano,
+		"tamtam-simon": TamTamSimon
+	},
 
-	// Manipulate the DOM only when it is ready.
-	requirejs(['domReady!'], function (doc) {
-		// Initialize the activity.
-		activity.setup();
+	data: function() {
+		return {
+			state: TamTam.state,
+			collections: TamTam.collections,
+			fullscreen: false,
+			contentHeight: 0,
+			strings: {}
+		};
+	},
 
-		// Create sound component
-		tonePlayer = new TamTam.TonePlayer();
+	computed: {
+		// Instruments of the selected collection
+		items: function() {
+			return TamTam.collections[this.state.collection].content;
+		},
+		background: function() {
+			return this.state.mode == "instruments" ? this.state.userColor.fill : "#ffffff";
+		}
+	},
 
-		env.getEnvironment(function(err, environment) {
-			currentenv = environment;
-			// Set current language to Sugarizer
-			var defaultLanguage = (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
-			var language = environment.user ? environment.user.language : defaultLanguage;
-			l10n.init(language);
+	watch: {
+		background: {
+			immediate: true,
+			handler: function(color) {
+				document.body.style.backgroundColor = color;
+			}
+		}
+	},
 
-			app = new TamTam.App({activity: activity});
+	created: function() {
+		TamTam.tonePlayer = new TamTam.TonePlayer();
+		var vm = this;
+		window.addEventListener("localized", function(e) {
+			vm.strings = e.detail.l10n.dictionary || {};
+		}, {once: true});
+		window.addEventListener("resize", this.computeSize);
+	},
 
-			// Load from data store
-			if (environment.objectId) {
-				activity.getDatastoreObject().loadAsText(function(error, metadata, data) {
-					if (error==null && data!=null) {
-						console.log("jornal data loaded!");
-						var journalData = JSON.parse(data);
-						// Launch main screen
-						app.setContext(journalData);
-						app.renderInto(document.getElementById("keyboard"));
+	beforeUnmount: function() {
+		window.removeEventListener("resize", this.computeSize);
+	},
 
-					} else{
-						console.log(data);
-					}
+	methods: {
+		// Localized string
+		t: function(key) {
+			return this.strings[key] || "";
+		},
 
-					if (simonMode || pianoMode){
-						app.userColor = environment.user.colorvalue;
-						app.draw();
+		onInitialized: function() {
+			var vm = this;
+			vm.activity = vm.$refs.SugarActivity.getActivity();
+			vm.environment = vm.$refs.SugarActivity.getEnvironment();
+			if (vm.environment.user && vm.environment.user.colorvalue) {
+				vm.state.userColor = vm.environment.user.colorvalue;
+			}
+			vm.computeSize();
+
+			// Load from the journal
+			if (vm.environment.objectId) {
+				vm.activity.getDatastoreObject().loadAsText(function(error, metadata, data) {
+					if (error == null && data != null) {
+						try {
+							vm.setContext(JSON.parse(data));
+						} catch (e) {
+							console.log("Can't read journal data", e);
+						}
 					}
 				});
-			} else {
-				app.renderInto(document.getElementById("keyboard"));
 			}
+		},
 
-			if (!pianoMode && !simonMode)
-				document.getElementById('instruments-button').classList.add('active');
-		});
+		// The content takes the height left by the toolbar
+		computeSize: function() {
+			var toolbar = document.getElementById("main-toolbar");
+			var toolbarHeight = (!this.fullscreen && toolbar) ? toolbar.offsetHeight : 0;
+			this.contentHeight = window.innerHeight - toolbarHeight;
+		},
 
-		// Switch to full screen when the full screen button is pressed
-		document.getElementById("fullscreen-button").addEventListener('click', function() {
-			document.getElementById("main-toolbar").style.display = "none";
-			document.getElementById("app_content").style.top = "0px";
-			document.getElementById("app_content").style.height = "100%";
-			document.getElementById("unfullscreen-button").style.visibility = "visible";
-			app.computeSize();
-		});
+		setMode: function(mode) {
+			this.state.mode = mode;
+		},
 
-		//Return to normal size
-		document.getElementById("unfullscreen-button").addEventListener('click', function() {
-			document.getElementById("main-toolbar").style.display = "block";
-			document.getElementById("app_content").style.top = "0px";
-			document.getElementById("app_content").style.height = "50%";
-			document.getElementById("unfullscreen-button").style.visibility = "hidden";
-			app.computeSize();
-		});
-
-		//Run tutorial when help button is clicked
-		document.getElementById("help-button").addEventListener('click', function(e) {
-			tutorial.start();
-		});
-
-		// Stop sound at end of game to sanitize media environment, specifically on Android
-		document.getElementById("stop-button").addEventListener('click', function (event) {
-			console.log(app.getContext());
-			var jsonData = JSON.stringify(app.getContext());
-			activity.getDatastoreObject().setDataAsText(jsonData);
-			activity.getDatastoreObject().save(function (error) {
-				if (error === null) {
-					console.log("write done.");
-				} else {
-					console.log("write failed.");
-				}
+		setFullscreen: function(fullscreen) {
+			this.fullscreen = fullscreen;
+			if (fullscreen) {
+				this.$refs.SugarToolbar.hide();
+			} else {
+				this.$refs.SugarToolbar.show();
+			}
+			var vm = this;
+			this.$nextTick(function() {
+				vm.computeSize();
 			});
-		});
+		},
 
-		document.getElementById("piano-button").addEventListener('click', function (event) {
-			app.changePianoMode();
-		});
+		setContext: function(context) {
+			this.state.mode = context.piano ? "piano" : (context.simon ? "simon" : "instruments");
+			if (context.currentPianoMode) {
+				this.state.currentPiano = context.currentPianoMode;
+			}
+			if (context.currentSimonMode) {
+				this.state.currentSimon = context.currentSimonMode;
+			}
+		},
 
-		document.getElementById("simon-button").addEventListener('click', function (event) {
-			app.changeSimonMode();
-		});
+		getContext: function() {
+			return {
+				piano: this.state.mode == "piano",
+				currentPianoMode: this.state.currentPiano,
+				simon: this.state.mode == "simon",
+				currentSimonMode: this.state.currentSimon
+			};
+		},
 
-		document.getElementById("instruments-button").addEventListener('click', function (event) {
-			app.changeInstrumentsMode();
-		});
+		onStop: function() {
+			var object = this.activity.getDatastoreObject();
+			object.setDataAsText(JSON.stringify(this.getContext()));
+			object.save(function(error) {
+				console.log(error === null ? "write done." : "write failed.");
+			});
+		},
 
-	});
-
+		onHelp: function() {
+			var l10n = this.$refs.SugarL10n;
+			var current = this.state.mode == "simon" ? this.state.currentSimon : this.state.currentPiano;
+			this.$refs.SugarTutorial.show(TamTamTutorial.steps(function(key) {
+				return l10n.get(key);
+			}, this.state.mode, current));
+		}
+	}
 });
+
+app.mount("#app");
