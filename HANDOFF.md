@@ -38,7 +38,7 @@ On upstream 2.0.0 (current):
 - `2.0/electron`: Electron 44.
 - `integration/2.0`: all of the above merged; 79 end-to-end tests pass locally and on GitHub CI (Jappy is
   an expected failure).
-- `activity-guide`: this folder and the Activity Guide (built from `integration/2.0`).
+- `docs/activity-guide`: the Activity Guide (`activity-guide/` folder) and this file, built from `integration/2.0`.
 
 On 1.9 (older, kept as reference): `electron/upgrade`, `ci/tests`, `pwa/offline`, `deps/vendored-libs`,
 `activities/paint`, `activities/paint-vue`, `integration/all`. `integration/all` does not include the
