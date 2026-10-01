@@ -605,7 +605,7 @@
 }
 
 .credit-content {
-	height: 100%;
+	min-height: 100%;
 }
 
 .credit-image {
@@ -629,37 +629,10 @@
 	color: white;
 }
 
-.networkIcon {
-	position: absolute;
-	top: 530px;
-	right: 50px;
-}
 
-.network-popup {
-	width: 880px;
-	height: 200px;
-	color: black;
-}
 
-.networkbImage {
-	position: absolute;
-	top: 40px;
-	left: 10px;
-}
 
-.networkValue {
-	position: absolute;
-	left: 100px;
-	margin-top: 35px;
-	font-size: 38px;
-	width: 760px;
-}
 
-.checkwButton {
-	position: absolute;
-	bottom: 10px;
-	right: 30px;
-}
 .introjs-overlay {
 	background-color: #000 !important;
 	opacity: .8 !important;
@@ -1110,4 +1083,28 @@
 	.entryPlayFrom {
 		margin-left: 42%;
 	}
+}
+
+/* Popups (credits and filter) over a scrim */
+.abcd-scrim {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.abcd-popup {
+	position: relative;
+	box-sizing: border-box;
+	overflow: auto;
+	padding: 6px;
+	background-color: #4a4a4a;
+	border-radius: 4px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
