@@ -315,7 +315,7 @@ test("tutorial of the home, learn and play screens", async function({ page }) {
 	await tutorial("explore");
 	await page.locator("#learn_home_home").click();
 	await page.locator("#app_play").click();
-	await tutorial("Play");
+	await tutorial("guess games");
 	expect(titles.length).toBe(3);
 	expect(errors.real(), errors.report()).toEqual([]);
 });

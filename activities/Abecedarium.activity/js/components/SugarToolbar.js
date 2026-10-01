@@ -53,7 +53,7 @@ const SugarToolitem = {
 // Toolbar component
 const SugarToolbar = {
 	template: `
-		<div id="main-toolbar" class="toolbar" v-bind:class="{ hidden: hidden }">
+		<div id="main-toolbar" class="toolbar" v-bind:class="{ hidden: hidden }" :style="{ visibility: hidden ? 'hidden' : '' }">
 			<slot></slot>
 		</div>
 	`,

@@ -4,10 +4,15 @@
 const AbcdHomeButton = {
 	template: `
 		<div>
-			<img :id="id + '_home'" src="images/home.png" class="standardButton backButton" @click="Abcd.goHome()">
+			<img :id="id + '_home'" src="images/home.png" class="standardButton backButton" @click="goHome">
 		</div>
 	`,
-	props: { id: String }
+	props: { id: String },
+	methods: {
+		goHome: function() {
+			Abcd.goHome();
+		}
+	}
 };
 
 // Switch between upper case, script and lower case
