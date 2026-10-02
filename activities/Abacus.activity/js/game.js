@@ -5,6 +5,8 @@ function Game(activity,stage,xocolor,Fraction,doc,abacuspalette,custompalette,da
 	//rods top bottom factor base
 	this.customarr = [15,1,4,5,10];
 	this.abacustype = null;
+	// Abacus of a new instance: Decimal, the simplest
+	this.defaultAbacus = 0;
 
 	//Custom Abacus
 	this.updateCustom = function(rods,top,bottom,factor,base){
@@ -228,7 +230,7 @@ function Game(activity,stage,xocolor,Fraction,doc,abacuspalette,custompalette,da
 			this.abacus.restore(data.abacusinuse);
 			this.abacus.restoreTri(data.trix);
 		} else {
-			this.Suanpan(stage,xocolor);
+			this.initAbacus(this.defaultAbacus);
 		}
 		this.palette.setUsed();
 	}
