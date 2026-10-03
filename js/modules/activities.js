@@ -20,6 +20,25 @@ define(["sugar-web/datastore"], function (datastore) {
 		for (var i = 0 ; i < newlist.length ; i++) {
 			serverActivityIds[newlist[i].id] = true;
 		}
+		updateToolbarModes(newlist);
+	};
+
+	// The server tells a student the toolbar mode ("simple" or "full") of each activity, set by
+	// the classrooms of the student. Keep it in the user settings, where activities read it.
+	// Teachers and administrators choose their own mode in the settings.
+	var updateToolbarModes = function(serverList) {
+		var user = sugarizer.modules.settings.getUser();
+		if (!user || user.role != "student") {
+			return;
+		}
+		var overrides = {};
+		for (var i = 0 ; i < serverList.length ; i++) {
+			var mode = serverList[i].toolbarMode;
+			if (mode == "simple" || mode == "full") {
+				overrides[serverList[i].id] = mode;
+			}
+		}
+		sugarizer.modules.settings.setUser({toolbarMode: "full", toolbarOverrides: overrides});
 	};
 
 	// Update activity list
