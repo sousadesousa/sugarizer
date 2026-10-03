@@ -196,21 +196,6 @@
 		},
 		{
 			"files": [
-				"activities/Abecedarium.activity/js/components/SugarL10n.js",
-				"activities/FoodChain.activity/js/components/SugarL10n.js",
-				"activities/LastOneLoses.activity/js/components/SugarL10n.js",
-				"activities/Paint.activity/js/components/SugarL10n.js",
-				"activities/TamTamMicro.activity/js/components/SugarL10n.js",
-				"activities/TankOp.activity/js/components/SugarL10n.js",
-				"activities/VideoViewer.activity/js/components/SugarL10n.js",
-				"activities/Vote.activity/js/components/SugarL10n.js"
-			],
-			"rules": {
-				"no-const-assign": "off"
-			}
-		},
-		{
-			"files": [
 				"activities/Chart.activity/js/activity.js",
 				"activities/TurtleBlocksJS.activity/js/block.js"
 			],
