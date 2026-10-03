@@ -24,7 +24,7 @@
   <body>
     <div id="app">
       <sugar-toolbar ref="SugarToolbar">
-        <sugar-toolitem id="activity-button" title="Last One Loses Activity"></sugar-toolitem>
+        <sugar-toolitem id="activity-button" title="Last One Loses Activity" data-toolbar="advanced"></sugar-toolitem>
         <sugar-toolitem
           id="network-button"
           title="Network"
@@ -32,18 +32,19 @@
           palette-class="PresencePalette"
           palette-event="shared"
           @shared="onShared"
+          data-toolbar="advanced"
         ></sugar-toolitem>
         <sugar-toolitem splitbar></sugar-toolitem>
         <sugar-toolitem id="new-game-button" :title="onlyHost ? 'Only Host can do it' : 'New game'" :disabled="onlyHost" @click="doRenew"></sugar-toolitem>
         <sugar-toolitem splitbar></sugar-toolitem>
-        <sugar-toolitem id="level-easy-button" :title="shared ? 'Not available in multiplayer' : 'Level easy'" :disabled="shared" :active="!shared && level == 1" @click="setLevel(1)"></sugar-toolitem>
-        <sugar-toolitem id="level-medium-button" :title="shared ? 'Not available in multiplayer' : 'Level medium'" :disabled="shared" :active="!shared && level == 2" @click="setLevel(2)"></sugar-toolitem>
-        <sugar-toolitem id="level-hard-button" :title="shared ? 'Not available in multiplayer' : 'Level hard'" :disabled="shared" :active="!shared && level == 3" @click="setLevel(3)"></sugar-toolitem>
+        <sugar-toolitem id="level-easy-button" :title="shared ? 'Not available in multiplayer' : 'Level easy'" :disabled="shared" :active="!shared && level == 1" @click="setLevel(1)" data-toolbar="advanced"></sugar-toolitem>
+        <sugar-toolitem id="level-medium-button" :title="shared ? 'Not available in multiplayer' : 'Level medium'" :disabled="shared" :active="!shared && level == 2" @click="setLevel(2)" data-toolbar="advanced"></sugar-toolitem>
+        <sugar-toolitem id="level-hard-button" :title="shared ? 'Not available in multiplayer' : 'Level hard'" :disabled="shared" :active="!shared && level == 3" @click="setLevel(3)" data-toolbar="advanced"></sugar-toolitem>
         <sugar-toolitem splitbar></sugar-toolitem>
-        <sugar-toolitem id="switch-player-button" :title="onlyHost ? 'Only Host can do it' : 'Switch player'" :disabled="switchDisabled" @click="switchPlayer"></sugar-toolitem>
+        <sugar-toolitem id="switch-player-button" :title="onlyHost ? 'Only Host can do it' : 'Switch player'" :disabled="switchDisabled" @click="switchPlayer" data-toolbar="advanced"></sugar-toolitem>
         <sugar-toolitem id="stop-button" title="Stop" class="pull-right"></sugar-toolitem>
-        <sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
-        <sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
+        <sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)" data-toolbar="advanced"></sugar-toolitem>
+        <sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp" data-toolbar="advanced"></sugar-toolitem>
       </sugar-toolbar>
 
       <!-- The content of the activity goes inside the canvas -->
@@ -60,7 +61,7 @@
           <div id="lOLGameApp_endmessage" class="end-message" :class="endClass" v-show="ended"></div>
         </div>
       </div>
-      <button class="toolbutton pull-right" id="unfullscreen-button" title="Unfullscreen" :style="{visibility: state.fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)"></button>
+      <button class="toolbutton pull-right" id="unfullscreen-button" title="Unfullscreen" :style="{visibility: state.fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)" data-toolbar="advanced"></button>
 
       <sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
       <sugar-localization ref="SugarL10n"></sugar-localization>
