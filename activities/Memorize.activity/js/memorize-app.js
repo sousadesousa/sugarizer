@@ -475,10 +475,26 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
             }
 
             if (MemorizeApp.game.mode == MODE_SPLITTED && MemorizeApp.game.selectedCards.length == 1) {
-                if (t.cardPosition < middle && MemorizeApp.game.selectedCards[0].cardPosition < middle) {
-                    return;
-                }
-                if (t.cardPosition >= middle && MemorizeApp.game.selectedCards[0].cardPosition >= middle) {
+                var inFirstGroup = t.cardPosition < middle;
+                if (inFirstGroup == (MemorizeApp.game.selectedCards[0].cardPosition < middle)) {
+                    // Same group as the selected card: show the child what to do instead of ignoring the tap
+                    var others = [];
+                    var children = MemorizeApp.ui.gameGrid.childNodes;
+                    for (var i = 0; i < children.length; i++) {
+                        if (children[i].card && !children[i].card.solved && (children[i].cardPosition < middle) != inFirstGroup) {
+                            others.push(children[i]);
+                        }
+                    }
+                    t.classList.add('card-shake');
+                    others.forEach(function (c) {
+                        c.classList.add('card-highlight');
+                    });
+                    setTimeout(function () {
+                        t.classList.remove('card-shake');
+                        others.forEach(function (c) {
+                            c.classList.remove('card-highlight');
+                        });
+                    }, 600);
                     return;
                 }
             }
