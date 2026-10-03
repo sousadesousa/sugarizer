@@ -19,7 +19,7 @@ One commit per item, in order. No pull request opened.
 
 - `no-async-promise-executor` (4): Curriculum.activity/js/Export.js:460, Curriculum.activity/js/Export.js:676, Vote.activity/js/Export.js:255, Vote.activity/js/Export.js:380
 - `no-cond-assign` (2): PhysicsJS.activity/js/activity.js:985, TurtleBlocksJS.activity/js/blocks.js:1773
-- `no-const-assign` (8): Abecedarium.activity/js/components/SugarL10n.js:128, FoodChain.activity/js/components/SugarL10n.js:128, LastOneLoses.activity/js/components/SugarL10n.js:128, Paint.activity/js/components/SugarL10n.js:128, TamTamMicro.activity/js/components/SugarL10n.js:128, TankOp.activity/js/components/SugarL10n.js:128, VideoViewer.activity/js/components/SugarL10n.js:128, Vote.activity/js/components/SugarL10n.js:140
+- `no-const-assign` (8, **fixed in the follow-up**): Abecedarium.activity/js/components/SugarL10n.js:128, FoodChain.activity/js/components/SugarL10n.js:128, LastOneLoses.activity/js/components/SugarL10n.js:128, Paint.activity/js/components/SugarL10n.js:128, TamTamMicro.activity/js/components/SugarL10n.js:128, TankOp.activity/js/components/SugarL10n.js:128, VideoViewer.activity/js/components/SugarL10n.js:128, Vote.activity/js/components/SugarL10n.js:140
 - `no-dupe-keys` (2): Tangram.activity/js/activity.js:1149, TurtleBlocksJS.activity/js/analytics.js:53
 - `no-fallthrough` (3): Chart.activity/js/activity.js:678, TurtleBlocksJS.activity/js/block.js:647, TurtleBlocksJS.activity/js/logo.js:1523
 - `no-global-assign` (1): Tangram.activity/js/utils/generator.js:381
@@ -65,3 +65,17 @@ One commit per item, in order. No pull request opened.
 ## Full e2e run
 
 `CHROMIUM_PATH=/opt/pw-browsers/chromium npx playwright test --workers=2`: **152 passed** (6.7 min), 0 failed, 0 skipped, after all four commits. `npm run lint` is green and `npm run libs:check` was not affected (no library file touched).
+
+## Follow-up
+
+**1. `const levels` in SugarL10n.js.** `localizeTimestamp(timestamp)` (Vue component copied into Abecedarium, FoodChain, LastOneLoses, Paint, TamTamMicro, TankOp, VideoViewer, Vote) declared `const levels = 0` and did `levels += 1` as soon as the first non-zero unit was found. The line therefore runs for **any timestamp older than one minute** (a younger one returns "SecondsAgo" before reaching it): `TypeError: Assignment to constant variable`. Callers: Vote `History.js` (end time of each poll in the history) and `PollStats.js` (result of a past poll); the other 7 activities include the file but do not call it. Fix: `let levels` in the 8 copies; the shared copy in `activities/ActivityTemplate/VueJS/js/components/SugarL10n.js` already had `let` (Curriculum, Story, ... have another version of the file without the bug); the 8 files were removed from the `no-const-assign` lint override. Test: `paint.spec.js` "SugarL10n converts an old timestamp..." calls the real `SugarLocalization.methods.localizeTimestamp` loaded by the Paint page with timestamps 5 s, 5 min and 2 h 3 min old. It fails before the fix (`TypeError: Assignment to constant variable.`) and passes after.
+
+**2. Electron IPC.** New `ipc-validation.js` (plain Node) used by `main.js`, tests in `test/e2e/ipc-validation.spec.js` (5 tests, no Electron).
+- `save-file-dialog`: the app only ever calls it with `directory: null` (journal "copy to device"), so the minimum safe rule is: `filename` must be a base name (non-empty, <= 255, no `/`, `\`, `:`, control characters/NUL, not `.`/`..`) and the request must carry text or binary content. A renderer-supplied `directory` is honoured only if it is **absolute and equals a directory the user chose earlier** with the choose-directory dialog (kept in a `Set` in the main process) and the file has a known extension (json, jpg, png, wav, webm, mp3, mp4, txt, pdf, doc, odt, csv, bin); otherwise, with no directory, the user gets the save dialog as before. A refused request gets `save-file-reply` with `err` and no write.
+- `create-tempfile`: `arg.text` must be a string, max 200 MB decoded; failures (invalid, `tmp` error, write error) now reply `null` instead of staying silent, and the file descriptor is closed after the write.
+- `LoadFile`: a read error is sent in `choose-files-reply` (the renderer already handles `err`) instead of throwing on `data.toString`.
+- **Could not run:** Electron itself (not installed here, no display): `main.js` is only syntax-checked (`node --check`), so the real handlers and the dialog flow are untested. Not changed: the handlers are still registered inside `did-finish-load`, so a window reload would register them twice; the `sender`/frame is not checked.
+
+**3. devDependencies.** Removed `@babel/eslint-parser` and `eslint-plugin-vue` (and their lockfile entries). Kept `@babel/core`, `@vue/cli-plugin-babel`, `babel-jest` (used by the jest unit tests / `vue-cli-service`) and `@vue/cli-plugin-eslint` (not Babel; `vue-cli-service lint` no longer used, could go too). `npm ci --ignore-scripts` from a clean `node_modules`, `npm run lint` and `npm run libs:check` pass.
+
+**Verified at the end:** `npm run lint` exit 0, `npm run libs:check` "up to date", full e2e `CHROMIUM_PATH=/opt/pw-browsers/chromium npx playwright test --workers=2`: **158 passed**, 0 failed (7.0 min). The other documented lint TODOs (Tangram, TurtleBlocks, Stopwatch, ...) are unchanged.
