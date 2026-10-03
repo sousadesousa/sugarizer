@@ -1,0 +1,9 @@
+{
+	"globals": {
+		"RecordRTC": "writable",
+		"colors": "writable",
+		"resetXML": "writable",
+		"resolve": "writable",
+		"traverse": "writable"
+	}
+}

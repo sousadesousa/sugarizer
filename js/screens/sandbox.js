@@ -41,7 +41,7 @@ const Locales = {
 			//save the language preference in the local storage (TEMPORARY SOLUTION TILL WE HAVE CONNECTION FEATURE)
 			var sugar = localStorage.getItem("sugar_settings");
 			if (sugar !== null && sugar !== undefined && sugar !== "{}") {
-				settings = JSON.parse(sugar);
+				var settings = JSON.parse(sugar);
 				settings.language = lng;
 				localStorage.setItem('sugar_settings', JSON.stringify(settings));
 			} else {

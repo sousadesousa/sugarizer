@@ -1,0 +1,16 @@
+{
+	"globals": {
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"TamTam": "writable",
+		"TamTamCollection": "writable",
+		"TamTamItem": "writable",
+		"TamTamPiano": "writable",
+		"TamTamSimon": "writable",
+		"TamTamTutorial": "writable"
+	}
+}

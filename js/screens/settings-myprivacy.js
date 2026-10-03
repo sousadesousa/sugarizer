@@ -118,10 +118,6 @@ const MyPrivacy = {
 			this.$refs[ref].showDialog = true;
 		},
 
-		okClicked() {
-			this.close('mysecurityModal');
-		},
-
 		onContributorsLinkClick() {
 			window.open(this.constant.contributorslink, '_blank');
 		},

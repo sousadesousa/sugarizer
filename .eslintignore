@@ -1,0 +1,24 @@
+node_modules/
+test/chai.js
+test/jquery.min.js
+*.min.js
+
+# Activities: vendored, generated or data files that are not under a lib/ folder
+activities/**/lib/
+activities/Scratch.activity/
+activities/Blockrain.activity/js/blockrain.jquery.libs.js
+activities/Blockrain.activity/js/blockrain.jquery.themes.js
+activities/Calligra.activity/js/database.js
+activities/ColorMyWorld.activity/js/ol.js
+activities/Constellation.activity/virtualsky/
+activities/Exerciser.activity/static/
+activities/Exerciser.activity/service-worker.js
+activities/Jappy.activity/js/codeeditor.js
+activities/Memorize.activity/js/sample-ressources.js
+activities/Planets.activity/js/three.js
+activities/Record.activity/js/gif-recorder.js
+activities/Record.activity/js/recordrtc.js
+activities/Speak.activity/mespeak.js
+activities/TurtleBlocksJS.activity/js/artwork.js
+activities/TurtleBlocksJS.activity/js/munsell.js
+activities/Write.activity/js/initialimage.js

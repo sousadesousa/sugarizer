@@ -1,0 +1,17 @@
+{
+	"globals": {
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"TankOp": "writable",
+		"TankOpCredits": "writable",
+		"TankOpHome": "writable",
+		"TankOpLcd": "writable",
+		"TankOpPlay": "writable",
+		"TankOpTutorial": "writable",
+		"constant": "writable"
+	}
+}

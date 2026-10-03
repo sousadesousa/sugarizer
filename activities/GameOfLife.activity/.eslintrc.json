@@ -1,0 +1,6 @@
+{
+	"globals": {
+		"canvasHeight": "writable",
+		"canvasWidth": "writable"
+	}
+}

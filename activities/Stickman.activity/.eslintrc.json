@@ -1,0 +1,6 @@
+{
+	"globals": {
+		"Stickman": "writable",
+		"currentUser": "writable"
+	}
+}

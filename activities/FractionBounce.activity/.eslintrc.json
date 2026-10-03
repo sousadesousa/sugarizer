@@ -1,0 +1,10 @@
+{
+	"globals": {
+		"Score": "writable",
+		"SlopeTemplate": "writable",
+		"app": "writable",
+		"data": "writable",
+		"mainCanvas": "writable",
+		"slopeCanvas": "writable"
+	}
+}

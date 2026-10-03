@@ -854,7 +854,6 @@ const Journal = {
 		},
 
 		async toggleFavoriteActivity(entry) {
-			const activity = entry.activityInfo;
 			this.trace("switch_favorite", entry.objectId);
 			const keep = entry.metadata.keep;
 			if (keep === undefined) {

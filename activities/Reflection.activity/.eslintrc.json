@@ -1,0 +1,7 @@
+{
+	"globals": {
+		"Game": "writable",
+		"SymmetryDot": "writable",
+		"currentenv": "writable"
+	}
+}

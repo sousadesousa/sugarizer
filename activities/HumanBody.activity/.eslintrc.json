@@ -1,0 +1,14 @@
+{
+	"globals": {
+		"HumanBody": "writable",
+		"OrbitControls": "writable",
+		"THREE": "writable",
+		"bodyParts": "writable",
+		"canvasPosition": "writable",
+		"currentenv": "writable",
+		"gearSketch": "writable",
+		"isLearnActive": "writable",
+		"mousePosition": "writable",
+		"rayCaster": "writable"
+	}
+}

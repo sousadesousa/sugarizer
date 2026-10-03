@@ -258,8 +258,7 @@ function createWindow() {
 			systemPreferences.askForMediaAccess("microphone");
 			systemPreferences.askForMediaAccess("camera");
 		}
-		var menu = Menu.buildFromTemplate(template);
-		Menu.setApplicationMenu(menu);
+		Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
 		// Debug console
 		if (debug) {

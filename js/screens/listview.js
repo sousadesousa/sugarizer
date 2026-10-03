@@ -118,9 +118,6 @@ const ListView = {
 		if (container) {
 			container.removeEventListener('scroll', this.onScroll);
 		}
-	},
-
-	beforeUnmount() {
 		if (this.timer) {
 			window.clearTimeout(this.timer);
 		}
@@ -187,7 +184,7 @@ const ListView = {
 					iconRef.colorData = 256;
 				} else if (iconRef.colorData == 256) {
 					iconRef.colorData = this.buddycolor;
-				};
+				}
 
 				sugarizer.modules.activities.updateFavorites(this.favactivities);
 			}, (error) => {

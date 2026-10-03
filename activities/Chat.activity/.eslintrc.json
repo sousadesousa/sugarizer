@@ -1,0 +1,17 @@
+{
+	"globals": {
+		"ChatInput": "writable",
+		"Emojis": "writable",
+		"Message": "writable",
+		"SugarActivity": "writable",
+		"SugarIcon": "writable",
+		"SugarJournal": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarPresence": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"TypingEffect": "writable"
+	}
+}

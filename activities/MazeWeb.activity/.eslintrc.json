@@ -1,0 +1,7 @@
+{
+	"globals": {
+		"control": "writable",
+		"ctx": "writable",
+		"tween": "writable"
+	}
+}

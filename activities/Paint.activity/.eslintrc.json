@@ -1,0 +1,17 @@
+{
+	"globals": {
+		"PaintCollaboration": "writable",
+		"PaintFilters": "writable",
+		"PaintModes": "writable",
+		"PaintTutorial": "writable",
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"changeColors": "writable",
+		"loadText": "writable",
+		"stampPlatform": "writable"
+	}
+}

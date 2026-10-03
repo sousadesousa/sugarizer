@@ -1,0 +1,25 @@
+{
+	"globals": {
+		"Abcd": "writable",
+		"AbcdCaseButton": "writable",
+		"AbcdCollection": "writable",
+		"AbcdCredits": "writable",
+		"AbcdEntry": "writable",
+		"AbcdFilter": "writable",
+		"AbcdHome": "writable",
+		"AbcdHomeButton": "writable",
+		"AbcdLanguageButton": "writable",
+		"AbcdLearn": "writable",
+		"AbcdLetter": "writable",
+		"AbcdPlay": "writable",
+		"AbcdPlayTypeButton": "writable",
+		"AbcdTheme": "writable",
+		"AbcdTutorial": "writable",
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable"
+	}
+}

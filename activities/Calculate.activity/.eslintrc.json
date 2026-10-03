@@ -1,0 +1,14 @@
+{
+	"globals": {
+		"CalculateApp": "writable",
+		"Parser": "writable",
+		"getErrorTemplate": "writable",
+		"getGraphTemplate": "writable",
+		"getResultTemplate": "writable",
+		"getWindowHeight": "writable",
+		"getWindowWidth": "writable",
+		"initGui": "writable",
+		"mathjs": "writable",
+		"nanoModal": "writable"
+	}
+}

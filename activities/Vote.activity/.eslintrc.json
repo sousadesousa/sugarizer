@@ -1,0 +1,13 @@
+{
+	"globals": {
+		"Chart": "writable",
+		"Export": "writable",
+		"ImageURL": "writable",
+		"PollSettings": "writable",
+		"PollStats": "writable",
+		"PollsGrid": "writable",
+		"Vote": "writable",
+		"WordCloud": "writable",
+		"app": "writable"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"globals": {
+		"app": "writable",
+		"data": "writable",
+		"metadata": "writable",
+		"transform": "writable"
+	}
+}

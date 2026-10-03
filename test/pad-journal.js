@@ -168,7 +168,7 @@ async function padJournal() {
 
 		for (const entry of entries) {
 			try {
-				const response = await postJournalEntry(
+				await postJournalEntry(
 					journalId,
 					entry,
 					token,

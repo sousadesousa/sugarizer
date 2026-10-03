@@ -37,11 +37,9 @@ define(["sugar-web/datastore"], function (datastore) {
 				data = JSON.parse(text);
 				if (!data.metadata) {
 					throw new Error("No metadata found");
-					return;
 				}
 			} catch (e) {
 				throw new Error(`Error reading file: ${e}`);
-				return;
 			}
 			metadata = data.metadata;
 			content = data.text;

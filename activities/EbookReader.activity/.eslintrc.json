@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"EbookReader": "writable",
+		"LibraryViewer": "writable",
+		"Localization": "writable",
+		"Popup": "writable",
+		"Toolbar": "writable",
+		"Tutorial": "writable",
+		"app": "writable",
+		"modal": "writable"
+	}
+}

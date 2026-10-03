@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"Family": "writable",
+		"Popup": "writable",
+		"StreetPlace": "writable",
+		"_all_things": "writable",
+		"_current_index": "writable",
+		"app": "writable",
+		"modal": "writable",
+		"reject": "writable"
+	}
+}

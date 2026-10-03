@@ -1,0 +1,19 @@
+{
+	"globals": {
+		"CategoriesGrid": "writable",
+		"CategoryCard": "writable",
+		"CategorySettings": "writable",
+		"Export": "writable",
+		"Medal": "writable",
+		"Rewards": "writable",
+		"SkillCard": "writable",
+		"SkillDetails": "writable",
+		"SkillSettings": "writable",
+		"SkillsGrid": "writable",
+		"TemplateSelection": "writable",
+		"UploadItem": "writable",
+		"app": "writable",
+		"content": "writable",
+		"showPopup": "writable"
+	}
+}

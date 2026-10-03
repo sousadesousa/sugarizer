@@ -104,7 +104,7 @@ define(["sugar-web/datastore"], function (datastore) {
 				// TODO: use a better notification system
 				if (!response.ready) {
 					var loading = humane.create({timeout: 5000, baseCls: "humane-libnotify"});
-					loading.log(l10n.get("Loading"));
+					loading.log(sugarizer.modules.i18next.t("Loading"));
 				}
 			});
 			sugarizerOS.initActivitiesPreferences(function(){

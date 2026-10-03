@@ -1,0 +1,10 @@
+{
+	"globals": {
+		"colorPalette": "writable",
+		"cy": "writable",
+		"l10n_s": "writable",
+		"textvalue": "writable",
+		"userSettings": "writable",
+		"zoomPalette": "writable"
+	}
+}

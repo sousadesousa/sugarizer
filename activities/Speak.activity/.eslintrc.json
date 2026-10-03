@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"$": "writable",
+		"AIMLInterpreter": "writable",
+		"DomJS": "writable",
+		"Speech": "writable",
+		"att": "writable",
+		"exports": "writable",
+		"i": "writable",
+		"speakArray": "writable"
+	}
+}

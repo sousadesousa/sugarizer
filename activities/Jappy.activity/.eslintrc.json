@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"RapydScript": "writable",
+		"__name__": "writable",
+		"activity": "writable",
+		"compiler": "writable",
+		"event_bus": "writable",
+		"\u03c1\u03c3_Iterable": "writable",
+		"\u03c1\u03c3_list_decorate": "writable",
+		"\u03c1\u03c3_object_counter": "writable"
+	}
+}

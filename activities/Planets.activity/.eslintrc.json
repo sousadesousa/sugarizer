@@ -1,0 +1,13 @@
+{
+	"globals": {
+		"THREE": "writable",
+		"animatePlanet": "writable",
+		"canvasBounds": "writable",
+		"clickMesh": "writable",
+		"createPlanet": "writable",
+		"planets": "writable",
+		"requestAnim": "writable",
+		"resizePlanet": "writable",
+		"saveImage": "writable"
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"globals": {
+		"$": "writable",
+		"ChessGame": "writable",
+		"Chessboard": "writable",
+		"Localization": "writable",
+		"P4_PIECE_LUT": "writable",
+		"Toolbar": "writable",
+		"Tutorial": "writable",
+		"app": "writable",
+		"generateXOLogoWithColor": "writable",
+		"p4_jump_to_moveno": "writable",
+		"p4_new_game": "writable",
+		"p4_parse": "writable",
+		"p4_prepare": "writable",
+		"p4_state2fen": "writable",
+		"p4_stringify_point": "writable"
+	}
+}
