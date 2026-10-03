@@ -289,42 +289,38 @@ textarea {
 	border: 2px solid #808080;
 }
 
-/* Shake animation for rejected card taps */
+/* Feedback when a tap is rejected: the tapped card shakes, the cards to pick bounce with a bright ring */
 @keyframes cardShake {
-	0% {
+	0%, 100% {
 		transform: translateX(0);
 	}
-	25% {
-		transform: translateX(-8px);
+	15%, 45%, 75% {
+		transform: translateX(-14px);
 	}
-	50% {
-		transform: translateX(8px);
-	}
-	75% {
-		transform: translateX(-8px);
-	}
-	100% {
-		transform: translateX(0);
+	30%, 60%, 90% {
+		transform: translateX(14px);
 	}
 }
 
 .card-shake {
-	animation: cardShake 0.4s ease-in-out;
+	animation: cardShake 0.6s ease-in-out;
 }
 
-/* Highlight/pulse animation for eligible cards */
 @keyframes cardHighlight {
-	0% {
-		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+	0%, 100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 #ffd400;
+	}
+	25%, 75% {
+		transform: scale(1.12);
+		box-shadow: 0 0 0 8px #ffd400;
 	}
 	50% {
-		box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0);
-	}
-	100% {
-		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+		transform: scale(1);
+		box-shadow: 0 0 0 0 #ffd400;
 	}
 }
 
 .card-highlight {
-	animation: cardHighlight 0.6s ease-out;
+	animation: cardHighlight 1.2s ease-in-out;
 }

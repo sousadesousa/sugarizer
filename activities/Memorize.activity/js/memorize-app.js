@@ -494,7 +494,7 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
                         others.forEach(function (c) {
                             c.classList.remove('card-highlight');
                         });
-                    }, 600);
+                    }, 1200);
                     return;
                 }
             }
