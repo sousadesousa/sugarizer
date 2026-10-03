@@ -41,7 +41,8 @@ itself was not run.
 
 - **Some activity code issues are not fixed yet.** A few lint rules are turned
   off only for the files that break them, using the `overrides` blocks at the
-  end of `.eslintrc.json`. Those blocks are the to-do list:
+  end of `.eslintrc.json`. Those blocks are the to-do list (exact lines in
+  [client-cleanup-report.md](client-cleanup-report.md)):
   - Tangram: duplicate keys, global assign, self assign, multiline.
   - TurtleBlocksJS: unreachable code, fallthrough, unsafe negation.
   - Stopwatch: octal literal.
