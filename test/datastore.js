@@ -10,7 +10,7 @@ describe('Datastore', function() {
 	var objectIds = [];
 	describe('#create()', function() {
 		it('should create one entry', function(done) {
-			var results = datastore.create({name: "entry", activity: "test"}, function(err, oid) {
+			datastore.create({name: "entry", activity: "test"}, function(err, oid) {
 				objectIds.push(oid);
 				chai.assert.equal(null, err);
 				chai.assert.notEqual(null, oid);
@@ -37,7 +37,7 @@ describe('Datastore', function() {
 		});
 
 		it('should set text to null if undefined', function() {
-			var results = datastore.create({name: "entry2", activity: "test2"}, function(err, oid) {
+			datastore.create({name: "entry2", activity: "test2"}, function(err, oid) {
 				objectIds.push(oid);
 				chai.assert.equal(null, err);
 				chai.assert.notEqual(null, oid);

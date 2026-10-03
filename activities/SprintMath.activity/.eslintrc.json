@@ -1,0 +1,11 @@
+{
+	"globals": {
+		"currentenv": "writable",
+		"fpalette": "writable",
+		"levelpalette": "writable",
+		"module": "writable",
+		"object_store": "writable",
+		"stored_data": "writable",
+		"tinycolor": "writable"
+	}
+}

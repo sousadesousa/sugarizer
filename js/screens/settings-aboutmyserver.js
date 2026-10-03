@@ -241,7 +241,7 @@ const AboutMyServer = {
 
 		async signup() {
 			await this.withErrHandling(async () => {
-				const user = await sugarizer.modules.user.signup(this.details.serverAddress, this.details.username, this.$refs.passwordInput.passwordText, this.details.color)
+				await sugarizer.modules.user.signup(this.details.serverAddress, this.details.username, this.$refs.passwordInput.passwordText, this.details.color)
 				await this.withErrHandling(async () => {
 					const user = await sugarizer.modules.user.login(this.details.serverAddress, this.details.username, this.$refs.passwordInput.passwordText);
 					sugarizer.modules.history.addUser({ name: this.details.username, color: user.color, server: { url: this.details.serverAddress } });

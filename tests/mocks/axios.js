@@ -15,7 +15,7 @@ const axios = {
 				callback(result);
 				return {
 					catch: function () {
-						reject(error);
+						// no rejection in this mock
 					},
 				};
 			},

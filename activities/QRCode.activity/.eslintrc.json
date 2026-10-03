@@ -1,0 +1,26 @@
+{
+	"globals": {
+		"AlignmentPatternFinder": "writable",
+		"BitMatrix": "writable",
+		"BitMatrixParser": "writable",
+		"DataBlock": "writable",
+		"DataMask": "writable",
+		"Decoder": "writable",
+		"Detector": "writable",
+		"ErrorCorrectionLevel": "writable",
+		"FinderPatternFinder": "writable",
+		"FormatInformation": "writable",
+		"GF256": "writable",
+		"GF256Poly": "writable",
+		"GridSampler": "writable",
+		"PerspectiveTransform": "writable",
+		"QRCode": "writable",
+		"QRCodeDataBlockReader": "writable",
+		"ReedSolomonDecoder": "writable",
+		"URShift": "writable",
+		"Version": "writable",
+		"load": "writable",
+		"qrcode": "writable",
+		"stopWebcam": "writable"
+	}
+}

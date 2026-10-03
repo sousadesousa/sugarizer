@@ -1,0 +1,27 @@
+{
+	"globals": {
+		"LZString": "writable",
+		"b": "writable",
+		"bh": "writable",
+		"bitmap": "writable",
+		"dataImages": "writable",
+		"firstCirclePos": "writable",
+		"g": "writable",
+		"gh": "writable",
+		"globe": "writable",
+		"globeData": "writable",
+		"jsonData": "writable",
+		"new_x": "writable",
+		"point_pos": "writable",
+		"pos": "writable",
+		"r": "writable",
+		"rh": "writable",
+		"secondCirclePos": "writable",
+		"size": "writable",
+		"style": "writable",
+		"toon": "writable",
+		"translation": "writable",
+		"xi": "writable",
+		"yi": "writable"
+	}
+}

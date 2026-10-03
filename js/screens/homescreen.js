@@ -303,7 +303,6 @@ const HomeScreen = {
 				}
 				if (popup.itemList && popup.itemList.length >= 1) {
 					popup.icon.color = iconColor;
-					const iconRef = this.$refs["activity" + popup.id][0];
 					this.activityColors[activity.id] = iconColor;
 				}
 				popupData[activity.id] = popup;
@@ -462,6 +461,7 @@ const HomeScreen = {
 			let semi_size = icon_size / 2;
 			let spiral_spacing = icon_spacing * constant.spiralSpaceFactor;
 			let maxX = 0, maxY = 0, minX = canvas_center.dx, minY = canvas_center.dy;
+			let n;
 			while (activitiesCount-- > 0) {
 				let circumference = PI2 * radiusx;
 				n = circumference / icon_spacing;

@@ -330,3 +330,31 @@ test.describe("tools", function() {
 		await expect(page.locator(".introjs-tooltip")).toContainText("Pen color");
 	});
 });
+
+// SugarL10n.js (copied in several activities) declared `const levels` and then incremented it,
+// which threw a TypeError for any timestamp older than one minute
+test("SugarL10n converts an old timestamp to an elapsed time string", async function({ page }) {
+	const errors = helpers.watchErrors(page);
+	await helpers.createUser(page, "Painter");
+	await page.goto("/" + paint.directory + "/index.html?aid=paint-l10n&a=" + paint.id + "&n=" + paint.name);
+	await page.locator("#paint-canvas").waitFor({state: "visible"});
+
+	const result = await page.evaluate(function() {
+		/* global SugarLocalization */
+		const component = Object.assign({}, SugarLocalization.data(), SugarLocalization.methods, {
+			get: function(key, params) {
+				return params ? key + "(" + params.time + ")" : key;
+			}
+		});
+		const now = Date.now();
+		return {
+			recent: component.localizeTimestamp(now - 5 * 1000),
+			minutes: component.localizeTimestamp(now - 5 * 60 * 1000),
+			twoLevels: component.localizeTimestamp(now - (2 * 60 * 60 + 3 * 60) * 1000 - 500)
+		};
+	});
+	expect(result.recent).toBe("SecondsAgo");
+	expect(result.minutes).toBe("Ago( 5 Minutes_other)");
+	expect(result.twoLevels).toBe("Ago( 2 Hours_other, 3 Minutes_other)");
+	expect(errors.real(), errors.report()).toEqual([]);
+});

@@ -1,0 +1,10 @@
+{
+	"globals": {
+		"Dot": "writable",
+		"Game": "writable",
+		"currentenv": "writable",
+		"diffind": "writable",
+		"l10n": "writable",
+		"temparr": "writable"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"col": "writable",
+		"currentenv": "writable",
+		"generate_board": "writable",
+		"index": "writable",
+		"j": "writable",
+		"keys": "writable",
+		"piece_size": "writable",
+		"value": "writable"
+	}
+}

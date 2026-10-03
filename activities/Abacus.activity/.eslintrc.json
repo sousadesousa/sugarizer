@@ -1,0 +1,12 @@
+{
+	"globals": {
+		"AbacusBead": "writable",
+		"Game": "writable",
+		"OneColumnAbacus": "writable",
+		"PosNegColumn": "writable",
+		"StandardAbacus": "writable",
+		"StandardAbacusColumn": "writable",
+		"currentenv": "writable",
+		"net": "writable"
+	}
+}

@@ -57,7 +57,7 @@ define(["platform/handler"], function (platform) {
 	}
 
 	function base64DecToArr(sBase64, nBlocksSize) {
-		var sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""),
+		var sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, ""),
 			nInLen = sB64Enc.length,
 			nOutLen = nBlocksSize
 				? Math.ceil(((nInLen * 3 + 1) >> 2) / nBlocksSize) * nBlocksSize

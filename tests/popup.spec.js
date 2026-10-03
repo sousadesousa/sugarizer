@@ -5,9 +5,6 @@ const { Popup } = require('../js/components/popup.js');
 const path = require('path');
 const filename = path.dirname(__filename);
 
-// Promise to wait a delay
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
 describe('Popup.vue', () => {
 	let wrapper;
 	const id= 1;

@@ -1,0 +1,27 @@
+{
+	"globals": {
+		"CANNON": "writable",
+		"CannonDebugger": "writable",
+		"OrbitControls": "writable",
+		"THREE": "writable",
+		"createCube": "writable",
+		"createDecahedron": "writable",
+		"createDodecahedron": "writable",
+		"createFunction": "writable",
+		"createIcosahedron": "writable",
+		"createOctahedron": "writable",
+		"createTetrahedron": "writable",
+		"currentenv": "writable",
+		"data": "writable",
+		"getCubeScore": "writable",
+		"getDecaScore": "writable",
+		"getDodecaScore": "writable",
+		"getIcosaScore": "writable",
+		"getOctaScore": "writable",
+		"getTetraScore": "writable",
+		"score": "writable",
+		"watchId": "writable",
+		"xCoordinate": "writable",
+		"zCoordinate": "writable"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"globals": {
+		"$": "writable",
+		"backgroundPalette": "writable",
+		"cy": "writable",
+		"fontPalette": "writable",
+		"foregroundPalette": "writable",
+		"userSettings": "writable",
+		"zoomPalette": "writable"
+	}
+}

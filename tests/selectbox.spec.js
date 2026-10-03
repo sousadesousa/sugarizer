@@ -6,9 +6,6 @@ const { SelectBox } = require('../js/components/selectbox.js');
 const path = require('path');
 const filename = path.dirname(__filename);
 
-// Promise to wait a delay
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
 describe('SelectBox.vue', () => {
 	let wrapper;
 	const id= 1;

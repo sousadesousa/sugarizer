@@ -400,7 +400,7 @@ define(["sugar-web/datastore"], function(datastore) {
 					found = true;
 					remoteEntry.seen = true;
 					if (localEntry.metadata.timestamp == remoteEntry.metadata.timestamp) {
-						;
+						// same version: nothing to do
 					} else if (localEntry.metadata.timestamp > remoteEntry.metadata.timestamp) {
 						if (localEntry.metadata.isSubmitted === true) {
 							updateToLocal.push(remoteEntry); // When an assignment is submitted, it can't be updated

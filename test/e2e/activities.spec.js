@@ -5,9 +5,7 @@ const helpers = require("./helpers");
 let storageState;
 
 // Activities failing on 2.0, with the reason: the test is expected to fail until they are fixed
-const knownFailures = {
-	"org.somosazucar.JappyActivity": "a new instance throws \"Cannot read properties of undefined (reading 'split')\" while initializing (not investigated)"
-};
+const knownFailures = {};
 
 // Errors that happen now and then in third-party code of an activity, ignored for that activity only
 const knownIntermittentErrors = {

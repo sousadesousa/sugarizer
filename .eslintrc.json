@@ -1,0 +1,319 @@
+{
+	"root": true,
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaVersion": 2021
+	},
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"rules": {
+		"no-unused-vars": [
+			"error",
+			{
+				"vars": "local",
+				"args": "none",
+				"caughtErrors": "none"
+			}
+		],
+		"no-redeclare": "off",
+		"no-mixed-spaces-and-tabs": [
+			"error",
+			"smart-tabs"
+		]
+	},
+	"overrides": [
+		{
+			"files": [
+				"js/**/*.js"
+			],
+			"globals": {
+				"sugarizer": "writable",
+				"define": "writable",
+				"requirejs": "writable",
+				"module": "writable",
+				"Vue": "writable",
+				"axios": "writable",
+				"humane": "writable",
+				"introJs": "writable",
+				"cordova": "writable",
+				"QRScanner": "writable",
+				"chrome": "writable",
+				"AndroidFullScreen": "writable",
+				"sugarizerOS": "writable",
+				"Icon": "writable",
+				"IconButton": "writable",
+				"Popup": "writable",
+				"Dialog": "writable",
+				"SearchField": "writable",
+				"Password": "writable",
+				"FilterBox": "writable",
+				"Prompt": "writable",
+				"FirstScreen": "writable",
+				"LoginScreen": "writable",
+				"MainScreen": "writable",
+				"ListView": "writable",
+				"HomeScreen": "writable",
+				"Neighborhood": "writable",
+				"Journal": "writable",
+				"Settings": "writable",
+				"AboutMe": "writable",
+				"AboutComputer": "writable",
+				"AboutMyServer": "writable",
+				"MySecurity": "writable",
+				"MyPrivacy": "writable",
+				"SelectBox": "writable",
+				"app": "writable",
+				"LanguageBox": "writable"
+			}
+		},
+		{
+			"files": [
+				"main.js",
+				"preload.js",
+				"Gruntfile.js",
+				"playwright.config.js",
+				"scripts/**/*.js"
+			],
+			"env": {
+				"node": true,
+				"browser": false
+			}
+		},
+		{
+			"files": [
+				"test/e2e/**/*.js"
+			],
+			"env": {
+				"node": true
+			},
+			"globals": {
+				"TankOp": "readonly",
+				"constant": "writable",
+				"LOL": "readonly",
+				"LOLGame": "readonly",
+				"FoodChain": "readonly",
+				"TamTam": "readonly",
+				"Abcd": "readonly"
+			}
+		},
+		{
+			"files": [
+				"test/datastore.js",
+				"test/presence.js"
+			],
+			"env": {
+				"mocha": true
+			},
+			"globals": {
+				"chai": "readonly",
+				"datastore": "readonly",
+				"presence": "readonly",
+				"initSugarizer": "readonly"
+			}
+		},
+		{
+			"files": [
+				"test/pad-journal.js"
+			],
+			"env": {
+				"node": true
+			}
+		},
+		{
+			"files": [
+				"tests/**/*.js"
+			],
+			"env": {
+				"jest": true,
+				"node": true
+			},
+			"globals": {
+				"Icon": "writable",
+				"IconButton": "writable",
+				"Popup": "writable",
+				"Dialog": "writable",
+				"SearchField": "writable",
+				"axios": "writable"
+			}
+		},
+		{
+			"files": [
+				"activities/**/*.js"
+			],
+			"env": {
+				"amd": true
+			},
+			"rules": {
+				"no-extra-semi": "off",
+				"no-unused-vars": "off",
+				"no-useless-escape": "off",
+				"no-mixed-spaces-and-tabs": "off",
+				"no-empty": "off",
+				"no-extra-boolean-cast": "off",
+				"no-inner-declarations": "off",
+				"no-case-declarations": "off",
+				"no-prototype-builtins": "off",
+				"no-constant-condition": "off",
+				"no-misleading-character-class": "off",
+				"no-control-regex": "off",
+				"no-useless-catch": "off",
+				"no-redeclare": "off"
+			},
+			"globals": {
+				"chrome": "readonly",
+				"Vue": "readonly",
+				"introJs": "readonly",
+				"meSpeak": "readonly",
+				"Tone": "readonly",
+				"createjs": "readonly",
+				"jsPDF": "readonly",
+				"html2canvas": "readonly",
+				"Quill": "readonly",
+				"QuillCursors": "readonly",
+				"axios": "readonly",
+				"cordova": "readonly",
+				"Media": "readonly",
+				"FileTransfer": "readonly",
+				"Accelerometer": "readonly",
+				"QRScanner": "readonly",
+				"riot": "readonly",
+				"jQuery": "readonly",
+				"confetti": "readonly",
+				"Konva": "readonly",
+				"ePub": "readonly",
+				"cytoscape": "readonly",
+				"p5": "readonly",
+				"FB": "readonly",
+				"Camera": "readonly",
+				"audioinput": "readonly",
+				"sax": "readonly",
+				"Buffer": "readonly",
+				"Physics": "readonly",
+				"requirejs": "readonly"
+			}
+		},
+		{
+			"files": [
+				"activities/Chart.activity/js/activity.js",
+				"activities/TurtleBlocksJS.activity/js/block.js"
+			],
+			"rules": {
+				"no-fallthrough": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Curriculum.activity/js/Export.js",
+				"activities/Vote.activity/js/Export.js"
+			],
+			"rules": {
+				"no-async-promise-executor": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/MazeWeb.activity/js/directions.js",
+				"activities/TurtleBlocksJS.activity/js/musicutils.js"
+			],
+			"rules": {
+				"no-unreachable": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/PhysicsJS.activity/js/activity.js"
+			],
+			"rules": {
+				"no-cond-assign": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Speak.activity/js/sax.js"
+			],
+			"rules": {
+				"no-setter-return": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Stopwatch.activity/js/activity.js"
+			],
+			"rules": {
+				"no-octal": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Tangram.activity/js/activity.js"
+			],
+			"rules": {
+				"no-dupe-keys": "off",
+				"no-self-assign": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Tangram.activity/js/utils/directions.js",
+				"activities/Tangram.activity/js/utils/evaluation.js"
+			],
+			"rules": {
+				"no-unexpected-multiline": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Tangram.activity/js/utils/generator.js"
+			],
+			"rules": {
+				"no-global-assign": "off",
+				"no-unexpected-multiline": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/Tangram.activity/js/utils/helpers.js"
+			],
+			"rules": {
+				"no-shadow-restricted-names": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/TurtleBlocksJS.activity/js/analytics.js"
+			],
+			"rules": {
+				"no-dupe-keys": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/TurtleBlocksJS.activity/js/blocks.js"
+			],
+			"rules": {
+				"no-cond-assign": "off",
+				"no-unreachable": "off",
+				"no-unsafe-negation": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/TurtleBlocksJS.activity/js/logo.js"
+			],
+			"rules": {
+				"no-fallthrough": "off",
+				"no-unreachable": "off"
+			}
+		},
+		{
+			"files": [
+				"activities/TurtleBlocksJS.activity/js/pluginsviewer.js"
+			],
+			"rules": {
+				"no-unsafe-negation": "off"
+			}
+		}
+	]
+}

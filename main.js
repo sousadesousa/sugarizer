@@ -12,6 +12,12 @@ const Menu = electron.Menu;
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const nativeImage = electron.nativeImage;
+const shell = electron.shell;
+const navigation = require("./navigation.js");
+const ipcValidation = require("./ipc-validation.js");
+
+// Directories chosen by the user with the "choose directory" dialog: the only ones the renderer can save into
+const chosenDirectories = new Set();
 
 let mainWindow = null;
 
@@ -60,6 +66,10 @@ function LoadFile(event, file) {
 	}
 	var json = extension == "json" ? "utf8" : null;
 	fs.readFile(file, json, function (err, data) {
+		if (err) {
+			event.sender.send("choose-files-reply", fileProperty, err.message, null);
+			return;
+		}
 		var text = json
 			? data
 			: "data:" +
@@ -128,9 +138,14 @@ function createWindow() {
 			webSecurity: true,
 			contextIsolation: true,
 			nodeIntegration: false,
+			sandbox: true,
 			preload: path.join(__dirname, "preload.js"),
 		},
 		icon: nativeImage.createFromPath("./res/icon/electron/icon-1024.png"),
+	});
+	// Only the pages of the application can be shown, links to the web go to the system browser
+	navigation.guardWindow(mainWindow.webContents, app.getAppPath(), function(url) {
+		shell.openExternal(url);
 	});
 	if (process.platform === "darwin") {
 		app.dock.setIcon(app.getAppPath() + "/res/icon/electron/icon-1024.png");
@@ -154,17 +169,22 @@ function createWindow() {
 	mainWindow.webContents.once("did-finish-load", function () {
 		// Handle save file dialog
 		ipc.on("save-file-dialog", function (event, arg) {
+			var request = ipcValidation.validateSaveRequest(arg, chosenDirectories);
+			if (!request.ok) {
+				event.sender.send("save-file-reply", { err: request.error, filename: null });
+				return;
+			}
 			var saveFunction = function (file) {
 				if (file) {
 					saveFile(file, arg, event.sender);
 				}
 			};
-			if (!arg.directory) {
+			if (!request.target) {
 				// Ask directory to use, then save
 				var dialogSettings = {
-					defaultPath: arg.filename,
+					defaultPath: request.filename,
 					filters: [
-						{ name: arg.mimetype, extensions: [arg.extension] },
+						{ name: String(arg.mimetype), extensions: [String(arg.extension)] },
 					],
 				};
 				dialogSettings.title = i18next.t("SaveFile");
@@ -173,8 +193,8 @@ function createWindow() {
 					saveFunction(result.filePath);
 				});
 			} else {
-				// Save in the directory provided
-				saveFunction(path.join(arg.directory, arg.filename));
+				// Save in a directory chosen by the user
+				saveFunction(request.target);
 			}
 		});
 		ipc.on("choose-directory-dialog", function (event) {
@@ -186,6 +206,7 @@ function createWindow() {
 			dialog.showOpenDialog(dialogSettings).then(function (result) {
 				var files = result.filePaths;
 				if (files && files.length > 0) {
+					chosenDirectories.add(path.resolve(files[0]));
 					event.sender.send("choose-directory-reply", files[0]);
 				}
 			});
@@ -225,14 +246,21 @@ function createWindow() {
 			});
 		});
 		ipc.on("create-tempfile", function (event, arg) {
-			temp.file("sugarizer", function (err, path, fd) {
-				if (!err) {
-					var data = arg.text.replace(/^data:.+;base64,/, "");
-					var buf = Buffer.from(data, "base64");
-					fs.writeFile(fd, buf, function (err) {
-						event.sender.send("create-tempfile-reply", path);
-					});
+			var request = ipcValidation.validateTempfileRequest(arg);
+			if (!request.ok) {
+				event.sender.send("create-tempfile-reply", null);
+				return;
+			}
+			temp.file("sugarizer", function (err, tempPath, fd) {
+				if (err) {
+					event.sender.send("create-tempfile-reply", null);
+					return;
 				}
+				fs.writeFile(fd, request.buffer, function (err) {
+					fs.close(fd, function () {
+						event.sender.send("create-tempfile-reply", err ? null : tempPath);
+					});
+				});
 			});
 		});
 
@@ -258,8 +286,7 @@ function createWindow() {
 			systemPreferences.askForMediaAccess("microphone");
 			systemPreferences.askForMediaAccess("camera");
 		}
-		var menu = Menu.buildFromTemplate(template);
-		Menu.setApplicationMenu(menu);
+		Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
 		// Debug console
 		if (debug) {

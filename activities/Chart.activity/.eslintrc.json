@@ -1,0 +1,10 @@
+{
+	"globals": {
+		"Action_Types": "writable",
+		"CSVParser": "writable",
+		"Chart": "writable",
+		"ChartView": "writable",
+		"CsvView": "writable",
+		"Execute": "writable"
+	}
+}

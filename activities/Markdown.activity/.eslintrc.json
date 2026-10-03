@@ -1,0 +1,11 @@
+{
+	"globals": {
+		"Markdown": "writable",
+		"i": "writable",
+		"inputTextContent": "writable",
+		"l10n": "writable",
+		"markdowntext": "writable",
+		"sel": "writable",
+		"textdata": "writable"
+	}
+}

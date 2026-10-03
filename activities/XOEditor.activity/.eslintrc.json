@@ -1,0 +1,14 @@
+{
+	"globals": {
+		"ColourCircle": "writable",
+		"Editor": "writable",
+		"XOMan": "writable",
+		"currentenv": "writable",
+		"dh": "writable",
+		"dv": "writable",
+		"h1": "writable",
+		"h2": "writable",
+		"rgb1": "writable",
+		"rgb2": "writable"
+	}
+}

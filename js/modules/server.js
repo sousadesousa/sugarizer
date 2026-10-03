@@ -259,7 +259,6 @@ define([], function() {
 			var stime = request.stime;
 			var favorite = request.favorite;
 			var assignment = request.assignment;
-			var field = request.field;
 			var limit = request.limit;
 			var offset = request.offset;
 			var title = request.title;
@@ -312,7 +311,6 @@ define([], function() {
 	// Get an entry in a journal
 	server.getJournalEntry = function(journalId, objectId, optserver) {
 		return new Promise(function(resolve, reject) {
-			var params = {};
 			var ajax = axios.create({
 				responseType: "json",
 				headers: computeHeader(server.getToken()),
@@ -432,7 +430,6 @@ define([], function() {
 	//submit assignment
 	server.postAssignment = function(assignmentId, objectId, optserver) {
 		return new Promise(function(resolve, reject) {
-			var params = {};
 			var ajax = axios.create({
 				responseType: "json",
 				params: {

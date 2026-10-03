@@ -1,0 +1,7 @@
+{
+	"globals": {
+		"RecordRTC": "writable",
+		"currentenv": "writable",
+		"i": "writable"
+	}
+}

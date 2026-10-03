@@ -1,0 +1,17 @@
+{
+	"globals": {
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"VV": "writable",
+		"VideoViewerTutorial": "writable",
+		"VvAddLibraryDialog": "writable",
+		"VvItem": "writable",
+		"VvLibraryDialog": "writable",
+		"VvSearchField": "writable",
+		"VvVideoDialog": "writable"
+	}
+}

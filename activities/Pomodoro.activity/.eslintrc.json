@@ -1,0 +1,11 @@
+{
+	"globals": {
+		"STATUS": "writable",
+		"currentenv": "writable",
+		"handleBreakMinusClick": "writable",
+		"handleBreakPlusClick": "writable",
+		"handleWorkMinusClick": "writable",
+		"handleWorkPlusClick": "writable",
+		"parseMs": "writable"
+	}
+}

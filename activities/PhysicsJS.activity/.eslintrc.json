@@ -1,0 +1,5 @@
+{
+	"globals": {
+		"currentenv": "writable"
+	}
+}

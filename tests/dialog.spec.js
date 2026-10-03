@@ -6,9 +6,6 @@ const { Dialog } = require('../js/components/dialog.js');
 const path = require('path');
 const filename = path.dirname(__filename);
 
-// Promise to wait a delay
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
 describe('Dialog.vue', () => {
 	let wrapper;
 	const text="titleText";

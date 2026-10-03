@@ -1,0 +1,6 @@
+{
+	"globals": {
+		"app": "writable",
+		"templates": "writable"
+	}
+}

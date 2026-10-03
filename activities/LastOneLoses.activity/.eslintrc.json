@@ -1,0 +1,14 @@
+{
+	"globals": {
+		"LOL": "writable",
+		"LOLGame": "writable",
+		"LOLTutorial": "writable",
+		"LolItem": "writable",
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable"
+	}
+}

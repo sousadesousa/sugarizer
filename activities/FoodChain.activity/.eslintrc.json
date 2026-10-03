@@ -1,0 +1,21 @@
+{
+	"globals": {
+		"FcBuild": "writable",
+		"FcCard": "writable",
+		"FcCredits": "writable",
+		"FcHome": "writable",
+		"FcLearn": "writable",
+		"FcPlay": "writable",
+		"FcShadowButton": "writable",
+		"FcStatus": "writable",
+		"FcTimerMixin": "writable",
+		"FoodChain": "writable",
+		"FoodChainTutorial": "writable",
+		"SugarActivity": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable"
+	}
+}

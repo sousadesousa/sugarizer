@@ -1,0 +1,7 @@
+{
+	"globals": {
+		"currentenv": "writable",
+		"resetXML": "writable",
+		"traverse": "writable"
+	}
+}

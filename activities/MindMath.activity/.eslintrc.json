@@ -1,0 +1,33 @@
+{
+	"globals": {
+		"Clock": "writable",
+		"Game": "writable",
+		"HintsGenerator": "writable",
+		"InputNumber": "writable",
+		"Leaderboard": "writable",
+		"OPERATORS": "writable",
+		"QuestionsGenerator": "writable",
+		"Result": "writable",
+		"Slots": "writable",
+		"SugarActivity": "writable",
+		"SugarIcon": "writable",
+		"SugarJournal": "writable",
+		"SugarLocalization": "writable",
+		"SugarPopup": "writable",
+		"SugarPresence": "writable",
+		"SugarToolbar": "writable",
+		"SugarToolitem": "writable",
+		"SugarTutorial": "writable",
+		"addEntryIntoArray": "writable",
+		"allowedCheck": "writable",
+		"calculateScoreFromSlots": "writable",
+		"checkIfArrayHasDups": "writable",
+		"checkIfArrayHasUniqueOps": "writable",
+		"evaluator": "writable",
+		"findEle": "writable",
+		"findUselessOperations": "writable",
+		"removeEntryFromArray": "writable",
+		"rpnToSlots": "writable",
+		"score": "writable"
+	}
+}

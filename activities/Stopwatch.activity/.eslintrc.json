@@ -1,0 +1,11 @@
+{
+	"globals": {
+		"counter": "writable",
+		"currentenv": "writable",
+		"i": "writable",
+		"marks": "writable",
+		"stopwatchData": "writable",
+		"stopwatchDict": "writable",
+		"stopwatchJSON": "writable"
+	}
+}

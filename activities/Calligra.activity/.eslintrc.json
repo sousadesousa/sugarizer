@@ -1,0 +1,16 @@
+{
+	"globals": {
+		"Editor": "writable",
+		"Localization": "writable",
+		"Player": "writable",
+		"Popup": "writable",
+		"TemplateViewer": "writable",
+		"Toolbar": "writable",
+		"Tutorial": "writable",
+		"app": "writable",
+		"defaultTemplates": "writable",
+		"getTextSize": "writable",
+		"letter": "writable",
+		"modal": "writable"
+	}
+}

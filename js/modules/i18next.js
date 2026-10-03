@@ -57,6 +57,8 @@ define(["lib/i18next.min.js", "lib/i18next-vue.js"], function (
 		});
 	};
 
+	let useI18n, timestampToElapsedString, getFormattedSize;
+
 	useI18n = (app) => {
 		app.use(I18NextVue, { i18next });
 	};
