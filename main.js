@@ -12,6 +12,8 @@ const Menu = electron.Menu;
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const nativeImage = electron.nativeImage;
+const shell = electron.shell;
+const navigation = require("./navigation.js");
 
 let mainWindow = null;
 
@@ -128,9 +130,14 @@ function createWindow() {
 			webSecurity: true,
 			contextIsolation: true,
 			nodeIntegration: false,
+			sandbox: true,
 			preload: path.join(__dirname, "preload.js"),
 		},
 		icon: nativeImage.createFromPath("./res/icon/electron/icon-1024.png"),
+	});
+	// Only the pages of the application can be shown, links to the web go to the system browser
+	navigation.guardWindow(mainWindow.webContents, app.getAppPath(), function(url) {
+		shell.openExternal(url);
 	});
 	if (process.platform === "darwin") {
 		app.dock.setIcon(app.getAppPath() + "/res/icon/electron/icon-1024.png");
