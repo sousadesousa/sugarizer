@@ -5,9 +5,11 @@ Two set of videos are linked natively with the activity: [Khan Academy](http://k
 
 # How it works ?
 
-Video Viewer is a Sugar-Web activity, it could work both into Sugar Learning platform and in Sugarizer.
+Video Viewer is a Sugar-Web activity written with Vue 3. It runs in Sugarizer (web, desktop and mobile apps).
 
-A standard set of libraries is load by the activities on the URL [http://sugarizer.org/content/videos.json](http://sugarizer.org/content/videos.json). You could replace this URL by updating the variable `constant.librariesUrl` in the file [constant.js](constant.js). Note that this URL is called with a `lang` parameter set with the current language.
+**Sugar Learning platform (Sugar desktop).** Since the move from Enyo to Vue 3, the activity starts in Sugar through the standard `sugar-activity-web` launcher, like other web activities, and shows the Sugarizer toolbar. The previous Python bridge (`activity.py`, `enyo.py`), which drew a native Sugar toolbar and switched videos to the `.ogv` format, was removed. Running in the Sugar desktop has not been tested since; whether videos play there depends on the browser engine of that machine.
+
+A standard set of libraries is load by the activities on the URL [http://sugarizer.org/content/videos.json](http://sugarizer.org/content/videos.json). You could replace this URL by updating `VV.constant.librariesUrl` in the file [js/videoviewer.js](js/videoviewer.js). Note that this URL is called with a `lang` parameter set with the current language.
 This file is an array of libraries:
 
 	[
