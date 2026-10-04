@@ -45,8 +45,8 @@ var Toolbar = {
 	components: {'toolbar-item': ToolbarItem},
 	template: `
 		<div id="main-toolbar" class="toolbar">
-			<toolbar-item id="activity-button" v-bind:title="l10n.stringCalligraActivity"></toolbar-item>
-			<toolbar-item isSplitbar="true"></toolbar-item>
+			<toolbar-item id="activity-button" v-bind:title="l10n.stringCalligraActivity" data-toolbar="advanced"></toolbar-item>
+			<toolbar-item isSplitbar="true" data-toolbar="advanced"></toolbar-item>
 
 			<toolbar-item ref="templatebutton" class="toolbutton" id="template-button"
 				v-bind:title="l10n.stringTemplate"
@@ -55,10 +55,10 @@ var Toolbar = {
 				paletteEvent="templateSelected"
 				v-on:templateSelected="getApp().onTemplateSelected($event)">
 			</toolbar-item>
-			<toolbar-item ref="settings" id="settings-button" v-on:clicked="getApp().onSettings()" v-bind:title="l10n.stringSettings"></toolbar-item>
-			<toolbar-item ref="insertimage" id="insertimage-button" v-on:clicked="getApp().onInsertImage()" disabled v-bind:title="l10n.stringInsertImage"></toolbar-item>
-			<toolbar-item ref="inserttext" id="inserttext-button" v-on:clicked="getApp().onInsertText()" disabled v-bind:title="l10n.stringInsertText"></toolbar-item>
-			<toolbar-item ref="lines" id="lines-button" v-on:clicked="getApp().onLines()" disabled active v-bind:title="l10n.stringLines"></toolbar-item>
+			<toolbar-item ref="settings" id="settings-button" v-on:clicked="getApp().onSettings()" v-bind:title="l10n.stringSettings" data-toolbar="advanced"></toolbar-item>
+			<toolbar-item ref="insertimage" id="insertimage-button" v-on:clicked="getApp().onInsertImage()" disabled v-bind:title="l10n.stringInsertImage" data-toolbar="advanced"></toolbar-item>
+			<toolbar-item ref="inserttext" id="inserttext-button" v-on:clicked="getApp().onInsertText()" disabled v-bind:title="l10n.stringInsertText" data-toolbar="advanced"></toolbar-item>
+			<toolbar-item ref="lines" id="lines-button" v-on:clicked="getApp().onLines()" disabled active v-bind:title="l10n.stringLines" data-toolbar="advanced"></toolbar-item>
 			<toolbar-item ref="zoombutton" class="toolbutton" id="zoom-button"
 				v-bind:title="l10n.stringZoom"
 				paletteFile="activity/palettes/zoompalette"
@@ -69,8 +69,8 @@ var Toolbar = {
 			</toolbar-item>
 
 			<toolbar-item v-on:clicked="getApp().onStop()" id="stop-button" title="Stop" toRight="true"></toolbar-item>
-			<toolbar-item ref="fullscreen" v-on:clicked="getApp().fullscreen()" id="fullscreen-button" v-bind:title="l10n.stringFullscreen" toRight="true"></toolbar-item>
-			<toolbar-item v-on:clicked="getApp().onHelp()" id="help-button" v-bind:title="l10n.stringHelp" toRight="true"></toolbar-item>
+			<toolbar-item ref="fullscreen" v-on:clicked="getApp().fullscreen()" id="fullscreen-button" v-bind:title="l10n.stringFullscreen" toRight="true" data-toolbar="advanced"></toolbar-item>
+			<toolbar-item v-on:clicked="getApp().onHelp()" id="help-button" v-bind:title="l10n.stringHelp" toRight="true" data-toolbar="advanced"></toolbar-item>
 		</div>
 	`,
 	data: function() {
