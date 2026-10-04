@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <script src="lib/sugar-web/activity/toolbarmode.js"></script>
 	<meta charset="utf-8">
 	<title>Abecedarium Activity</title>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover"/>
@@ -20,12 +21,12 @@
 <body>
 	<div id="app">
 		<sugar-toolbar ref="SugarToolbar">
-			<sugar-toolitem id="activity-button" title="Abecedarium Activity"></sugar-toolitem>
-			<sugar-toolitem id="png-button" title="Export to PNG" :style="{visibility: showExport ? 'visible' : 'hidden'}" :active="state.tojournal == 1" @click="toggleExport(1)"></sugar-toolitem>
-			<sugar-toolitem id="sound-button" title="Export to SOUND" :style="{visibility: showExport ? 'visible' : 'hidden'}" :active="state.tojournal == 2" @click="toggleExport(2)"></sugar-toolitem>
+			<sugar-toolitem id="activity-button" data-toolbar="advanced" title="Abecedarium Activity"></sugar-toolitem>
+			<sugar-toolitem id="png-button" data-toolbar="advanced" title="Export to PNG" :style="{visibility: showExport ? 'visible' : 'hidden'}" :active="state.tojournal == 1" @click="toggleExport(1)"></sugar-toolitem>
+			<sugar-toolitem id="sound-button" data-toolbar="advanced" title="Export to SOUND" :style="{visibility: showExport ? 'visible' : 'hidden'}" :active="state.tojournal == 2" @click="toggleExport(2)"></sugar-toolitem>
 			<sugar-toolitem id="stop-button" title="Stop" class="pull-right" @click="onStop"></sugar-toolitem>
-			<sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
-			<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
+			<sugar-toolitem id="fullscreen-button" data-toolbar="advanced" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
+			<sugar-toolitem id="help-button" data-toolbar="advanced" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
 		</sugar-toolbar>
 
 		<!-- The content of the activity goes inside the canvas -->
@@ -37,7 +38,7 @@
 			</div>
 			<abcd-credits v-if="showCredits" @close="showCredits = false"></abcd-credits>
 		</div>
-		<button class="toolbutton pull-right" id="unfullscreen-button" title="UnFullscreen" :style="{visibility: state.fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)"></button>
+		<button class="toolbutton pull-right" id="unfullscreen-button" data-toolbar="advanced" title="UnFullscreen" :style="{visibility: state.fullscreen ? 'visible' : 'hidden'}" @click="setFullscreen(false)"></button>
 
 		<sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
 		<sugar-localization ref="SugarL10n"></sugar-localization>

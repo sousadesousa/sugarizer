@@ -11,8 +11,8 @@ const AbcdLearn = {
 				<abcd-home-button v-show="view == 'themes'" id="learn_home"></abcd-home-button>
 				<img id="learn_startSlideshow" v-show="view == 'entries' && slideshowIndex == -1" src="images/slideshow.png" class="standardButton slideshow" @click="startSlideshow">
 				<img id="learn_stopSlideshow" v-show="view == 'entries' && slideshowIndex != -1" src="images/pause.png" class="standardButton slideshow" @click="stopSlideshow">
-				<abcd-case-button id="learn_caseButton"></abcd-case-button>
-				<abcd-language-button id="learn_languageButton"></abcd-language-button>
+				<abcd-case-button id="learn_caseButton" data-toolbar="advanced"></abcd-case-button>
+				<abcd-language-button id="learn_languageButton" data-toolbar="advanced"></abcd-language-button>
 			</div>
 			<div>
 				<div id="learn_pageCount" class="pageCount" v-show="view == 'entries'">{{ pageCount }}</div>
