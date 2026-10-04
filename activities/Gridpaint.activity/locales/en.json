@@ -9,5 +9,8 @@
   "TutoClearTitle": "Clear",
   "TutoClearContent": "Click here to clear all triangles in the grid",
   "TutoEditTitle": "Paint",
-  "TutoEditContent": "Click on any triangle to fill it with the current color. Squares to the left are colors, click on any square to select it as current color. Click on the back icon to go back to the list of grids"
+  "TutoEditContent": "Click on any triangle to fill it with the current color. Squares to the left are colors, click on any square to select it as current color. Click on the back icon to go back to the list of grids",
+  "ClearQuestion": "Do you want to clear the grid?",
+  "ClearConfirm": "Clear",
+  "ClearCancel": "Cancel"
 }

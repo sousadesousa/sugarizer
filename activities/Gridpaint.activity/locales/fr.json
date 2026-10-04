@@ -9,5 +9,8 @@
   "TutoClearTitle": "Effacer",
   "TutoClearContent": "Cliquez ici pour effacer tous les triangles de la grille",
   "TutoEditTitle": "Dessiner",
-  "TutoEditContent": "Cliquez sur n'importe quel triangle pour le remplir avec la couleur courante. Les carrés à gauche sont les couleurs, cliquez sur n'importe quel carré pour le choisir comme couleur courante. Cliquez sur l'icône retour pour retourner à la liste des grilles"
+  "TutoEditContent": "Cliquez sur n'importe quel triangle pour le remplir avec la couleur courante. Les carrés à gauche sont les couleurs, cliquez sur n'importe quel carré pour le choisir comme couleur courante. Cliquez sur l'icône retour pour retourner à la liste des grilles",
+  "ClearQuestion": "Voulez-vous effacer la grille ?",
+  "ClearConfirm": "Effacer",
+  "ClearCancel": "Annuler"
 }

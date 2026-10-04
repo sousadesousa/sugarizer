@@ -32,10 +32,20 @@
   <body style="overflow-x:hidden;">
     <div id="main-toolbar" class="toolbar">
       <button class="toolbutton" id="activity-button" data-toolbar="advanced" title="Grid Paint Activity"></button>
-			<button class="toolbutton" id="clear-button" data-toolbar="advanced" title="Clear" style="display: none;"></button>
+			<button class="toolbutton" id="clear-button" title="Clear" style="display: none;"></button>
       <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
       <button class="toolbutton pull-right" id="fullscreen-button" data-toolbar="advanced" title="Fullscreen"></button>
       <button class="toolbutton pull-right" id="help-button" data-toolbar="advanced" title="Tutorial"></button>
+    </div>
+
+    <!-- Clear confirmation dialog -->
+    <div id="clear-dialog-overlay" class="clear-dialog-overlay" style="display: none;"></div>
+    <div id="clear-dialog" class="clear-dialog" style="display: none;">
+      <p id="clear-dialog-question"></p>
+      <div class="clear-dialog-buttons">
+        <button id="clear-dialog-cancel" class="clear-dialog-button cancel-button"></button>
+        <button id="clear-dialog-confirm" class="clear-dialog-button confirm-button"></button>
+      </div>
     </div>
 
     <!-- The content of the activity goes inside the canvas -->

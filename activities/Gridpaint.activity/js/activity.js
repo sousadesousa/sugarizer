@@ -41,6 +41,12 @@ define(["sugar-web/activity/activity","sugar-web/datastore","sugar-web/env","l10
 			var defaultLanguage = (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
 			var language = environment.user ? environment.user.language : defaultLanguage;
 			l10n.init(language);
+
+			// Let the clear dialog read its texts when it opens, once the language is loaded
+			window.clearDialogL10n = function(key) {
+				var value = l10n.get(key);
+				return (value && value !== key) ? value : null;
+			};
 		});
 
 		// Init activity and launch it
