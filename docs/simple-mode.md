@@ -8,7 +8,7 @@ This guide has three parts: [how to turn it on](#turn-it-on) (teachers and admin
 
 ## Activities that support it
 
-Eight activities support simple mode. In the others the setting has no effect yet.
+Nine activities support simple mode. In the others the setting has no effect yet.
 
 | Activity | Buttons a child sees in simple mode | Hidden |
 |---|---|---|
@@ -19,11 +19,12 @@ Eight activities support simple mode. In the others the setting has no effect ye
 | Implode | New game, Replay, Undo, Redo, Stop | Activity, Levels, Fullscreen, Help |
 | Abacus | Clear, Stop | Activity, Abacus list, Custom, Copy, Fullscreen, Help |
 | Abecedarium | Stop | Activity, Save PNG, Save sound, Language and Letter type (inside Learn and Play), Fullscreen, Help |
+| Calligra | Template choice, Zoom, Stop | Activity, Settings, Insert image, Insert text, Lines, Fullscreen, Help |
 | Clock | Set Time, Set Time to target, Stop | Activity, Clock styles, Write time/date/seconds, Show hours/minutes, Global time, Fullscreen, Help |
 
 Things to know before handing a device to a child:
 
-- **Options stay as they were.** The buttons that choose an option are hidden, so simple mode shows whatever was chosen last. In Abacus choose the abacus type and the number of rods first (the default has 15 rods). In Clock choose the clock style and display options first. In Memorize choose the game type and size first. In Abecedarium choose the language and the letter type (lower case, upper case or cursive) first. Do this in full mode.
+- **Options stay as they were.** The buttons that choose an option are hidden, so simple mode shows whatever was chosen last. In Abacus choose the abacus type and the number of rods first (the default has 15 rods). In Clock choose the clock style and display options first. In Memorize choose the game type and size first. In Abecedarium choose the language and the letter type (lower case, upper case or cursive) first. In Calligra the template button stays visible and offers only the five practice sets. Do this in full mode.
 - **Stop is always visible**, so a child can always leave an activity.
 - **Last One Loses** has private and shared buttons inside the network palette. They cannot be reached because the Network button is hidden.
 
@@ -120,7 +121,7 @@ Every activity ships its own copy of `sugar-web` in `lib/sugar-web/`, so the hoo
 ## Limits and troubleshooting
 
 - **Nothing changes on a device after an update.** The service worker may serve the old files. Reload twice, or clear the site data.
-- **A student still sees every button.** The activity must be one of the eight above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
+- **A student still sees every button.** The activity must be one of the nine above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
 - **Server update.** Sugarizer Server needs a restart, and a rebuild of its Docker image if it runs in Docker, because the server code is copied into the image. The client folder only needs the new files.
 - **Not a lock.** A person who knows how can change the setting in the browser. Use it to simplify, not to protect.
 - **Running over plain http.** Simple mode works without https. A related fix: the first-screen tutorial no longer needs `crypto.randomUUID`, which browsers only provide on https and localhost.
