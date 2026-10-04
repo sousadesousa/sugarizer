@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <script src="lib/sugar-web/activity/toolbarmode.js"></script>
     <meta charset="utf-8"/>
     <title>Sprint Math</title>
     <meta name="viewport"
@@ -27,18 +28,18 @@
 
 <body>
 <div id="main-toolbar" class="toolbar">
-    <button class="toolbutton" id="activity-button" title="My Activity"></button>
-    <button class="toolbutton" id="network-button" title="Network"></button>
+    <button class="toolbutton" id="activity-button" title="My Activity" data-toolbar="advanced"></button>
+    <button class="toolbutton" id="network-button" title="Network" data-toolbar="advanced"></button>
     <button class="toolbutton" id="restart-button" title="Restart"></button>
 
     <!-- Add more buttons here -->
-    <button class="toolbutton" id="filter-button" title="Filter"></button>
-    <button class="toolbutton" id="level-button" title="Level"></button>
+    <button class="toolbutton" id="filter-button" title="Filter" data-toolbar="advanced"></button>
+    <button class="toolbutton" id="level-button" title="Level" data-toolbar="advanced"></button>
 
 
     <!-- Buttons with class="pull-right" will be right aligned -->
     <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
-    <button class="toolbutton pull-right" id="help-button" title="Tutorial"></button>
+    <button class="toolbutton pull-right" id="help-button" title="Tutorial" data-toolbar="advanced"></button>
 </div>
 
 <!-- The content of your activity goes inside the canvas -->
