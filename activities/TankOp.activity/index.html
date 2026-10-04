@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <script src="lib/sugar-web/activity/toolbarmode.js"></script>
 	<meta charset="utf-8" />
 	<title>Tank Operation Activity</title>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, viewport-fit=cover"/>
@@ -22,11 +23,11 @@
 <body class="body">
 	<div id="app">
 		<sugar-toolbar ref="SugarToolbar">
-			<sugar-toolitem id="activity-button" title="Tank Operation"></sugar-toolitem>
+			<sugar-toolitem id="activity-button" title="Tank Operation" data-toolbar="advanced"></sugar-toolitem>
 			<p class="title">TANK OPERATION</p>
 			<sugar-toolitem id="stop-button" title="Stop" class="pull-right" @click="onStop"></sugar-toolitem>
-			<sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" @click="setFullscreen(true)"></sugar-toolitem>
-			<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
+			<sugar-toolitem id="fullscreen-button" title="Fullscreen" class="pull-right" data-toolbar="advanced" @click="setFullscreen(true)"></sugar-toolitem>
+			<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" data-toolbar="advanced" @click="onHelp"></sugar-toolitem>
 		</sugar-toolbar>
 
 		<div id="board">
@@ -34,7 +35,7 @@
 			<tankop-play v-else :level="level" :strings="strings" @home="goHome"></tankop-play>
 		</div>
 
-		<button class="toolbutton pull-right" id="unfullscreen-button" title="UnFullscreen" :style="{visibility: state.fullscreen ? 'visible' : 'hidden', top: state.fullscreen ? '60px' : ''}" @click="setFullscreen(false)"></button>
+		<button class="toolbutton pull-right" id="unfullscreen-button" title="UnFullscreen" data-toolbar="advanced" :style="{visibility: state.fullscreen ? 'visible' : 'hidden', top: state.fullscreen ? '60px' : ''}" @click="setFullscreen(false)"></button>
 
 		<sugar-activity ref="SugarActivity" @initialized="onInitialized"></sugar-activity>
 		<sugar-localization ref="SugarL10n"></sugar-localization>

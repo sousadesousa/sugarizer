@@ -50,14 +50,21 @@ const Settings = {
 								></icon></div>
 								<div class="dialog-item-text">{{$t('Language')}}</div>
 							</div>
+							<div v-if="canSetSimpleMode" v-bind:class="(filtersettings.find(v => $t('SimpleMode').includes(v))) ? '' :'dialog-item-disable'">
+								<div >
+									<icon id="37" svgfile="icons/view-list.svg" :color="256" :size="constant.sizeSettings" is-native="true" @click="openModal('simplemode')"
+								></icon></div>
+								<div class="dialog-item-text">{{$t('SimpleMode')}}</div>
+							</div>
 						</div>
-					</dialog-box> 
+					</dialog-box>
 					<about-me ref="about_me" v-if="subscreen === 'about_me'" :buddycolor="buddycolor" :username="username" @close="setSubScreen(value)"></about-me>
 					<about-computer ref="about_my_computer" v-if="subscreen === 'about_my_computer'" @close="setSubScreen(value)"></about-computer>
 					<aboutmyserver ref="about_my_server" v-if="subscreen === 'about_my_server'" @close="setSubScreen(value)"></aboutmyserver>
 					<mysecurity ref="security" v-if="subscreen === 'security'" :username="username" @close="setSubScreen(value)"></mysecurity>
 					<myprivacy ref="privacy" v-if="subscreen === 'privacy'" @close="setSubScreen(value)"></myprivacy>
 					<languagebox ref="language" v-if="subscreen === 'language'" @close="setSubScreen(value)"></languagebox>
+					<simplemode ref="simplemode" v-if="subscreen === 'simplemode'" @close="setSubScreen(value)"></simplemode>
 	`,
 
 	components: {
@@ -69,6 +76,7 @@ const Settings = {
 		'mysecurity': MySecurity,
 		'myprivacy': MyPrivacy,
 		'languagebox': LanguageBox,
+		'simplemode': SimpleMode,
 	},
 
 	props: ['buddycolor', 'username'],
@@ -84,8 +92,18 @@ const Settings = {
 		}
 	},
 
+	computed: {
+		canSetSimpleMode() {
+			return !(sugarizer.modules.user.isConnected() && (sugarizer.modules.settings.getUser() || {}).role == 'student');
+		}
+	},
+
 	created() {
-		this.settingsData = [this.$t('AboutMe'), this.$t('AboutMyComputer'), this.$t('Server'), this.$t('MyPrivacy'), this.$t('MySecurity'), this.$t('Language')];
+		let settings = [this.$t('AboutMe'), this.$t('AboutMyComputer'), this.$t('Server'), this.$t('MyPrivacy'), this.$t('MySecurity'), this.$t('Language')];
+		if (this.canSetSimpleMode) {
+			settings.push(this.$t('SimpleMode'));
+		}
+		this.settingsData = settings;
 	},
 
 	mounted() {

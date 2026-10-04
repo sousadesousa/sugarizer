@@ -114,6 +114,7 @@ define(["sugar-web/activity/shortcut",
 
         env.getEnvironment(function (error, environment) {
             user = environment.user;
+            activity.applyToolbarMode(environment);
             var l10n ={"en":"{{name}} Activity","fr":"Activité {{name}}","es":"Actividad {{name}}","pt":"{{name}} Atividade","de":"Aktivität {{name}}"};
             var activityName = "";
             for (var i = 0 ; i < environment.user.activities.length ; i++) {
@@ -157,6 +158,51 @@ define(["sugar-web/activity/shortcut",
 				document.getElementById("stop-button").style.visibility = "hidden";
 			};
         });
+    };
+
+    activity.getToolbarMode = function (environment) {
+        // Resolve effective toolbar mode from user settings.
+        // Priority: toolbarOverrides[bundleId] > toolbarMode > "full"
+        if (!environment || !environment.user) {
+            return "full";
+        }
+
+        var user = environment.user;
+        var bundleId = environment.bundleId;
+
+        // Check toolbarOverrides first
+        if (user.toolbarOverrides && typeof user.toolbarOverrides === "object") {
+            var overrideMode = user.toolbarOverrides[bundleId];
+            if (overrideMode === "simple" || overrideMode === "full") {
+                return overrideMode;
+            }
+        }
+
+        // Fall back to toolbarMode
+        if (user.toolbarMode === "simple" || user.toolbarMode === "full") {
+            return user.toolbarMode;
+        }
+
+        // Default to full
+        return "full";
+    };
+
+    activity.applyToolbarMode = function (environment) {
+        try {
+            var mode = activity.getToolbarMode(environment);
+            if (mode === "simple") {
+                document.body.classList.add("toolbar-simple");
+                // Inject CSS rule if not already present
+                if (!document.getElementById("toolbar-simple-style")) {
+                    var style = document.createElement("style");
+                    style.id = "toolbar-simple-style";
+                    style.textContent = ".toolbar-simple [data-toolbar=\"advanced\"] { display: none !important; }";
+                    document.head.appendChild(style);
+                }
+            }
+        } catch (e) {
+            // Silently ignore errors to prevent breaking the activity
+        }
     };
 
     activity.getDatastoreObject = function () {
