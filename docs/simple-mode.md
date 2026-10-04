@@ -8,13 +8,14 @@ This guide has three parts: [how to turn it on](#turn-it-on) (teachers and admin
 
 ## Activities that support it
 
-Ten activities support simple mode. In the others the setting has no effect yet.
+Eleven activities support simple mode. In the others the setting has no effect yet.
 
 | Activity | Buttons a child sees in simple mode | Hidden |
 |---|---|---|
 | Memorize | New game, Stop | Activity, Network, Game type, Game size, Editor and its buttons, Fullscreen, Help |
 | Blockrain | Play, Stop | Activity, Theme, Fullscreen, Help |
 | Last One Loses | New game, Stop | Activity, Network, Levels, Switch player, Fullscreen, Help |
+| Sprint Math | Restart, Stop | Activity, Network, Filter, Level, Help |
 | Tank Operation | Stop | Activity, Fullscreen, Help |
 | Grid Paint | Clear (asks first), Stop; the colours, the back arrow and the grids stay on screen | Activity, Fullscreen, Help |
 | Implode | New game, Replay, Undo, Redo, Stop | Activity, Levels, Fullscreen, Help |
@@ -25,7 +26,7 @@ Ten activities support simple mode. In the others the setting has no effect yet.
 
 Things to know before handing a device to a child:
 
-- **Options stay as they were.** The buttons that choose an option are hidden, so simple mode shows whatever was chosen last. In Abacus choose the abacus type and the number of rods first (the default has 15 rods). In Clock choose the clock style and display options first. In Memorize choose the game type and size first. In Abecedarium choose the language and the letter type (lower case, upper case or cursive) first. In Calligra the template button stays visible and offers only the five practice sets. Do this in full mode.
+- **Options stay as they were.** The buttons that choose an option are hidden, so simple mode shows whatever was chosen last. In Abacus choose the abacus type and the number of rods first (the default has 15 rods). In Clock choose the clock style and display options first. In Memorize choose the game type and size first. In Abecedarium choose the language and the letter type (lower case, upper case or cursive) first. In Calligra the template button stays visible and offers only the five practice sets. In Sprint Math choose the operations and the level first; the game remembers both. Do this in full mode.
 - **Stop is always visible**, so a child can always leave an activity.
 - **Last One Loses** has private and shared buttons inside the network palette. They cannot be reached because the Network button is hidden.
 
@@ -122,7 +123,7 @@ Every activity ships its own copy of `sugar-web` in `lib/sugar-web/`, so the hoo
 ## Limits and troubleshooting
 
 - **Nothing changes on a device after an update.** The service worker may serve the old files. Reload twice, or clear the site data.
-- **A student still sees every button.** The activity must be one of the ten above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
+- **A student still sees every button.** The activity must be one of the eleven above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
 - **Server update.** Sugarizer Server needs a restart, and a rebuild of its Docker image if it runs in Docker, because the server code is copied into the image. The client folder only needs the new files.
 - **Not a lock.** A person who knows how can change the setting in the browser. Use it to simplify, not to protect.
 - **Running over plain http.** Simple mode works without https. A related fix: the first-screen tutorial no longer needs `crypto.randomUUID`, which browsers only provide on https and localhost.
