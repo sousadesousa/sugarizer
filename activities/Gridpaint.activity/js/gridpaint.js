@@ -33,6 +33,13 @@ var newcolor=cnames[bselected], changed=false;
 var scale = 708/600;
 var fname = 'sqgridpos';
 
+// Localization strings (fallbacks)
+var clearDialogStrings = {
+	question: 'Do you want to clear the grid?',
+	confirm: 'Clear',
+	cancel: 'Cancel'
+};
+
 /////////////////////////
 //
 // Setup
@@ -62,6 +69,7 @@ function appInit(){
 	drawButtons();
 
 	clearbtn.addEventListener("click", handleClearButton);
+	initClearDialog();
 }
 
 function newShape(points){
@@ -111,6 +119,79 @@ function handleButton(y){
 	bselected = b;
 	newcolor = cnames[b];
 	drawButtons();
+}
+
+function initClearDialog(){
+	var overlay = document.getElementById('clear-dialog-overlay');
+	var dialog = document.getElementById('clear-dialog');
+	var cancelBtn = document.getElementById('clear-dialog-cancel');
+	var confirmBtn = document.getElementById('clear-dialog-confirm');
+	var question = document.getElementById('clear-dialog-question');
+
+	question.textContent = clearDialogStrings.question;
+	cancelBtn.textContent = clearDialogStrings.cancel;
+	confirmBtn.textContent = clearDialogStrings.confirm;
+
+	overlay.addEventListener('click', function(e) {
+		if(e.target === overlay) {
+			closeClearDialog();
+		}
+	});
+
+	dialog.addEventListener('click', function(e) {
+		e.stopPropagation();
+	});
+
+	cancelBtn.addEventListener('click', function() {
+		closeClearDialog();
+	});
+
+	confirmBtn.addEventListener('click', function() {
+		clearGrid();
+		closeClearDialog();
+	});
+
+	document.addEventListener('keydown', function(e) {
+		if(e.key === 'Escape') {
+			var dialog = document.getElementById('clear-dialog');
+			if(dialog && dialog.style.display !== 'none') {
+				closeClearDialog();
+			}
+		}
+	});
+}
+
+function showClearDialog(){
+	var texts = {
+		'clear-dialog-question': ['ClearQuestion', clearDialogStrings.question],
+		'clear-dialog-cancel': ['ClearCancel', clearDialogStrings.cancel],
+		'clear-dialog-confirm': ['ClearConfirm', clearDialogStrings.confirm]
+	};
+	for (var id in texts) {
+		var translated = (typeof clearDialogL10n == 'function') ? clearDialogL10n(texts[id][0]) : null;
+		document.getElementById(id).textContent = translated || texts[id][1];
+	}
+	var overlay = document.getElementById('clear-dialog-overlay');
+	var dialog = document.getElementById('clear-dialog');
+	overlay.style.display = 'block';
+	dialog.style.display = 'block';
+}
+
+function closeClearDialog(){
+	var overlay = document.getElementById('clear-dialog-overlay');
+	var dialog = document.getElementById('clear-dialog');
+	overlay.style.display = 'none';
+	dialog.style.display = 'none';
+}
+
+function clearGrid(){
+	for(var i in colors){
+		colors[i] = "white";
+		fillPiece(i);
+		strokePiece(i);
+	}
+	changed = true;
+	savePos(selected);
 }
 
 /////////////////////////
@@ -227,9 +308,5 @@ function drawSaveButton(ctx){
 }
 
 function handleClearButton(){
-	for(var i in colors){
-		colors[i] = "white";
-		fillPiece(i);
-		strokePiece(i);
-	}
+	showClearDialog();
 }

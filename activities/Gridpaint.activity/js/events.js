@@ -30,24 +30,28 @@ var touchScreen = false;
 
 function eventInit(){
 	touchScreen = ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
-	if (touchScreen) {
-		document.getElementById("canvas").addEventListener("touchstart", evMousedown, false);
-		frame.addEventListener("touchmove", evMousemove, false);
-		frame.addEventListener("touchend", evMouseup, false);
-	} else {
-		document.getElementById("canvas").onmousedown = evMousedown;
-		frame.onmousemove = evMousemove;
-		frame.onmouseup = evMouseup;
-	}
+	// Register both touch and mouse listeners always
+	var canvas = document.getElementById("canvas");
+	canvas.addEventListener("touchstart", evMousedown, false);
+	canvas.addEventListener("mousedown", evMousedown, false);
+	frame.addEventListener("touchmove", evMousemove, false);
+	frame.addEventListener("mousemove", evMousemove, false);
+	frame.addEventListener("touchend", evMouseup, false);
+	frame.addEventListener("mouseup", evMouseup, false);
 	computeSize();
 	window.addEventListener('resize', computeSize);
 }
 
 function computeSize() {
-	var wsize = document.body.clientHeight-(document.getElementById("unfullscreen-button").style.visibility!="visible"?55:0);
-	zoom = wsize/748;
-	var leftMargin = (document.body.clientWidth-1024*zoom)/2;
-	document.getElementById("frame").style.marginLeft = leftMargin+"px";
+	var toolbarHeight = (document.getElementById("unfullscreen-button").style.visibility!="visible"?55:0);
+	var availableWidth = document.body.clientWidth;
+	var availableHeight = document.body.clientHeight - toolbarHeight;
+	zoom = Math.min(availableWidth/1024, availableHeight/748);
+	var frame = document.getElementById("frame");
+	var leftMargin = (availableWidth - 1024*zoom)/2;
+	frame.style.marginLeft = leftMargin+"px";
+	// centre vertically with a margin (like the horizontal one) so that frame.getBoundingClientRect() stays the origin of the drawing
+	frame.style.marginTop = (Math.max(0, (availableHeight - 748*zoom)/2))+"px";
 	var setTransform = function(element) {
 		element.style.transform = "scale("+zoom+","+zoom+")";
 		element.style.transformOrigin = "0% 0%";
@@ -61,8 +65,9 @@ function computeSize() {
 
 function evMousedown(e){
 	e.preventDefault();
-	if (touchScreen) e = e.touches[0];
-	var x=localx(e.clientX), y=localy(e.clientY);
+	// Get the touch point if it's a touch event, otherwise use the event itself
+	var touch = e.touches ? e.touches[0] : e;
+	var x=localx(touch.clientX), y=localy(touch.clientY);
 	onStart(x,y);
 	// HACK: Force refresh on Android
 	if (/Android/i.test(navigator.userAgent) && document.location.protocol.substr(0,4) != "http") {
@@ -75,9 +80,10 @@ function evMousedown(e){
 
 function evMousemove(e){
 	e.preventDefault();
-	if (touchScreen) e = e.touches[0];
 	if(!onMove) return;
-	var x=localx(e.clientX), y=localy(e.clientY);
+	// Get the touch point if it's a touch event, otherwise use the event itself
+	var touch = e.touches ? e.touches[0] : e;
+	var x=localx(touch.clientX), y=localy(touch.clientY);
 	onMove(x,y);
 }
 
