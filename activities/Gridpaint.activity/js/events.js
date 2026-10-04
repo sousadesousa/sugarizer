@@ -43,10 +43,15 @@ function eventInit(){
 }
 
 function computeSize() {
-	var wsize = document.body.clientHeight-(document.getElementById("unfullscreen-button").style.visibility!="visible"?55:0);
-	zoom = wsize/748;
-	var leftMargin = (document.body.clientWidth-1024*zoom)/2;
-	document.getElementById("frame").style.marginLeft = leftMargin+"px";
+	var toolbarHeight = (document.getElementById("unfullscreen-button").style.visibility!="visible"?55:0);
+	var availableWidth = document.body.clientWidth;
+	var availableHeight = document.body.clientHeight - toolbarHeight;
+	zoom = Math.min(availableWidth/1024, availableHeight/748);
+	var frame = document.getElementById("frame");
+	var leftMargin = (availableWidth - 1024*zoom)/2;
+	frame.style.marginLeft = leftMargin+"px";
+	// centre vertically with a margin (like the horizontal one) so that frame.getBoundingClientRect() stays the origin of the drawing
+	frame.style.marginTop = (Math.max(0, (availableHeight - 748*zoom)/2))+"px";
 	var setTransform = function(element) {
 		element.style.transform = "scale("+zoom+","+zoom+")";
 		element.style.transformOrigin = "0% 0%";
