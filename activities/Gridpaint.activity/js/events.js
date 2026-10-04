@@ -30,15 +30,14 @@ var touchScreen = false;
 
 function eventInit(){
 	touchScreen = ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
-	if (touchScreen) {
-		document.getElementById("canvas").addEventListener("touchstart", evMousedown, false);
-		frame.addEventListener("touchmove", evMousemove, false);
-		frame.addEventListener("touchend", evMouseup, false);
-	} else {
-		document.getElementById("canvas").onmousedown = evMousedown;
-		frame.onmousemove = evMousemove;
-		frame.onmouseup = evMouseup;
-	}
+	// Register both touch and mouse listeners always
+	var canvas = document.getElementById("canvas");
+	canvas.addEventListener("touchstart", evMousedown, false);
+	canvas.addEventListener("mousedown", evMousedown, false);
+	frame.addEventListener("touchmove", evMousemove, false);
+	frame.addEventListener("mousemove", evMousemove, false);
+	frame.addEventListener("touchend", evMouseup, false);
+	frame.addEventListener("mouseup", evMouseup, false);
 	computeSize();
 	window.addEventListener('resize', computeSize);
 }
@@ -61,8 +60,9 @@ function computeSize() {
 
 function evMousedown(e){
 	e.preventDefault();
-	if (touchScreen) e = e.touches[0];
-	var x=localx(e.clientX), y=localy(e.clientY);
+	// Get the touch point if it's a touch event, otherwise use the event itself
+	var touch = e.touches ? e.touches[0] : e;
+	var x=localx(touch.clientX), y=localy(touch.clientY);
 	onStart(x,y);
 	// HACK: Force refresh on Android
 	if (/Android/i.test(navigator.userAgent) && document.location.protocol.substr(0,4) != "http") {
@@ -75,9 +75,10 @@ function evMousedown(e){
 
 function evMousemove(e){
 	e.preventDefault();
-	if (touchScreen) e = e.touches[0];
 	if(!onMove) return;
-	var x=localx(e.clientX), y=localy(e.clientY);
+	// Get the touch point if it's a touch event, otherwise use the event itself
+	var touch = e.touches ? e.touches[0] : e;
+	var x=localx(touch.clientX), y=localy(touch.clientY);
 	onMove(x,y);
 }
 
