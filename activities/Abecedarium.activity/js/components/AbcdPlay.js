@@ -17,8 +17,8 @@ const AbcdPlay = {
 			<div>
 				<div class="colorBar" :class="'themeColor' + theme"></div>
 				<abcd-home-button v-show="theme == -1 && !finished" id="play_home"></abcd-home-button>
-				<abcd-case-button v-show="!finished" id="play_caseButton"></abcd-case-button>
-				<abcd-language-button v-show="!finished" id="play_languageButton"></abcd-language-button>
+				<abcd-case-button v-show="!finished" id="play_caseButton" data-toolbar="advanced"></abcd-case-button>
+				<abcd-language-button v-show="!finished" id="play_languageButton" data-toolbar="advanced"></abcd-language-button>
 			</div>
 			<div>
 				<abcd-letter v-if="filter != null && filter.kind == 'Abcd.Letter'" class="filterLetter" :letter="filter.letter"></abcd-letter>
