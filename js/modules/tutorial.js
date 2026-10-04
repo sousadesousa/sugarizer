@@ -13,7 +13,8 @@ define(function () {
   let next;
 
   async function renderIconToHTML(template) {
-    const iconId = crypto.randomUUID(); //random id
+    // random id, crypto.randomUUID only exists in secure contexts (https or localhost)
+    const iconId = crypto.randomUUID ? crypto.randomUUID() : "icon-" + Date.now() + "-" + Math.random().toString(36).slice(2);
     const container = document.createElement("div");
     container.id = iconId;
 
