@@ -632,6 +632,36 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
 
         }
 
+        var cardTouchStart = null;
+        var lastCardTouchTime = 0;
+
+        function onCardTouchStart(e) {
+            var touch = e.changedTouches[0];
+            cardTouchStart = {x: touch.clientX, y: touch.clientY};
+        }
+
+        function onCardTouchEnd(e) {
+            var touch = e.changedTouches[0];
+            var start = cardTouchStart;
+            cardTouchStart = null;
+            // A finger that moved is scrolling, not tapping the card
+            if (!start || Math.abs(touch.clientX - start.x) > 10 || Math.abs(touch.clientY - start.y) > 10) {
+                return;
+            }
+            lastCardTouchTime = Date.now();
+            // No click emulated by the browser after the tap
+            e.preventDefault();
+            onCardClick.call(this);
+        }
+
+        function onCardMouseClick() {
+            // Ignore the click emulated after a tap if the browser still sends it
+            if (Date.now() - lastCardTouchTime < 800) {
+                return;
+            }
+            onCardClick.call(this);
+        }
+
 
         function drawGame() {
             if (MemorizeApp.editor.pairMode == MODE_EQUAL) {
@@ -680,11 +710,10 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
                 fullCardDiv.card = card;
                 fullCardDiv.resultDiv = div;
 
-                var clickEvent = "click";
-                if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
-                    clickEvent = "touchend";
-                }
-                fullCardDiv.addEventListener(clickEvent, onCardClick, false);
+                // Listen to touch AND mouse: touch screens can also have a mouse
+                fullCardDiv.addEventListener("touchstart", onCardTouchStart, false);
+                fullCardDiv.addEventListener("touchend", onCardTouchEnd, false);
+                fullCardDiv.addEventListener("click", onCardMouseClick, false);
                 fullCardDiv.appendChild(div);
                 fullCardDiv.appendChild(front);
                 gameDiv.appendChild(fullCardDiv);
