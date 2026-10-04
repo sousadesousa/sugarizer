@@ -8,7 +8,7 @@ This guide has three parts: [how to turn it on](#turn-it-on) (teachers and admin
 
 ## Activities that support it
 
-Nine activities support simple mode. In the others the setting has no effect yet.
+Ten activities support simple mode. In the others the setting has no effect yet.
 
 | Activity | Buttons a child sees in simple mode | Hidden |
 |---|---|---|
@@ -16,6 +16,7 @@ Nine activities support simple mode. In the others the setting has no effect yet
 | Blockrain | Play, Stop | Activity, Theme, Fullscreen, Help |
 | Last One Loses | New game, Stop | Activity, Network, Levels, Switch player, Fullscreen, Help |
 | Tank Operation | Stop | Activity, Fullscreen, Help |
+| Grid Paint | Clear (asks first), Stop; the colours, the back arrow and the grids stay on screen | Activity, Fullscreen, Help |
 | Implode | New game, Replay, Undo, Redo, Stop | Activity, Levels, Fullscreen, Help |
 | Abacus | Clear, Stop | Activity, Abacus list, Custom, Copy, Fullscreen, Help |
 | Abecedarium | Stop | Activity, Save PNG, Save sound, Language and Letter type (inside Learn and Play), Fullscreen, Help |
@@ -121,10 +122,18 @@ Every activity ships its own copy of `sugar-web` in `lib/sugar-web/`, so the hoo
 ## Limits and troubleshooting
 
 - **Nothing changes on a device after an update.** The service worker may serve the old files. Reload twice, or clear the site data.
-- **A student still sees every button.** The activity must be one of the nine above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
+- **A student still sees every button.** The activity must be one of the ten above, the classroom must assign it, and its classroom (or override) must say Simple. The student's activity list reloads at login, so log in again after a change.
 - **Server update.** Sugarizer Server needs a restart, and a rebuild of its Docker image if it runs in Docker, because the server code is copied into the image. The client folder only needs the new files.
 - **Not a lock.** A person who knows how can change the setting in the browser. Use it to simplify, not to protect.
 - **Running over plain http.** Simple mode works without https. A related fix: the first-screen tutorial no longer needs `crypto.randomUUID`, which browsers only provide on https and localhost.
+
+## Related changes in Grid Paint
+
+Three fixes came with simple mode in Grid Paint:
+
+- **Painting with a mouse on a touch screen.** Like Memorize, Grid Paint listened only to touches on a device with a touch screen, so a mouse did nothing. It now handles touch and mouse together, and a tap paints once.
+- **The drawing fits the screen.** The drawing area was scaled by the height only, so on a narrower screen the right columns, the colours and the back arrow were cut off. It is now scaled to fit the width and the height and centred. On a narrow portrait phone the drawing is small, because it is a landscape design.
+- **Clear asks first.** Clear stays visible in simple mode. Pressing it opens a dialog (Clear or Cancel) before the grid is wiped. The texts are translated into English, French, Polish and Portuguese.
 
 ## Related changes in Memorize
 
