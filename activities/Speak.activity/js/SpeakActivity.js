@@ -3,7 +3,7 @@ define(["sugar-web/graphics/palette","sugar-web/env","l10n","sugar-web/datastore
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext('2d');
 	canvas.width  = window.innerWidth;
-  	canvas.height = window.innerHeight-55;
+  	canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 	var windowWidth = canvas.getBoundingClientRect().width;
 	var windowHeight = canvas.getBoundingClientRect().height;
 	var shiftY = 45;
@@ -32,7 +32,7 @@ define(["sugar-web/graphics/palette","sugar-web/env","l10n","sugar-web/datastore
 
 	$(window).resize(function() {
 		canvas.width  = window.innerWidth;
-  		canvas.height = window.innerHeight-55;
+  		canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
   		windowWidth = canvas.getBoundingClientRect().width;
 		windowHeight = canvas.getBoundingClientRect().height;
   		mouthStart = {x:windowWidth*1.35/4,y:shiftY+windowHeight*2/3.0};

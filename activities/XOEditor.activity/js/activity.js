@@ -31,7 +31,7 @@ function runactivity(act,xocolor,doc,colors,env,datastore,tutorial){
 	function init(){
 		canvas = document.getElementById('actualcanvas');
     	canvas.width = window.innerWidth;
-    	canvas.height = window.innerHeight-55;
+    	canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 
     	stage = new createjs.Stage(canvas);
     	stage.update();
@@ -46,7 +46,7 @@ function runactivity(act,xocolor,doc,colors,env,datastore,tutorial){
 	    window.addEventListener('resize', resizeCanvas, false);
 	    function resizeCanvas() {
 	        canvas.width = window.innerWidth;
-	        canvas.height = window.innerHeight-55;
+	        canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 	        stage.update();
 	        location.reload();
 	    }
