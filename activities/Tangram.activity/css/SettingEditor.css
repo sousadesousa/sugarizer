@@ -121,3 +121,36 @@ select {
     font-size: 2.5vw;
   }
 }
+
+/* Redesign */
+.setting-editor-sidebar-element {
+  color: var(--ink);
+  background-color: var(--tile);
+  border-radius: var(--radius-m);
+  font-family: var(--font-display);
+}
+
+.setting-editor-sidebar-element:hover {
+  background-color: var(--control);
+}
+
+select {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.setting-editor-sidebar form label {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.setting-editor-sidebar form input {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  font-family: var(--font-body);
+}

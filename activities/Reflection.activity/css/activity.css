@@ -189,3 +189,28 @@ body{
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Override inline styles set by game.js on selected color buttons */
+#buddy-button[style],
+#rainbow-button[style] {
+    background-color: var(--control) !important;
+}
+
+/* Update .icon-button styling with design tokens */
+.icon-button {
+    background-color: var(--control);
+    border-color: var(--line-strong);
+    border-radius: var(--radius-m);
+    height: auto;
+    min-height: var(--target);
+}
+
+/* Update unfullscreen-button styling */
+#unfullscreen-button {
+    background-color: transparent;
+    border-radius: var(--radius-m);
+    width: var(--target);
+    height: var(--target);
+}
