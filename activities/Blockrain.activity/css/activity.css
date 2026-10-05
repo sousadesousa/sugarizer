@@ -433,3 +433,20 @@ body {
 .introjs-overlay {
   background-color: rgba(29, 36, 51, 0.8) !important;
 }
+
+/* Score displays */
+.blockrain-score-holder,
+.blockrain-Hscore-holder {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.blockrain-score-msg,
+.blockrain-Hscore-msg {
+  color: var(--ink-soft);
+}
+
+.blockrain-score-num,
+.blockrain-Hscore-num {
+  color: var(--ink);
+}
