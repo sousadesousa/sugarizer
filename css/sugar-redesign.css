@@ -177,3 +177,187 @@ textarea {
 }
 
 textarea:focus { background-color: var(--surface); border-color: var(--focus); }
+
+/* Tutorial tooltip (intro.js) shared by all activities. Same rules as css/redesign/home-tutorial.css; the second selector beats custom-introjs-style rules scoped to .customTooltip */
+.introjs-tooltip-header,
+.introjs-tooltip.customTooltip .introjs-tooltip-header {
+	background-color: var(--surface) !important;
+	border-bottom: 1px solid var(--line) !important;
+	padding: 16px !important;
+	border-radius: var(--radius-l) var(--radius-l) 0 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+}
+.introjs-tooltip-title,
+.introjs-tooltip.customTooltip .introjs-tooltip-title {
+	color: var(--ink) !important;
+	font-family: var(--font-display) !important;
+	font-weight: 500 !important;
+	font-size: 17px !important;
+	line-height: 1.2 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	flex: 1 !important;
+}
+.introjs-tooltiptext,
+.introjs-tooltip.customTooltip .introjs-tooltiptext {
+	color: var(--ink) !important;
+	font-family: var(--font-body) !important;
+	font-size: 15px !important;
+	line-height: 1.4 !important;
+	padding: 16px !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.75rem !important;
+}
+.introjs-skipbutton,
+.introjs-tooltip.customTooltip .introjs-skipbutton {
+	background-image: none !important;
+	background-color: transparent !important;
+	border: 0 !important;
+	width: 44px !important;
+	height: 44px !important;
+	min-width: 44px !important;
+	min-height: 44px !important;
+	padding: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	color: var(--ink) !important;
+	cursor: pointer !important;
+	font-size: 20px !important;
+	line-height: 1 !important;
+	flex-shrink: 0 !important;
+	margin: -8px -8px 0 0 !important;
+}
+.introjs-skipbutton:hover,
+.introjs-tooltip.customTooltip .introjs-skipbutton:hover {
+	background-color: var(--tile) !important;
+	border-radius: var(--radius-m) !important;
+}
+.introjs-skipbutton:focus,
+.introjs-tooltip.customTooltip .introjs-skipbutton:focus {
+	outline: 3px solid var(--focus) !important;
+	outline-offset: 2px !important;
+}
+.introjs-tooltipbuttons,
+.introjs-tooltip.customTooltip .introjs-tooltipbuttons {
+	border-top: 1px solid var(--line) !important;
+	padding: 12px 16px !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: flex-end !important;
+	gap: 8px !important;
+}
+.introjs-button,
+.introjs-tooltip.customTooltip .introjs-button {
+	border: 0 !important;
+	font-family: var(--font-display) !important;
+	font-weight: 500 !important;
+	font-size: 15px !important;
+	min-height: 44px !important;
+	padding: 0 24px !important;
+	border-radius: 12px !important;
+	cursor: pointer !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	text-shadow: none !important;
+}
+.introjs-nextbutton,
+.introjs-tooltip.customTooltip .introjs-nextbutton {
+	background-color: var(--ink) !important;
+	color: var(--on-ink) !important;
+}
+.introjs-nextbutton:hover,
+.introjs-tooltip.customTooltip .introjs-nextbutton:hover {
+	background-color: var(--ink-soft) !important;
+}
+.introjs-nextbutton:focus,
+.introjs-tooltip.customTooltip .introjs-nextbutton:focus {
+	outline: 3px solid var(--focus) !important;
+	outline-offset: 2px !important;
+}
+.introjs-nextbutton::before,
+.introjs-tooltip.customTooltip .introjs-nextbutton::before {
+	content: "" !important;
+	display: none !important;
+}
+.introjs-prevbutton,
+.introjs-tooltip.customTooltip .introjs-prevbutton {
+	background-color: var(--surface) !important;
+	border: 1px solid var(--line-strong) !important;
+	color: var(--ink) !important;
+}
+.introjs-prevbutton:hover,
+.introjs-tooltip.customTooltip .introjs-prevbutton:hover {
+	background-color: var(--tile) !important;
+}
+.introjs-prevbutton:focus,
+.introjs-tooltip.customTooltip .introjs-prevbutton:focus {
+	outline: 3px solid var(--focus) !important;
+	outline-offset: 2px !important;
+}
+.introjs-prevbutton::before,
+.introjs-tooltip.customTooltip .introjs-prevbutton::before {
+	content: "" !important;
+	display: none !important;
+}
+.introjs-disabled,
+.introjs-tooltip.customTooltip .introjs-disabled {
+	opacity: 0.5 !important;
+	cursor: default !important;
+}
+.introjs-disabled:hover,
+.introjs-tooltip.customTooltip .introjs-disabled:hover {
+	background-color: inherit !important;
+}
+.introjs-arrow,
+.introjs-tooltip.customTooltip .introjs-arrow {
+	border: 5px solid transparent !important;
+}
+.introjs-arrow.top,
+.introjs-tooltip.customTooltip .introjs-arrow.top,
+.introjs-arrow.top-right,
+.introjs-tooltip.customTooltip .introjs-arrow.top-right,
+.introjs-arrow.top-middle,
+.introjs-tooltip.customTooltip .introjs-arrow.top-middle {
+	border-bottom-color: var(--surface) !important;
+}
+.introjs-arrow.bottom,
+.introjs-tooltip.customTooltip .introjs-arrow.bottom,
+.introjs-arrow.bottom-right,
+.introjs-tooltip.customTooltip .introjs-arrow.bottom-right,
+.introjs-arrow.bottom-middle,
+.introjs-tooltip.customTooltip .introjs-arrow.bottom-middle {
+	border-top-color: var(--surface) !important;
+}
+.introjs-arrow.left,
+.introjs-tooltip.customTooltip .introjs-arrow.left,
+.introjs-arrow.left-bottom,
+.introjs-tooltip.customTooltip .introjs-arrow.left-bottom {
+	border-right-color: var(--surface) !important;
+}
+.introjs-arrow.right,
+.introjs-tooltip.customTooltip .introjs-arrow.right,
+.introjs-arrow.right-bottom,
+.introjs-tooltip.customTooltip .introjs-arrow.right-bottom {
+	border-left-color: var(--surface) !important;
+}
+
+.introjs-tooltip.customTooltip .introjs-disabled, .introjs-tooltip.customTooltip .introjs-disabled:hover { background-color: var(--surface) !important; color: var(--ink-faint) !important; }
+.introjs-overlay { background: rgba(29, 36, 51, .35) !important; }
+
+.introjs-skipbutton { background-image: none !important; }
+
+/* activity stylesheets paint focused tutorial buttons grey (.customTooltip .introjs-button:focus): win by specificity */
+.introjs-tooltip.customTooltip .introjs-button.introjs-nextbutton,
+.introjs-tooltip.customTooltip .introjs-button.introjs-nextbutton:focus { background-color: var(--ink) !important; color: var(--on-ink) !important; }
+.introjs-tooltip.customTooltip .introjs-button.introjs-nextbutton:hover { background-color: var(--ink-soft) !important; }
+.introjs-tooltip.customTooltip .introjs-button.introjs-prevbutton,
+.introjs-tooltip.customTooltip .introjs-button.introjs-prevbutton:focus { background-color: var(--surface) !important; color: var(--ink) !important; }
+.introjs-tooltip.customTooltip .introjs-button.introjs-prevbutton:hover { background-color: var(--tile) !important; }
+.introjs-tooltip.customTooltip .introjs-button.introjs-disabled,
+.introjs-tooltip.customTooltip .introjs-button.introjs-disabled:focus,
+.introjs-tooltip.customTooltip .introjs-button.introjs-disabled:hover { background-color: var(--surface) !important; color: var(--ink-faint) !important; }

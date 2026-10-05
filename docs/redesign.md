@@ -2,7 +2,7 @@
 
 The new look replaces the old one one activity at a time. This guide says what exists, how to move an activity to the new look and what to check.
 
-State: the Home, Memorize and Sprint Math use the new look. The other activities still have the old toolbar (55px, dark) and are not changed.
+State: the Home, Memorize, Sprint Math and the games of batch 1 (Blockrain, Implode, Gears, GameOfLife, Flip, MazeWeb, Falabracman, FractionBounce) use the new look. The other activities still have the old toolbar (55px, dark) and are not changed.
 
 ## What the new look is
 
@@ -31,6 +31,10 @@ Token names to know: `--ink`, `--ink-soft`, `--surface`, `--bg`, `--tile`, `--co
 7. Run the activity with a mouse and with touch.
 
 Colours that the script or the user's colour set inline (the user colour, `gameOver` text, filter icons) need `!important` in the stylesheet to be overridden. Say so in a comment when you use it.
+
+## Tutorial tooltip (intro.js)
+
+`css/sugar-redesign.css` also skins the tutorial tooltip for every activity (white card, dark header, primary Next button, secondary Prev). It uses `.introjs-tooltip.customTooltip` selectors because the activities' own `.customTooltip .introjs-button:focus` rules paint the buttons grey with `!important`. Do not restyle the tooltip again in an activity.
 
 ## Toolbar icons
 
