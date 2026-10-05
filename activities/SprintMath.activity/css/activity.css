@@ -707,3 +707,30 @@ html {
     background-color: transparent !important;
     color: var(--ink) !important;
 }
+
+/* palettes (Filter and Level): the old text was white for a black palette */
+.palette-button {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 160px;
+    height: 44px;
+    margin: 2px 0;
+    padding: 0 16px;
+    text-align: left;
+    background-size: 0 0 !important;
+    border-radius: var(--radius-m);
+}
+
+.palette-button::after { display: none; }
+
+.filter-item {
+    color: var(--ink) !important;
+    font: 500 15px var(--font-display);
+}
+
+.palette-button:hover { background-color: var(--tile); }
+
+.palette-button-selected,
+.palette-button-selected:hover {
+    background-color: var(--control);
+}
