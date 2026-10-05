@@ -1,0 +1,75 @@
+/* Redesign: Home shell (page, top bar, search field, view buttons). Loaded after css/styles.css. */
+
+body {
+	font-family: var(--font-body);
+	font-size: 15px;
+	color: var(--ink);
+	background-color: var(--bg-home);
+}
+
+html, button { cursor: default; }
+button, .icon-button, .toolbutton { cursor: pointer; }
+
+::-webkit-scrollbar { width: 12px; background-color: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--control); border: 3px solid var(--bg-home); border-radius: var(--radius-pill); }
+
+.sugarizer-canvas { background-color: var(--bg-home); }
+.sugarizer-desktop { background-color: var(--bg-home); height: calc(100vh - var(--home-bar-h)); }
+
+:root { --home-bar-h: 72px; }
+
+/* top bar */
+.toolbar {
+	box-sizing: border-box;
+	height: var(--home-bar-h);
+	min-height: var(--home-bar-h);
+	padding: 0 24px;
+	color: var(--ink);
+	background-color: var(--surface);
+	box-shadow: 0 1px 0 var(--line);
+	font-family: var(--font-display);
+}
+.tool_leftitems { gap: 14px; }
+.tool_rightitems { gap: 6px; padding: 4px; border-radius: var(--radius-l); background-color: var(--tile); }
+
+/* the Home icons are drawn for a dark bar (stroke white, fill dark): draw them dark on light */
+.toolbar .xo-color768 { --stroke-color: var(--ink); --fill-color: var(--surface); }
+.toolbar .xo-color256 { --stroke-color: var(--danger); --fill-color: var(--danger-tint); }
+
+.toolbar .toolbutton {
+	box-sizing: border-box;
+	width: var(--target);
+	height: var(--target);
+	margin: 0;
+	padding: 6px;
+	border-radius: var(--radius-m);
+	background-color: transparent;
+}
+.toolbar .toolbutton:hover { background-color: var(--tile); }
+.tool_rightitems .toolbutton:hover { background-color: var(--control); }
+.toolbar .toolbutton.active,
+.toolbar .toolbutton.active:hover { background-color: var(--surface); box-shadow: 0 1px 3px rgba(29, 36, 51, .16); }
+#view_home_button.active .xo-color768 { --fill-color: var(--surface); }
+.active { background-color: var(--surface); }
+
+.toolbar hr { height: 24px; margin: 0 4px; border: 0; background-color: var(--line-strong); width: 1px; }
+
+/* search field */
+.search-field-border { box-sizing: border-box; width: 280px; height: 48px; border-radius: var(--radius-l); }
+.search-field-border-focus { background-color: var(--surface); border: 2px solid var(--focus); }
+.search-field-border-nofocus { background-color: var(--tile); border: 2px solid var(--tile); }
+.search-field-iconsearch { left: 12px; }
+.search-field-input {
+	box-sizing: border-box;
+	margin-left: 38px;
+	width: calc(100% - 70px);
+	line-height: 24px;
+	font: 400 16px var(--font-body);
+	color: var(--ink);
+	background-color: transparent;
+}
+.search-field-input:focus { background-color: transparent; }
+.search-field-input::placeholder { color: var(--ink-soft); }
+
+/* icons fill the 44px button (the component sets a fixed 47px size) */
+.toolbar .toolbutton svg { width: 100%; height: 100%; }
