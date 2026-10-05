@@ -530,7 +530,7 @@ html {
 
 #question {
     height: auto;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 10px auto;
     font-size: clamp(64px, 11vw, 148px);
     font-weight: 500;
     font-family: var(--font-display);
@@ -546,8 +546,9 @@ html {
 }
 
 #answer {
-    min-height: auto;
-    margin-bottom: 40px;
+    /* a reserved slot between the sum and the answers: showing Correct or Wrong must not move anything */
+    height: 44px;
+    margin: 0 0 30px;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -657,13 +658,13 @@ html {
     }
 
     #question {
-        margin: 0 auto 40px auto;
+        margin: 0 auto 10px auto;
         font-size: clamp(48px, 10vw, 80px);
         padding: 0 10px;
     }
 
     #answer {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     #choices {
