@@ -266,3 +266,14 @@ canvas {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+.generation-status {
+    color: var(--ink-soft) !important;
+    font-family: var(--font-display);
+}
+
+.generation-count {
+    color: var(--ink) !important;
+    font-family: var(--font-display);
+}

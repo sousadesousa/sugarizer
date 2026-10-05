@@ -348,3 +348,245 @@ button.resetEditWord {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Settings buttons - update color to new design token */
+.settingButtons {
+  background: transparent;
+  border: none;
+  font-family: ds_moster;
+  color: var(--ink);
+}
+
+/* Word input field - use design tokens */
+#word {
+  background-color: var(--tile);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: var(--radius-m);
+  padding: 8px;
+  font-size: 16px;
+}
+
+#word:focus {
+  background-color: var(--surface);
+  border-color: var(--focus);
+}
+
+/* Setting screen labels */
+#WordHeading,
+#DictHeading {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+/* Dictionary panel */
+#panel-body {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 8px;
+}
+
+/* Setting menu buttons (add, delete, save, reset) */
+#addWord,
+#deleteAllWords,
+#saveDict,
+#resetDict {
+  background-color: var(--control);
+  border: none;
+  border-radius: var(--radius-m);
+  background-size: 60% 60% !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
+}
+
+#addWord:hover,
+#deleteAllWords:hover,
+#saveDict:hover,
+#resetDict:hover {
+  background-color: var(--tile);
+}
+
+#addWord:active,
+#deleteAllWords:active,
+#saveDict:active,
+#resetDict:active {
+  background-color: var(--control-hover);
+}
+
+/* Dictionary row styling */
+.dictRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  min-height: var(--target);
+  border-radius: var(--radius-m);
+  color: var(--ink);
+}
+
+.dictRow:hover {
+  background-color: var(--tile);
+}
+
+/* Edit and delete buttons for dictionary items */
+button.editWord,
+button.deleteWord,
+button.saveEditWord,
+button.resetEditWord {
+  background-color: var(--control);
+  border: none;
+  border-radius: var(--radius-m);
+  min-height: var(--target);
+  min-width: var(--target);
+  color: transparent;
+}
+
+button.editWord:hover,
+button.deleteWord:hover,
+button.saveEditWord:hover,
+button.resetEditWord:hover {
+  background-color: var(--tile);
+}
+
+button.editWord:active,
+button.deleteWord:active,
+button.saveEditWord:active,
+button.resetEditWord:active {
+  background-color: var(--control-hover);
+}
+
+/* Intro.js tutorial styling */
+.introjs-overlay {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.introjs-tooltip {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius-l) !important;
+  padding: 16px !important;
+  font-size: 14px !important;
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow-pop) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.customTooltip .introjs-tooltip-header {
+  font-family: var(--font-display);
+  color: var(--ink);
+  text-shadow: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  margin-bottom: 8px;
+}
+
+.customTooltip .introjs-tooltip-title {
+  font-size: 16px;
+  padding: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.customTooltip .introjs-tooltiptext {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.customTooltip .introjs-skipbutton {
+  float: right;
+  cursor: pointer;
+  background-image: url(../icons/dialog-cancel.svg);
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  margin-top: 0;
+  padding: 0;
+  white-space: nowrap;
+  color: transparent;
+  line-height: 24px;
+}
+
+.customTooltip .introjs-nextbutton,
+.customTooltip .introjs-prevbutton,
+.customTooltip .introjs-button {
+  background-color: var(--ink) !important;
+  color: var(--on-ink) !important;
+  border: none !important;
+  border-radius: var(--radius-m) !important;
+  padding: 8px 16px !important;
+  min-height: var(--target) !important;
+  font-family: var(--font-display) !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  text-shadow: none !important;
+  margin: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.customTooltip .introjs-nextbutton::before,
+.customTooltip .introjs-prevbutton::before {
+  content: "";
+  margin-right: 6px;
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.customTooltip .introjs-nextbutton::before {
+  background-image: url(../icons/go-right.svg);
+}
+
+.customTooltip .introjs-prevbutton::before {
+  background-image: url(../icons/go-left.svg);
+}
+
+.customTooltip .introjs-button:hover {
+  background-color: var(--ink-soft) !important;
+}
+
+.customTooltip .introjs-button:active {
+  background-color: var(--control) !important;
+  color: var(--ink) !important;
+}
+
+.customTooltip .introjs-button:focus {
+  outline: 3px solid var(--focus) !important;
+  outline-offset: 2px !important;
+}
+
+.customTooltip .introjs-disabled {
+  color: var(--ink-faint) !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+.customTooltip .introjs-disabled:hover {
+  background-color: var(--control) !important;
+}
+
+/* Icon button styling */
+.icon-button {
+  border-radius: var(--radius-m);
+  min-height: var(--target);
+  min-width: var(--target);
+  background-color: var(--control);
+  border: none;
+  color: transparent;
+}
+
+.icon-button:hover {
+  background-color: var(--tile);
+}
+
+.icon-button:active {
+  background-color: var(--control-hover);
+}

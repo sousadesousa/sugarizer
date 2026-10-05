@@ -266,3 +266,47 @@ body {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+#main-toolbar #easy,
+#main-toolbar #medium,
+#main-toolbar #hard {
+  background-color: transparent !important;
+}
+
+#main-toolbar #easy:hover,
+#main-toolbar #medium:hover,
+#main-toolbar #hard:hover {
+  background-color: var(--tile) !important;
+}
+
+#main-toolbar #easy.active,
+#main-toolbar #medium.active,
+#main-toolbar #hard.active {
+  background-color: var(--control) !important;
+}
+
+/* picoModal dialog styling for game over */
+.pico-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.pico-modal .pico-modal-content {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-l) !important;
+  box-shadow: var(--shadow-pop) !important;
+  color: var(--ink) !important;
+  padding: 16px !important;
+}
+
+.pico-modal .warningbox-refresh-button {
+  background-color: var(--ink) !important;
+  color: var(--on-ink) !important;
+  border: none !important;
+  border-radius: var(--radius-m) !important;
+  min-height: 44px !important;
+  font-family: var(--font-display) !important;
+  padding: 6px 16px !important;
+  cursor: pointer !important;
+}

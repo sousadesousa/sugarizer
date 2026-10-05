@@ -488,3 +488,67 @@ p {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Toolbar text color and dividers */
+.helpText {
+	color: var(--ink);
+}
+
+#main-toolbar .splitbar {
+	border-right: 1px solid var(--line-strong);
+	margin: calc((64px - 24px) / 2) 5px;
+	height: 24px;
+}
+
+/* Score text */
+#Score {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* Settings palette inputs */
+.settings input {
+	background-color: var(--tile);
+	border: 2px solid var(--line);
+	color: var(--ink);
+}
+
+.settings input:focus {
+	background-color: var(--surface);
+	border-color: var(--focus);
+}
+
+/* Palette item hover state */
+.palette-item:hover {
+	background-color: var(--tile);
+}
+
+/* Ball and background select titles */
+.ball-select h4 {
+	font-family: var(--font-display);
+	color: var(--ink);
+	margin: 0 0 8px 0;
+	padding: 10px;
+}
+
+.ball-select hr {
+	border: 0;
+	height: 1px;
+	background-color: var(--line);
+	margin: 0 10px;
+}
+
+/* Ball select buttons */
+.ball-select-item {
+	min-height: 44px;
+}
+
+.ball-select-item:hover {
+	background-color: var(--tile);
+}
+
+.ball-select-item div {
+	color: var(--ink);
+}

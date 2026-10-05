@@ -379,3 +379,57 @@ body {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+#up-arrow,
+#down-arrow,
+#left-arrow,
+#right-arrow {
+  background-color: var(--surface) !important;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-m);
+}
+
+/* Tutorial tooltips */
+.customTooltip .introjs-tooltip-header {
+  background-color: var(--surface);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.customTooltip .introjs-tooltiptext {
+  color: var(--ink);
+  background-color: var(--surface);
+}
+
+.customTooltip .introjs-tooltipbuttons {
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius-l) var(--radius-l);
+}
+
+.customTooltip .introjs-button {
+  background-color: var(--ink) !important;
+  color: var(--on-ink) !important;
+  border-radius: var(--radius-m);
+  border: 0;
+}
+
+.customTooltip .introjs-button:focus {
+  background-color: var(--ink) !important;
+  box-shadow: none;
+}
+
+.customTooltip .introjs-skipbutton {
+  filter: invert(1);
+}
+
+.customTooltip .introjs-disabled {
+  color: var(--ink-faint) !important;
+  opacity: 0.5;
+}
+
+.introjs-overlay {
+  background-color: rgba(29, 36, 51, 0.8) !important;
+}

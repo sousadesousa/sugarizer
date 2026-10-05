@@ -50,7 +50,7 @@ function runactivity(act,doc,colors,env,datastore,sizepalette,tutorial){
 		window.addEventListener('resize', resizeCanvas, false);
 		function resizeCanvas() {
 			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight-(+document.getElementById("main-toolbar").style.opacity ? 55 : 0);
+			canvas.height = window.innerHeight-(+document.getElementById("main-toolbar").style.opacity ? document.getElementById("main-toolbar").offsetHeight : 0);
 			g.initialiseFromArray();
 		}
 		var solveButton = doc.getElementById("solve-button");
@@ -82,7 +82,7 @@ function runactivity(act,doc,colors,env,datastore,sizepalette,tutorial){
 		});
 		document.getElementById("unfullscreen-button").addEventListener('click', function() {
 			document.getElementById("main-toolbar").style.opacity = 1;
-			document.getElementById("canvas").style.top = "55px";
+			document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 			document.getElementById("unfullscreen-button").style.visibility = "hidden";
 			resizeCanvas();
 		});

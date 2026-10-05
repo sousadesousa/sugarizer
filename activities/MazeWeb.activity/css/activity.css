@@ -209,3 +209,110 @@ body {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Update toolbar buttons (private-button, shared-button) to match new design */
+#private-button,
+#shared-button {
+  width: var(--target) !important;
+  height: var(--target) !important;
+  margin: calc((var(--toolbar-h) - var(--target)) / 2) 2px !important;
+  background-color: transparent !important;
+  border-radius: var(--radius-m) !important;
+  border: 0 !important;
+}
+
+#private-button:hover,
+#shared-button:hover {
+  background-color: var(--tile) !important;
+}
+
+#private-button:active,
+#private-button.active,
+#shared-button:active,
+#shared-button.active {
+  background-color: var(--control) !important;
+}
+
+/* Update introJS tooltip styles to match redesign */
+.customTooltip .introjs-tooltip-header {
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0;
+}
+
+.customTooltip .introjs-tooltiptext {
+  color: var(--ink) !important;
+  background-color: var(--surface) !important;
+}
+
+.customTooltip .introjs-button {
+  background-color: var(--ink) !important;
+  color: var(--on-ink) !important;
+  border: 0 !important;
+  border-radius: var(--radius-m) !important;
+  padding: 8px 16px !important;
+  min-height: var(--target) !important;
+}
+
+.customTooltip .introjs-button:hover,
+.customTooltip .introjs-button:focus {
+  background-color: var(--ink-soft) !important;
+  color: var(--on-ink) !important;
+}
+
+.customTooltip .introjs-disabled {
+  background-color: var(--control) !important;
+  color: var(--ink-soft) !important;
+}
+
+.customTooltip .introjs-tooltipbuttons {
+  border-top: 1px solid var(--line) !important;
+  background-color: var(--surface) !important;
+}
+
+.customTooltip .introjs-skipbutton {
+  color: var(--ink-soft) !important;
+}
+
+/* Update libnotify notification styles to match redesign */
+.humane,
+.humane-libnotify {
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-l) !important;
+  box-shadow: var(--shadow-pop) !important;
+  font-family: var(--font-body);
+}
+
+.humane.humane-libnotify-info,
+.humane-libnotify.humane-libnotify-info {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.humane.humane-libnotify-success,
+.humane-libnotify.humane-libnotify-success {
+  background: var(--surface) !important;
+  color: var(--ok) !important;
+  border: 1px solid var(--ok-tint) !important;
+}
+
+.humane.humane-libnotify-error,
+.humane-libnotify.humane-libnotify-error {
+  background: var(--surface) !important;
+  color: var(--bad) !important;
+  border: 1px solid var(--bad-tint) !important;
+}
+
+/* Update icon-button style to match redesign */
+.icon-button {
+  background-color: var(--control) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-m) !important;
+  color: var(--ink) !important;
+}

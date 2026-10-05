@@ -235,3 +235,42 @@ background-color: #C0C0C0;
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+/* Palette size buttons */
+#four-button,
+#five-button,
+#six-button,
+#seven-button {
+    width: var(--target);
+    height: var(--target);
+    margin: 6px 2px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: var(--radius-m);
+    background-color: var(--surface) !important;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+
+#four-button:hover,
+#five-button:hover,
+#six-button:hover,
+#seven-button:hover {
+    background-color: var(--tile) !important;
+}
+
+#four-button:active,
+#five-button:active,
+#six-button:active,
+#seven-button:active {
+    background-color: var(--control) !important;
+}
+
+/* Palette button containers - ensure row height matches 44px target */
+.palette .row {
+    min-height: var(--target);
+    display: flex;
+    align-items: center;
+}
