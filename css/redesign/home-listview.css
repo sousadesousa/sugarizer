@@ -1,1 +1,428 @@
 /* Redesign: home-listview. Loaded after css/redesign/home-shell.css. */
+
+/* === LIST VIEW CONTAINER === */
+.home-view {
+	background-color: var(--bg-home);
+}
+
+/* === LIST VIEW ROWS === */
+.listview {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 68px;
+	padding: 12px 20px;
+	border-bottom: 1px solid var(--line);
+	background-color: var(--surface);
+	color: var(--ink);
+	cursor: pointer;
+}
+
+.listview:hover {
+	background-color: var(--tile);
+}
+
+.listview_left {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 1;
+	min-width: 0;
+}
+
+.activity-name {
+	font-size: 15px;
+	font-weight: 500;
+	font-family: var(--font-display);
+	color: var(--ink);
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.activity-version {
+	font-size: 14px;
+	color: var(--ink-soft);
+	font-family: var(--font-body);
+	flex-shrink: 0;
+	margin-right: 16px;
+}
+
+/* Icons for activity rows */
+.home-icon, .network-icon {
+	position: relative !important;
+	flex-shrink: 0;
+}
+
+.web-activity-disable {
+	opacity: 0.5;
+}
+
+.sync-gear {
+	animation-name: sync-frame;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+/* List view container card */
+#activities-container {
+	margin: 24px auto;
+	max-width: 1100px;
+	background-color: var(--surface);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+}
+
+.no-matching-activities {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	text-align: center;
+	align-items: center;
+	color: var(--ink);
+}
+
+.no-matching-activities > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.loading-activities-message {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 15px;
+	color: var(--ink);
+	font-family: var(--font-body);
+}
+
+.loading-spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: grid;
+	place-content: center;
+	background: rgba(29, 36, 51, 0.1);
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	user-select: none;
+}
+
+/* === JOURNAL SCREEN === */
+.journal-view {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-home);
+}
+
+/* Journal toolbar - top bar */
+.journal-view .toolbar {
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--line);
+	color: var(--ink);
+	box-shadow: none;
+}
+
+.journal-toolleft {
+	gap: 10px;
+	display: flex;
+	align-items: center;
+}
+
+/* Fix icon colors in journal toolbar */
+.journal-view .toolbar .xo-color768 {
+	--stroke-color: var(--ink);
+	--fill-color: var(--surface);
+}
+
+.journal-view .toolbar .xo-color256 {
+	--stroke-color: var(--danger);
+	--fill-color: var(--danger-tint);
+}
+
+.journal-view .toolbar hr {
+	height: 24px;
+	margin: 0 8px;
+	border: 0;
+	background-color: var(--line-strong);
+	width: 1px;
+}
+
+.journal-view .toolbar .toolbutton {
+	width: var(--target);
+	height: var(--target);
+	padding: 6px;
+	border-radius: var(--radius-m);
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.journal-view .toolbar .toolbutton:hover {
+	background-color: var(--tile);
+}
+
+.journal-view .tool_rightitems {
+	background-color: transparent;
+	gap: 6px;
+	padding: 4px;
+	border-radius: var(--radius-l);
+}
+
+.journal-view .tool_rightitems .toolbutton:hover {
+	background-color: var(--tile);
+}
+
+/* Journal warning box */
+.journal-warningbox {
+	background-color: var(--danger-tint);
+	border-top: 1px solid var(--danger);
+	border-bottom: 1px solid var(--line);
+	height: auto;
+	min-height: 48px;
+	color: var(--danger);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 20px;
+	position: relative;
+	z-index: 1;
+	gap: 12px;
+}
+
+.journal-warningbox h4 {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	color: var(--danger);
+}
+
+.journal-warningbox span {
+	font-family: var(--font-body);
+	font-size: 14px;
+	color: var(--ink-soft);
+}
+
+/* Journal list container */
+.journal-list-container {
+	position: relative;
+	flex: 1;
+	overflow-y: auto;
+	background-color: var(--surface);
+	display: flex;
+	flex-direction: column;
+}
+
+.journal-list-container.expanded {
+	height: auto;
+}
+
+/* Journal list items follow the same pattern as activity list */
+#journal-listview {
+	display: flex;
+	flex-direction: column;
+	margin-inline: auto;
+	padding: 0;
+	width: 100%;
+	max-width: 1100px;
+}
+
+#journal-listview .listview {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 68px;
+	padding: 12px 20px;
+	border-bottom: 1px solid var(--line);
+	background-color: var(--surface);
+}
+
+#journal-listview .listview:hover {
+	background-color: var(--tile);
+}
+
+#journal-listview .listview_left {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 1;
+	min-width: 0;
+}
+
+#journal-listview .activity-name {
+	width: auto;
+	flex: 1;
+	min-width: 0;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	color: var(--ink);
+}
+
+#journal-listview input.activity-name {
+	flex: none;
+	width: 250px;
+	background-color: var(--surface);
+	border: 2px solid var(--focus);
+	border-radius: var(--radius-m);
+	padding: 8px 12px;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	color: var(--ink);
+}
+
+#journal-listview .activity-name.nonEditing {
+	border: none;
+	cursor: inherit;
+	outline: none;
+	background-color: transparent;
+}
+
+#journal-listview span {
+	flex-shrink: 0;
+	font-family: var(--font-body);
+	font-size: 14px;
+	color: var(--ink-soft);
+	margin-right: 12px;
+}
+
+#journal-listview .journal-checkbox {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	cursor: pointer;
+	accent-color: var(--accent);
+}
+
+#journal-listview .journal-star {
+	padding: 8px 10px;
+	flex-shrink: 0;
+	cursor: pointer;
+}
+
+/* Assignment container in journal */
+.assignment-container {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.assignment-container h3 {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 14px;
+	color: var(--ink-soft);
+}
+
+/* Journal footer */
+.journal-footer {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: var(--home-bar-h);
+	min-height: var(--home-bar-h);
+	padding: 0 24px;
+	background-color: var(--surface);
+	border-top: 1px solid var(--line);
+	gap: 14px;
+	z-index: 10;
+}
+
+.journal-footer .icon {
+	margin-right: 8px;
+}
+
+.journal-footer .toolbutton {
+	width: var(--target);
+	height: var(--target);
+	padding: 6px;
+	border-radius: var(--radius-m);
+	background-color: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.journal-footer .toolbutton:hover {
+	background-color: var(--tile);
+}
+
+.journal-footer .toolbutton.active {
+	background-color: var(--surface);
+	box-shadow: 0 1px 3px rgba(29, 36, 51, 0.16);
+}
+
+#journal-sync {
+	margin-left: auto;
+}
+
+/* Server error state */
+.server-error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	height: 90%;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.cloud-empty {
+	margin-inline: auto;
+	margin-bottom: 12px;
+	background: url(../icons/cloud-warning.svg) no-repeat center / 50px 50px;
+	width: 50px;
+	height: 50px;
+	opacity: 0.5;
+}
+
+/* Journal loader */
+.journal-loader img {
+	display: block;
+	margin: 14px auto 24px auto;
+}
+
+/* Sync gear animation */
+@keyframes sync-frame {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-180deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1100px) {
+	#activities-container {
+		margin: 24px 12px;
+		max-width: 100%;
+	}
+
+	#journal-listview {
+		max-width: 100%;
+		margin: 0;
+	}
+}
