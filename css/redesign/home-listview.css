@@ -227,7 +227,9 @@
 /* Journal list items follow the same pattern as activity list */
 #journal-listview {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 	margin-inline: auto;
 	padding: 0;
 	width: 100%;
@@ -430,3 +432,8 @@
 
 /* the button that leaves the Journal passes white inline */
 #journal_home_button { --stroke-color: var(--ink) !important; --fill-color: none !important; }
+
+/* the copy-to-device icon is a white shape: draw it in the soft ink (inline custom properties again, so !important) */
+#copydevicebutton { --fill-color: var(--ink-soft) !important; }
+
+#journal-listview #timeitem { color: var(--ink-soft); font-size: 14px; white-space: nowrap; margin-left: 16px; }
