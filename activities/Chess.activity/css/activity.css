@@ -564,3 +564,7 @@ body {
 .king_tutorial {
   background-image: url(../img/gifs/king_tutorial.gif);
 }
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}

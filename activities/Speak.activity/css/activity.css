@@ -407,3 +407,8 @@ body {
 	border: 0px;
   }
 
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}

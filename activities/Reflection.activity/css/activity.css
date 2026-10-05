@@ -185,3 +185,7 @@ body{
   visibility: hidden;
   z-index: 5;
 }
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
