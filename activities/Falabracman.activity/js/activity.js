@@ -554,7 +554,7 @@ define(["sugar-web/activity/activity", "sugar-web/env", "activity/game", "activi
     });
     document.getElementById("unfullscreen-button").addEventListener('click', function() {
       document.getElementById("main-toolbar").style.opacity = 1;
-      document.getElementById("canvas").style.top = "55px";
+      document.getElementById("canvas").style.top = toolbarElem.offsetHeight + "px";
       document.getElementById("unfullscreen-button").style.visibility = "hidden";
       var newCanvasWidth = window.innerWidth;
       var newCanvasHeight = window.innerHeight - toolbarElem.offsetHeight - 3;
