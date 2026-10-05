@@ -1,1 +1,681 @@
 /* Redesign: home-settings. Loaded after css/redesign/home-shell.css. */
+
+/* Settings dialog (modal overlay and content) */
+.modal-overlay {
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 50;
+}
+
+.dialog-content {
+	background-color: var(--surface);
+	color: var(--ink);
+	border: none;
+	border-radius: var(--radius-xl);
+	box-shadow: var(--shadow-pop);
+	overflow-y: auto;
+}
+
+/* Toolbar inside the settings dialog */
+.dialog-content .toolbar {
+	height: 56px;
+	min-height: 56px;
+	padding: 0 20px;
+	background-color: var(--surface);
+	color: var(--ink);
+	border-bottom: 1px solid var(--line);
+	box-shadow: none;
+	font-family: var(--font-display);
+	font-size: 500;
+}
+
+.dialog-content .module-icon {
+	position: relative;
+	left: auto;
+	margin-right: 8px;
+}
+
+.dialog-content .module-text {
+	margin-left: 0;
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-weight: 500;
+	word-break: break-word;
+	flex: 1;
+}
+
+.dialog-content .settings-filter-text {
+	margin-left: 0;
+	width: auto;
+	flex: 1;
+}
+
+/* Settings grid tiles and layout */
+.dialog-items {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	padding: 40px;
+	background-color: var(--surface);
+}
+
+.dialog-items > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: var(--target);
+	cursor: pointer;
+	border-radius: var(--radius-m);
+	padding: 12px;
+	transition: background-color 150ms ease;
+}
+
+.dialog-items > div:hover {
+	background-color: var(--tile);
+}
+
+.dialog-item-text {
+	padding-top: 0;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	color: var(--ink);
+	text-align: center;
+}
+
+.dialog-item-disable {
+	color: var(--ink-faint) !important;
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+.dialog-item-disable .dialog-item-text {
+	color: var(--ink-faint);
+}
+
+/* Settings sub-screens (individual dialogs) */
+.settings-subscreen {
+	background-color: var(--surface);
+	color: var(--ink);
+}
+
+/* About me section */
+.aboutme-box {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px;
+}
+
+.aboutme-iconbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.aboutme-cicon {
+	border-color: var(--ink);
+}
+
+.aboutme-input {
+	margin: 30px auto 0 auto;
+}
+
+.aboutme-warning {
+	color: var(--ink);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Password field styling */
+.password-demo {
+	background-color: var(--surface);
+}
+
+.password-line {
+	vertical-align: middle;
+	text-align: center;
+	width: 380px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.password-input {
+	text-align: center;
+	display: inline-block;
+	border: 2px solid var(--tile);
+	border-radius: var(--radius-m);
+	width: 310px;
+	height: 44px;
+	background-color: var(--surface);
+}
+
+.password-value {
+	font-size: 16px;
+	font-family: "Noto Emoji";
+	border: none;
+	width: 270px;
+	padding: 4px;
+	line-height: 30px;
+	min-height: 30px;
+	background-color: var(--surface);
+	outline: 0;
+	margin-left: 10px;
+	margin-top: 3px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	display: inline-block;
+	color: var(--ink);
+}
+
+.password-iconcancel {
+	position: relative;
+	background-image: url(../icons/entry-cancel.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px 20px;
+	top: 2px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	margin-left: 0;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.password-label {
+	position: relative;
+	left: 20px;
+	margin-top: 20px;
+	color: var(--ink);
+	width: 350px;
+	margin-bottom: 5px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-family: var(--font-display);
+	font-weight: 500;
+}
+
+/* Emoji picker styling */
+.password-emojis {
+	margin-top: 10px;
+	display: inline-block;
+}
+
+.password-emojis-line {
+	/* empty, no styling needed */
+}
+
+.password-emojis-category {
+	margin-top: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.emoji {
+	display: inline-block;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 2px solid var(--tile);
+	border-radius: var(--radius-s);
+	cursor: pointer;
+	transition: background-color 150ms ease;
+}
+
+.emoji:hover {
+	background-color: var(--tile);
+}
+
+.emoji-selected {
+	background-color: var(--focus);
+	border-color: var(--focus);
+}
+
+.emoji-unselected {
+	background-color: var(--surface);
+}
+
+.emoji-flash {
+	background-color: var(--tile);
+}
+
+.emoji-icon {
+	font-size: 24px;
+	font-family: "Noto Emoji";
+	padding-left: 8px;
+	padding-top: 6px;
+	padding-right: 8px;
+}
+
+.emoji-letter {
+	font-size: 8pt;
+	text-align: right;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	color: var(--ink);
+}
+
+.emoji-category {
+	display: block;
+	border: 2px solid var(--tile);
+	border-radius: 0 var(--radius-l) var(--radius-l) 0;
+	cursor: pointer;
+	transition: background-color 150ms ease;
+}
+
+.emoji-category:hover {
+	background-color: var(--tile);
+}
+
+.emoji-category-icon {
+	font-size: 15px;
+	font-family: "Noto Emoji";
+	padding-left: 8px;
+	padding-top: 6px;
+	padding-right: 8px;
+	color: var(--ink);
+}
+
+.hidden-emoji {
+	font-family: "Noto Emoji";
+	position: absolute;
+	top: -10000px;
+	left: -10000px;
+}
+
+/* Language dialog */
+.language-message {
+	margin-left: 20px;
+	margin-top: 20px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.language-select {
+	margin-left: 30px;
+	margin-top: 30px;
+	color: var(--ink);
+	width: 200px;
+	background-color: var(--surface);
+	border: 2px solid var(--tile);
+	border-radius: var(--radius-m);
+	padding: 8px;
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+#language-btn {
+	display: flex;
+	width: max-content;
+	border-radius: var(--radius-l);
+	padding: 0 16px;
+	height: 44px;
+	color: var(--on-ink);
+	background-color: var(--ink);
+	border: none;
+	margin-left: 20px;
+	align-items: center;
+	text-align: center;
+	justify-content: space-around;
+	width: 180px;
+	gap: 8px;
+	cursor: pointer;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	transition: background-color 150ms ease;
+}
+
+#language-btn:hover {
+	background-color: var(--ink-soft);
+}
+
+/* About server */
+.aboutserver-subbox {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.aboutserver-detailbox {
+	display: grid;
+	justify-content: center;
+}
+
+.aboutserver-leftitem {
+	width: 150px;
+	text-align: right;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.aboutserver-rightitem {
+	width: 300px;
+	text-align: left;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.aboutserver-checkbox {
+	position: absolute;
+	left: 10px;
+	margin-top: 20px;
+}
+
+/* Computer information */
+.computer-content {
+	max-height: 90%;
+	color: var(--ink);
+	overscroll-behavior-y: contain;
+	overflow-y: auto;
+	background-color: var(--surface);
+	height: inherit;
+}
+
+.computer-software {
+	border-color: var(--line);
+	border-style: solid none none none;
+	border-width: 1px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.computer-sugarizer,
+.computer-clienttype,
+.computer-browser,
+.computer-browserversion,
+.computer-storage,
+.computer-useragent {
+	margin-top: 15px;
+	margin-left: 20px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.computer-value {
+	margin-left: 20px;
+	margin-top: 5px;
+	color: var(--ink-soft);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+/* Warning boxes */
+.settings-warningbox {
+	background-color: var(--danger-tint);
+	border-top: 2px solid var(--danger);
+	width: 100%;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.warningbox-title {
+	position: relative;
+	font-weight: 600;
+	color: var(--danger);
+	font-family: var(--font-display);
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
+	top: auto;
+	left: auto;
+}
+
+.warningbox-message {
+	position: relative;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
+	top: auto;
+	left: auto;
+}
+
+.warningbox-cancel-button {
+	position: relative;
+	right: auto;
+	width: auto;
+	padding: 0;
+	margin-top: 0;
+	background-color: var(--surface);
+	border: 1px solid var(--line-strong);
+	color: var(--ink);
+	border-radius: var(--radius-m);
+	padding: 8px 16px;
+	cursor: pointer;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	min-height: 44px;
+	transition: background-color 150ms ease;
+}
+
+.warningbox-cancel-button:hover {
+	background-color: var(--tile);
+}
+
+.warningbox-refresh-button {
+	position: relative;
+	right: auto;
+	width: auto;
+	padding: 0;
+	margin-top: 0;
+	background-color: var(--ink);
+	border: none;
+	color: var(--on-ink);
+	border-radius: var(--radius-m);
+	padding: 8px 16px;
+	cursor: pointer;
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 15px;
+	min-height: 44px;
+	transition: background-color 150ms ease;
+}
+
+.warningbox-refresh-button:hover {
+	background-color: var(--ink-soft);
+}
+
+#tick-icon {
+	height: 20px;
+	width: 20px;
+	color: var(--ok);
+}
+
+/* Security and Privacy screens */
+.security-box,
+.privacy-box {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px;
+}
+
+.security-title,
+.privacy-title {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 18px;
+	color: var(--ink);
+	margin: 0;
+}
+
+.security-content,
+.privacy-content {
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+/* First screen styling */
+.firstscreen {
+	position: relative;
+	top: 42vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.firstscreen_landing {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	background-color: transparent;
+}
+
+.firstscreen_text {
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+	text-align: center;
+}
+
+.firstscreen_help {
+	display: flex;
+	justify-content: space-between;
+}
+
+.firstscreen_help #help-icon,
+.loginscreen_help #help-icon {
+	position: fixed;
+	top: 60px;
+	left: 10%;
+	width: min-content;
+	margin-inline: auto;
+}
+
+.firstscreen_help #stop-icon {
+	position: fixed;
+	top: 60px;
+	right: 10%;
+}
+
+/* Login screen styling */
+#loginscreen_name,
+#loginscreen_server,
+#loginscreen_iconchoice {
+	gap: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.loginscreen_buttons {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.ls_left_btn {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+}
+
+.ls_right_btn {
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+}
+
+.ls_right_absolute_btn {
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+}
+
+.ls_icon_btn {
+	width: fit-content;
+}
+
+.loginscreen_warning {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+.login-policytext {
+	text-align: center;
+	width: 100%;
+	display: inline-block;
+	margin-top: 10px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 15px;
+}
+
+#loginscreen_password {
+	position: relative;
+	top: -15vh;
+}
+
+.loginscreen_help {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Icon styling overrides for light backgrounds */
+.dialog-content .xo-color768 {
+	--stroke-color: var(--ink);
+	--fill-color: var(--surface);
+}
+
+.dialog-content .xo-color256 {
+	--stroke-color: var(--ink);
+	--fill-color: var(--ink);
+}
+
+/* Settings tool buttons (cancel/ok) */
+.dialog-content .settings-tool-button {
+	width: 44px;
+	height: 44px;
+	margin: 0;
+	padding: 6px;
+	border-radius: var(--radius-m);
+	background-color: transparent;
+	background-size: 24px 24px;
+	cursor: pointer;
+	transition: background-color 150ms ease;
+}
+
+.dialog-content .settings-tool-button:hover {
+	background-color: var(--tile);
+}
+
+.dialog-content .module-cancel-button-only {
+	margin-right: 0;
+	margin-left: auto;
+}
+
+.dialog-content .module-cancel-button {
+	margin-right: 8px;
+	margin-left: 0;
+}
+
+.dialog-content .module-ok-button {
+	margin-left: 0;
+}

@@ -1,0 +1,28 @@
+/* Redesign: the ring of activities on the Home (tiles, centre disc). Loaded after home-shell.css. */
+
+#homescreen .home-icon {
+	box-sizing: border-box;
+	padding: 6px;
+	line-height: 0;
+	background-color: var(--surface);
+	border-radius: 16px;
+	box-shadow: var(--shadow-card);
+}
+#homescreen .home-icon:hover {
+	background-color: var(--surface);
+	box-shadow: 0 0 0 4px rgba(29, 36, 51, .08), var(--shadow-card);
+}
+/* the icon is drawn smaller than its tile, the tile keeps the size the layout expects */
+#homescreen .home-icon > svg { display: block; width: 43px; height: 43px; }
+
+/* the XO in the middle and the Journal */
+#homescreen #buddy {
+	border-radius: 50%;
+	background-color: var(--surface);
+	box-shadow: var(--shadow-card), 0 30px 60px -30px rgba(29, 36, 51, .35);
+}
+#homescreen #buddy:hover { background-color: var(--surface); box-shadow: 0 0 0 7px rgba(29, 36, 51, .07), var(--shadow-card); }
+#homescreen #buddy { padding: 14px; }
+#homescreen #buddy > svg { width: 72px; height: 72px; }
+#homescreen #journal-btn { border-radius: 50%; }
+
