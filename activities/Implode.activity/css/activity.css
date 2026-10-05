@@ -261,3 +261,8 @@ body {
     display: inline-block;
   }
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}

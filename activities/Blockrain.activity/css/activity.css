@@ -374,3 +374,8 @@ body {
     right: 3%;
   }
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}

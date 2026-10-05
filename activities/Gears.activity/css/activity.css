@@ -95,3 +95,8 @@ body {
 		position: absolute;
 	}
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
