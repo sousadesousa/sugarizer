@@ -2,7 +2,8 @@
 
 /* Settings dialog (modal overlay and content) */
 .modal-overlay {
-	background-color: rgba(0, 0, 0, 0.4);
+	/* the overlay is only the size of the dialog: it must not paint square corners behind it */
+	background-color: transparent;
 	z-index: 50;
 }
 

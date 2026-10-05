@@ -50,17 +50,18 @@
 	margin-right: 16px;
 }
 
-/* Icons for activity rows */
-.home-icon, .network-icon {
-	position: relative !important;
+/* Icons for activity rows in list view */
+.listview .home-icon,
+.listview .network-icon {
+	position: relative;
 	flex-shrink: 0;
 }
 
-.web-activity-disable {
+.listview .web-activity-disable {
 	opacity: 0.5;
 }
 
-.sync-gear {
+.listview .sync-gear {
 	animation-name: sync-frame;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
@@ -210,16 +211,17 @@
 
 /* Journal list container */
 .journal-list-container {
-	position: relative;
-	flex: 1;
+	position: absolute;
+	top: var(--home-bar-h);
+	left: 0;
+	width: 100%;
+	height: calc(100vh - var(--home-bar-h) - 55px);
 	overflow-y: auto;
 	background-color: var(--surface);
-	display: flex;
-	flex-direction: column;
 }
 
 .journal-list-container.expanded {
-	height: auto;
+	height: calc(100vh - var(--home-bar-h));
 }
 
 /* Journal list items follow the same pattern as activity list */
@@ -419,3 +421,12 @@
 		margin: 0;
 	}
 }
+
+/* the filter boxes pass their colours inline (white on black): !important is needed to beat the inline custom properties */
+.filterBox-icon {
+	--stroke-color: var(--ink) !important;
+	--fill-color: var(--surface) !important;
+}
+
+/* the button that leaves the Journal passes white inline */
+#journal_home_button { --stroke-color: var(--ink) !important; --fill-color: none !important; }
