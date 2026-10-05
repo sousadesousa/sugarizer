@@ -168,3 +168,31 @@
   }
 
 }
+
+/* Redesign */
+.result-bar-block {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+.info-block {
+  color: var(--ink);
+}
+
+.info-block-content {
+  color: var(--ink);
+}
+
+.info-block-content div {
+  color: var(--ink);
+}
+
+.result-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}

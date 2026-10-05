@@ -175,7 +175,32 @@ body {
 	box-shadow: 0 0 0 0rem rgba(158, 158, 158, .5);
 	border: 0px;
 }
-/* Redesign: toolbar height (see docs/redesign.md) */
+/* Redesign */
 :root {
-    --toolbar-h: 64px;
+	--toolbar-h: 64px;
+}
+
+/* Update unused .icon-button to match new design tokens */
+.icon-button {
+	background-color: var(--control) !important;
+	border: 2px solid var(--control) !important;
+	color: var(--ink) !important;
+	border-radius: var(--radius-m);
+}
+
+.icon-button:hover {
+	background-color: var(--control-hover) !important;
+	border-color: var(--control-hover) !important;
+}
+
+.icon-button:active {
+	background-color: var(--ink) !important;
+	border-color: var(--ink) !important;
+	color: var(--on-ink) !important;
+}
+
+/* Ensure tutorial text uses proper colors and fonts */
+.icon-tutorial-text {
+	color: var(--ink);
+	font-family: var(--font-display);
 }

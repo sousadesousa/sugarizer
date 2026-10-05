@@ -453,3 +453,8 @@ canvas {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+.pjs-meta {
+    color: var(--ink);
+}

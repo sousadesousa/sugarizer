@@ -186,3 +186,33 @@ canvas {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Left panel styling: moon information text */
+#panel-left {
+    background-color: var(--surface);
+    padding: 24px;
+    overflow-y: auto;
+}
+
+#panel-left p {
+    margin: 0 0 16px 0;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+/* Style labels (text before <br>) with soft ink, display font, 13px */
+#panel-left p::first-line {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ink-soft);
+}
+
+/* Toolbar button active state: use design tokens instead of #ddd */
+#main-toolbar button:active,
+#main-toolbar button.active {
+    background-color: var(--control) !important;
+}

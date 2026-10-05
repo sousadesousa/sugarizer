@@ -197,3 +197,40 @@
     font-size: 2.3vw;
   }
 }
+
+/* Redesign */
+.dataset-list-bar-block {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+.dataset-list-bar-block button {
+  background-color: var(--control);
+}
+
+.dataset-list-bar-block button:hover {
+  background-color: var(--control-hover);
+}
+
+.info-content {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.tangram-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+
+.tangram-card-info-bar button {
+  background-color: var(--control);
+}
+
+.tangram-card-info-bar button:hover {
+  background-color: var(--control-hover);
+}
