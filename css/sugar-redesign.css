@@ -1,0 +1,153 @@
+/* Sugarizer redesign: shared look for activities.
+   Load order in an activity's index.html:
+     ../../css/tokens.css, lib/sugar-web/graphics/css/sugar-96dpi.css (and 200dpi), ../../css/sugar-redesign.css, css/activity.css
+   so that the activity's own css still wins. Everything here uses the tokens of css/tokens.css.
+   The toolbar icons of the activities are white SVGs made for a dark bar. They are drawn again
+   on a pseudo-element with an inverting filter, which keeps every activity's own
+   `#xxx-button { background-image: ... }` rule working without editing the SVG files. */
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+	font-family: var(--font-body);
+	color: var(--ink);
+	background-color: var(--bg);
+}
+
+a { color: var(--accent); }
+
+/* Toolbar */
+
+.toolbar {
+	box-sizing: border-box;
+	height: var(--toolbar-h);
+	padding: 0 12px;
+	color: var(--ink);
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--line);
+	font-family: var(--font-display);
+}
+
+.toolbar hr {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+
+.toolbar .toolbutton {
+	width: var(--target);
+	height: var(--target);
+	margin: calc((var(--toolbar-h) - var(--target)) / 2) 2px;
+	color: transparent;
+	background-color: transparent;
+	background-size: 0 0 !important;
+	border-radius: var(--radius-m);
+}
+
+.toolbar .toolbutton:hover { background-color: var(--tile); }
+.toolbar .toolbutton:active, .toolbar .toolbutton.active { background-color: var(--control); }
+
+.toolbar .toolbutton::after,
+.palette .toolbutton::after,
+.palette-invoker::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 78%;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+
+.toolbar .toolbutton.invoker:before {
+	background-image: none;
+	right: 3px;
+	bottom: 3px;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 5px solid var(--ink-soft);
+}
+
+/* Canvas */
+
+#canvas {
+	top: var(--toolbar-h);
+	background-color: var(--bg);
+}
+
+/* Buttons and fields (colours only: sizes stay as each activity expects) */
+
+button {
+	font-family: var(--font-display);
+	color: var(--ink);
+	background-color: var(--control);
+	border-color: transparent;
+	border-radius: var(--radius-m);
+}
+
+button:hover { background-color: var(--control-hover); border-color: transparent; }
+button:active { color: var(--on-ink); background-color: var(--ink); border-color: var(--ink); }
+button:focus { border-color: transparent; }
+
+input[type='text'] {
+	font-family: var(--font-body);
+	color: var(--ink);
+	background-color: var(--tile);
+	border-color: var(--tile);
+	border-radius: var(--radius-m);
+}
+
+input[type='text']:focus { background-color: var(--surface); border-color: var(--focus); }
+input[type='text']:disabled { color: var(--ink-faint); background-color: var(--tile); border-color: var(--tile); }
+
+input[type='range'] { background-color: var(--control); }
+input[type='range']::-webkit-slider-thumb { background-color: var(--surface); border-color: var(--ink); }
+input[type='range']::-webkit-slider-thumb:hover { background-color: var(--tile); border-color: var(--ink); }
+
+/* Palettes */
+
+.palette { color: var(--ink); font-family: var(--font-display); }
+
+.palette-invoker {
+	position: relative;
+	background-color: var(--surface);
+	background-size: 0 0;
+	border: 1px solid var(--line);
+	border-bottom: 0;
+	border-radius: var(--radius-m) var(--radius-m) 0 0;
+}
+
+.palette-invoker:before { background-color: var(--surface); }
+
+.palette .wrapper {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 0 var(--radius-l) var(--radius-l) var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+
+.palette hr { border: 0; height: 1px; background-color: var(--line); }
+
+.palette .toolbutton { position: relative; background-size: 0 0 !important; }
+
+.palette .menu button { background-color: transparent; color: var(--ink); }
+.palette .menu button:hover { color: var(--ink); background-color: var(--tile); }
+.palette .menu button:active { color: var(--ink); background-color: var(--control); }
+
+button.icon span { filter: invert(1) hue-rotate(180deg); }
+button.icon:active span { filter: none; }
+
+::-webkit-scrollbar { background-color: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--control); border: 2px solid var(--surface); }
