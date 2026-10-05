@@ -95,6 +95,7 @@ define([
         function gameOver() {
             clearInterval(action);
             document.getElementById("timeremaining").innerHTML = 60;
+            document.getElementById("time").classList.remove("time-low");
             hide("time");
             hide("correct");
             hide("score");
@@ -173,6 +174,7 @@ define([
             action = setInterval(function () {
                 time -= 1;
                 document.getElementById("timeremaining").innerHTML = time;
+                document.getElementById("time").classList.toggle("time-low", time <= 10);
                 if (time == 0) {
                     gameOver();
                 }
@@ -198,8 +200,11 @@ define([
                     } else {
                         show("wrong");
                         hide("correct");
+                        var wrongBox = this;
+                        wrongBox.classList.add("box-wrong");
                         setTimeout(function () {
                             hide("wrong");
+                            wrongBox.classList.remove("box-wrong");
                         }, 1000);
                     }
                 }
@@ -213,6 +218,7 @@ define([
             play = true;
             time = 60;
             questionNumber = 0;
+            document.getElementById("time").classList.remove("time-low");
             document.getElementById("scorevalue").innerHTML = score;
             hide("gameOver");
             show("time");

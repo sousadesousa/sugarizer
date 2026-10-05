@@ -31,8 +31,8 @@
 	--focus: #2f5fc4;
 	--ok: #14693f;
 	--ok-tint: #e8f3ec;
-	--danger: #a61b1b;
-	--danger-tint: #fbeeee;
+	--bad: #a61b1b;
+	--bad-tint: #fbeeee;
 	--on-ink: #ffffff;
 	/* type */
 	--font-display: Lexend, 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;

@@ -416,8 +416,8 @@
 
 /* Warning boxes */
 .settings-warningbox {
-	background-color: var(--danger-tint);
-	border-top: 2px solid var(--danger);
+	background-color: var(--bad-tint);
+	border-top: 2px solid var(--bad);
 	width: 100%;
 	padding: 16px 20px;
 	display: flex;
@@ -428,7 +428,7 @@
 .warningbox-title {
 	position: relative;
 	font-weight: 600;
-	color: var(--danger);
+	color: var(--bad);
 	font-family: var(--font-display);
 	font-size: 15px;
 	margin: 0;

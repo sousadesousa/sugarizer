@@ -142,8 +142,8 @@
 }
 
 .journal-view .toolbar .xo-color256 {
-	--stroke-color: var(--danger);
-	--fill-color: var(--danger-tint);
+	--stroke-color: var(--bad);
+	--fill-color: var(--bad-tint);
 }
 
 .journal-view .toolbar hr {
@@ -180,12 +180,12 @@
 
 /* Journal warning box */
 .journal-warningbox {
-	background-color: var(--danger-tint);
-	border-top: 1px solid var(--danger);
+	background-color: var(--bad-tint);
+	border-top: 1px solid var(--bad);
 	border-bottom: 1px solid var(--line);
 	height: auto;
 	min-height: 48px;
-	color: var(--danger);
+	color: var(--bad);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -200,7 +200,7 @@
 	font-family: var(--font-display);
 	font-weight: 500;
 	font-size: 15px;
-	color: var(--danger);
+	color: var(--bad);
 }
 
 .journal-warningbox span {

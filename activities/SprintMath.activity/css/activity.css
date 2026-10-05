@@ -575,7 +575,7 @@ html {
     font-family: var(--font-display);
     font-weight: 500;
     background-color: transparent;
-    color: var(--danger);
+    color: var(--bad);
     border-radius: 0;
     display: none;
     width: 100%;
@@ -689,4 +689,20 @@ html {
         margin: 30px auto;
     }
 }
-#wrong span, #wrong * { color: var(--danger) !important; }
+#wrong span, #wrong * { color: var(--bad) !important; }
+
+/* feedback hooks added by the script */
+#time.time-low #timeremaining { color: var(--bad); }
+
+.box.box-wrong {
+    background-color: var(--bad-tint) !important;
+    border-color: var(--bad);
+    color: var(--bad);
+    opacity: .75;
+}
+
+/* the script paints the final score with the user's colours inline: the design wants plain ink on the page */
+#gameOver {
+    background-color: transparent !important;
+    color: var(--ink) !important;
+}

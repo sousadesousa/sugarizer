@@ -34,7 +34,7 @@ button, .icon-button, .toolbutton { cursor: pointer; }
 
 /* the Home icons are drawn for a dark bar (stroke white, fill dark): draw them dark on light */
 .toolbar .xo-color768 { --stroke-color: var(--ink); --fill-color: var(--surface); }
-.toolbar .xo-color256 { --stroke-color: var(--danger); --fill-color: var(--danger-tint); }
+.toolbar .xo-color256 { --stroke-color: var(--bad); --fill-color: var(--bad-tint); }
 
 .toolbar .toolbutton {
 	box-sizing: border-box;
