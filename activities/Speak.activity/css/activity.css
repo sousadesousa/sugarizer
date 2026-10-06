@@ -531,3 +531,11 @@ input[type='range'] {
 	color: var(--ink) !important;
 	border-radius: var(--radius-m) !important;
 }
+
+/* Text bar hr element - ensure no colored border */
+#speechBox hr {
+	background-color: var(--line) !important;
+	border: 0 !important;
+	height: 1px !important;
+	color: transparent !important;
+}

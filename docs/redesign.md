@@ -2,7 +2,7 @@
 
 The new look replaces the old one one activity at a time. This guide says what exists, how to move an activity to the new look and what to check.
 
-State: the Home, Memorize, Sprint Math and the games of batch 1 (Blockrain, Implode, Gears, GameOfLife, Flip, MazeWeb, Falabracman, FractionBounce) use the new look. The other activities still have the old toolbar (55px, dark) and are not changed.
+State: the Home, Memorize, Sprint Math and the games of batches 1 and 2 (Blockrain, Implode, Gears, GameOfLife, Flip, MazeWeb, Falabracman, FractionBounce, Abacus, Reflection, XOEditor, Speak, Tangram, Chess, PhysicsJS, Moon) use the new look. The other activities still have the old toolbar (55px, dark) and are not changed.
 
 ## What the new look is
 
