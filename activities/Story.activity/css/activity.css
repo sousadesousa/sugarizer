@@ -798,3 +798,8 @@ p {
     background-size: 44px 44px !important;
   }
 }
+
+/* The format palette buttons hold white <img> icons made for a black palette: draw them dark */
+.palette .palette-item img {
+    filter: invert(1) hue-rotate(180deg);
+}

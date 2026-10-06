@@ -445,3 +445,24 @@ calc-container {
 .palette table button:active {
   background-color: var(--control) !important;
 }
+
+/* The palette icons are white images made for a black palette (inline background-image): draw them again dark, like the toolbar */
+.palette table button {
+    position: relative;
+    background-size: 0 0 !important;
+}
+
+.palette table button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    filter: invert(1) hue-rotate(180deg);
+    pointer-events: none;
+}
