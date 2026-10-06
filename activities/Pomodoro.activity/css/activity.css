@@ -17,7 +17,7 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - 55px);
+  height: calc(100vh - var(--toolbar-h));
   background: #F8FAFD;
 }
 .base-board {
@@ -171,4 +171,8 @@
   .plus-button, .minus-button, .minus-button span{
     transform: rotate(90deg);
   }
+}
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
 }

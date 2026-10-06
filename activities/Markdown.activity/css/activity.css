@@ -270,3 +270,7 @@ blockquote {
 		margin-top: 0.7%;
 	}
 }
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}

@@ -4,7 +4,7 @@
 }
 .toolbar {
   height: auto;
-  min-height: 55px;
+  min-height: var(--toolbar-h);
 }
 #main-toolbar #activity-button {
   background-image: url(../activity/activity-icon.svg);
@@ -311,4 +311,8 @@ calc-container {
     -ms-user-select: none;
     user-select: none;
 
+}
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
 }

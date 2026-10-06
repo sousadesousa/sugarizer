@@ -62,3 +62,8 @@ button.remove {
 button.add {
   background-image: url(../icons/list-add.svg);
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
