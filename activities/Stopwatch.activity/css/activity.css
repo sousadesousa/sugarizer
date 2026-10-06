@@ -433,3 +433,73 @@ button.remove {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+/* Row dividers */
+#stopwatch-list li {
+  border-bottom: 1px solid var(--line);
+}
+
+/* Time text styling */
+.counter {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Buttons pill styling - transparent background */
+.buttons-group {
+  background-color: transparent;
+  display: inline-flex;
+  gap: 0;
+  border-radius: var(--radius-pill);
+}
+
+/* Individual buttons in the pill */
+.buttons-group button {
+  width: var(--target);
+  height: var(--target);
+  margin: 0;
+  padding: 0 !important;
+  border-radius: var(--radius-m);
+  background-color: transparent;
+  border: none;
+}
+
+.buttons-group button:hover {
+  background-color: var(--tile);
+}
+
+.buttons-group button:active {
+  background-color: var(--control);
+}
+
+/* Remove button styling */
+button.remove {
+  width: var(--target);
+  height: var(--target);
+  background-color: transparent;
+  background-size: var(--target);
+  border: none;
+  border-radius: var(--radius-m);
+  padding: 0;
+}
+
+button.remove:hover {
+  background-color: var(--tile);
+}
+
+button.remove:active {
+  background-color: var(--control);
+}
+
+/* Add button styling - secondary style */
+#add-stopwatch {
+  background-color: var(--surface);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  height: var(--target);
+  padding: 0 20px;
+  border-radius: var(--radius-m);
+  font-family: var(--font-display);
+}

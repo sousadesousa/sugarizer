@@ -176,3 +176,23 @@
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+.button-label {
+    color: var(--ink-soft) !important;
+    font-family: var(--font-display);
+}
+
+.button-label.disable {
+    color: var(--ink-faint) !important;
+}
+
+.button-time {
+    color: var(--ink) !important;
+    font-family: var(--font-display);
+    font-weight: 500;
+}
+
+.button-time.disable {
+    color: var(--ink-faint) !important;
+}

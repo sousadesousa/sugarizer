@@ -600,3 +600,171 @@ p {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Text editor styling - text input recipe */
+#editor-area {
+  background-color: var(--surface) !important;
+  color: var(--ink);
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--radius-m) !important;
+  padding: 12px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  box-sizing: border-box;
+  max-width: 60vw;
+  height: 100%;
+}
+
+/* Action icons - 44px hit areas */
+#record,
+#record-start,
+#play,
+#play-inactive,
+#stop-play,
+#pause-play,
+#speak,
+#speak-inactive {
+  width: 44px !important;
+  height: 44px !important;
+  background-size: 44px 44px !important;
+}
+
+/* Palette buttons and hover states */
+#format-text-buttons button,
+#size-buttons button,
+#export-buttons button {
+  background-color: transparent !important;
+  border: none;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-m);
+}
+
+#format-text-buttons button:hover,
+#size-buttons button:hover,
+#export-buttons button:hover {
+  background-color: var(--tile) !important;
+}
+
+#format-text-buttons button:active,
+#size-buttons button:active,
+#export-buttons button:active {
+  background-color: var(--control) !important;
+}
+
+/* Font palette items */
+#font-buttons .palette-item {
+  background-color: transparent;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+#font-buttons .palette-item:hover {
+  background-color: var(--tile);
+}
+
+#font-buttons .palette-item:active,
+#font-buttons .palette-item.active {
+  background-color: var(--control);
+}
+
+/* Size palette items */
+#size-buttons .palette-item {
+  background-color: transparent;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+#size-buttons .palette-item:hover {
+  background-color: var(--tile);
+}
+
+#size-buttons .palette-item:active,
+#size-buttons .palette-item.active {
+  background-color: var(--control);
+}
+
+/* Export palette items */
+#export-buttons .palette-item {
+  background-color: transparent;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+#export-buttons .palette-item:hover {
+  background-color: var(--tile);
+}
+
+#export-buttons .palette-item:active,
+#export-buttons .palette-item.active {
+  background-color: var(--control);
+}
+
+/* Format text palette items */
+#format-text-buttons .palette-item {
+  background-color: transparent;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+#format-text-buttons .palette-item:hover {
+  background-color: var(--tile);
+}
+
+#format-text-buttons .palette-item:active,
+#format-text-buttons .palette-item.active {
+  background-color: var(--control);
+}
+
+/* Color palette - white border for color swatches */
+.palette .colors button {
+  border-color: var(--line-strong) !important;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-m);
+}
+
+.palette .colors button:hover {
+  opacity: 0.8;
+}
+
+/* Mobile adjustments for 390x844 */
+@media screen and (max-width: 767px) {
+  #record,
+  #record-start,
+  #play,
+  #play-inactive,
+  #stop-play,
+  #pause-play,
+  #speak,
+  #speak-inactive {
+    width: 44px !important;
+    height: 44px !important;
+    background-size: 44px 44px !important;
+  }
+}

@@ -274,3 +274,276 @@ blockquote {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Container styling */
+#canvas {
+	padding: 24px;
+	display: flex;
+	gap: 24px;
+	flex-wrap: wrap;
+	height: calc(100% - var(--toolbar-h) - 48px);
+}
+
+.wmd-panel {
+	flex: 1 1 300px;
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	overflow: hidden;
+	box-shadow: var(--shadow-card);
+}
+
+#wmd-button-bar-second {
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--line);
+	padding: 12px 8px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	min-height: 56px;
+	align-items: center;
+}
+
+.wmd-input {
+	flex: 1;
+	width: 100%;
+	background-color: var(--surface);
+	color: var(--ink);
+	font-family: monospace;
+	font-size: 15px;
+	border: none;
+	padding: 24px;
+	box-sizing: border-box;
+	resize: none;
+	outline: none;
+}
+
+.wmd-input:focus {
+	outline: 2px solid var(--focus);
+	outline-offset: -1px;
+}
+
+#wmd-preview-second {
+	flex: 1 1 300px;
+	min-width: 300px;
+	background-color: var(--surface);
+	color: var(--ink);
+	font-family: var(--font-body);
+	padding: 24px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+	overflow: auto;
+	box-sizing: border-box;
+}
+
+/* Preview styling: headings, links, code blocks */
+#wmd-preview-second h1,
+#wmd-preview-second h2,
+#wmd-preview-second h3,
+#wmd-preview-second h4,
+#wmd-preview-second h5,
+#wmd-preview-second h6 {
+	font-family: var(--font-display);
+	color: var(--ink);
+	margin: 1em 0 0.5em 0;
+}
+
+#wmd-preview-second a {
+	color: var(--accent);
+	text-decoration: underline;
+}
+
+#wmd-preview-second code {
+	background-color: var(--tile);
+	color: var(--ink);
+	padding: 2px 6px;
+	border-radius: var(--radius-s);
+	font-family: monospace;
+	font-size: 0.9em;
+}
+
+#wmd-preview-second pre {
+	background-color: var(--tile);
+	color: var(--ink);
+	padding: 16px;
+	border-radius: var(--radius-s);
+	overflow-x: auto;
+	border: 1px solid var(--line);
+}
+
+#wmd-preview-second pre code {
+	background-color: transparent;
+	padding: 0;
+	border-radius: 0;
+}
+
+blockquote {
+	border-left: 2px solid var(--accent);
+	padding-left: 16px;
+	margin-left: 0;
+	color: var(--ink-soft);
+}
+
+/* Toolbar buttons inside the editor */
+#wmd-button-bar-second .wmd-button {
+	width: 44px;
+	height: 44px;
+	min-width: 44px;
+	min-height: 44px;
+	background-color: var(--control);
+	color: transparent;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	cursor: pointer;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+	flex-shrink: 0;
+}
+
+#wmd-button-bar-second .wmd-button:hover {
+	background-color: var(--tile);
+}
+
+#wmd-button-bar-second .wmd-button:active,
+#wmd-button-bar-second .wmd-button.active {
+	background-color: var(--control);
+	border-color: var(--focus);
+}
+
+/* Dialog styling */
+.wmd-prompt-dialog {
+	background-color: var(--surface);
+	color: var(--ink);
+	padding: 24px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	font-family: var(--font-body);
+}
+
+.wmd-prompt-dialog input[type="text"] {
+	background-color: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	padding: 8px 12px;
+	border-radius: var(--radius-m);
+	font-family: var(--font-body);
+}
+
+.wmd-prompt-dialog input[type="text"]:focus {
+	outline: none;
+	border-color: var(--focus);
+	background-color: var(--surface);
+}
+
+.wmd-prompt-dialog button {
+	background-color: var(--ink);
+	color: var(--on-ink);
+	padding: 8px 24px;
+	border: none;
+	border-radius: var(--radius-m);
+	font-family: var(--font-display);
+	min-height: 44px;
+	cursor: pointer;
+	min-width: 100px;
+}
+
+.wmd-prompt-dialog button:hover {
+	background-color: var(--ink-soft);
+}
+
+/* Toggle buttons on toolbar */
+#wmd-showHideEditor-button,
+#wmd-showHidePreview-button {
+	min-width: 44px;
+	min-height: 44px;
+	width: auto;
+	height: auto;
+}
+
+/* Responsive design for phone width */
+@media screen and (max-width: 480px) {
+	#canvas {
+		padding: 12px;
+		gap: 12px;
+		flex-direction: column;
+		height: auto;
+	}
+
+	.wmd-panel {
+		flex: 1 1 auto;
+		min-width: unset;
+		height: 60vh;
+	}
+
+	.wmd-input {
+		height: auto;
+		min-height: 400px;
+	}
+
+	#wmd-preview-second {
+		flex: 1 1 auto;
+		min-width: unset;
+		min-height: 400px;
+	}
+
+	#wmd-button-bar-second {
+		min-height: 44px;
+	}
+
+	#wmd-button-bar-second .wmd-button {
+		width: 44px;
+		height: 44px;
+	}
+
+	#wmd-showHidePreview-button,
+	#wmd-showHideEditor-button {
+		width: 44px;
+		height: 44px;
+		margin-top: 0;
+	}
+}
+
+/* Medium screens */
+@media screen and (min-width: 481px) and (max-width: 1200px) {
+	#canvas {
+		padding: 16px;
+		gap: 16px;
+	}
+
+	.wmd-panel {
+		flex: 1 1 45%;
+	}
+
+	.wmd-input {
+		padding: 16px;
+	}
+
+	#wmd-preview-second {
+		flex: 1 1 45%;
+		padding: 16px;
+	}
+}
+
+/* Large screens (1280+) */
+@media screen and (min-width: 1280px) {
+	#canvas {
+		padding: 24px;
+		gap: 24px;
+	}
+
+	.wmd-panel {
+		flex: 1 1 45%;
+	}
+
+	#wmd-preview-second {
+		flex: 1 1 45%;
+	}
+}

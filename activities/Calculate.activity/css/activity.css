@@ -316,3 +316,132 @@ calc-container {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Toolbar buttons */
+#main-toolbar .toolbutton {
+  background-color: transparent !important;
+  border-radius: var(--radius-m);
+}
+
+#main-toolbar .toolbutton:hover {
+  background-color: var(--tile) !important;
+}
+
+#main-toolbar .toolbutton.active,
+#main-toolbar .toolbutton:active {
+  background-color: var(--control) !important;
+}
+
+/* Text inputs (Label and Calculation) */
+#label-input,
+#calc-input {
+  color: var(--ink) !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-m) !important;
+  font-family: var(--font-display) !important;
+}
+
+#label-input:focus,
+#calc-input:focus {
+  background-color: var(--surface) !important;
+  border-color: var(--focus) !important;
+}
+
+/* Calculator keypad buttons */
+.calcbutton {
+  min-height: var(--target) !important;
+  border-radius: var(--radius-m) !important;
+  font-family: var(--font-display) !important;
+  padding: 8px !important;
+  font-weight: 500 !important;
+}
+
+.calcbutton-large {
+  min-height: var(--target) !important;
+  border-radius: var(--radius-m) !important;
+  font-family: var(--font-display) !important;
+  padding: 8px !important;
+  font-weight: 500 !important;
+}
+
+/* Number buttons (blue) */
+.calcbutton.btn-primary {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: none !important;
+}
+
+.calcbutton.btn-primary:hover,
+.calcbutton.btn-primary:focus {
+  background-color: #1d4ed8 !important;
+  border: none !important;
+}
+
+/* Operator buttons (orange) */
+.calcbutton.btn-warning {
+  background-color: #f97316 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.calcbutton.btn-warning:hover,
+.calcbutton.btn-warning:focus {
+  background-color: #ea580c !important;
+  border: none !important;
+}
+
+/* Equals button (green) */
+.calcbutton.btn-success {
+  background-color: #16a34a !important;
+  color: white !important;
+  border: none !important;
+}
+
+.calcbutton.btn-success:hover,
+.calcbutton.btn-success:focus {
+  background-color: #15803d !important;
+  border: none !important;
+}
+
+/* Clear and Delete buttons (gray) */
+.calcbutton.backgroundgray {
+  background-color: var(--control) !important;
+  color: var(--ink) !important;
+  border: none !important;
+}
+
+.calcbutton.backgroundgray:hover,
+.calcbutton.backgroundgray:focus {
+  background-color: var(--control-hover) !important;
+  border: none !important;
+}
+
+/* Palette styling */
+.palette .wrapper {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  padding: 8px !important;
+}
+
+.palette table button {
+  width: var(--target) !important;
+  height: var(--target) !important;
+  min-width: var(--target) !important;
+  min-height: var(--target) !important;
+  border-radius: var(--radius-m) !important;
+  background-color: transparent !important;
+  border: none !important;
+  margin: 4px !important;
+  padding: 0 !important;
+}
+
+.palette table button:hover {
+  background-color: var(--tile) !important;
+}
+
+.palette table button:active {
+  background-color: var(--control) !important;
+}

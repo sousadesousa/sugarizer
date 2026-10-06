@@ -420,8 +420,138 @@ select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-}  
+}
 /* Redesign: toolbar height (see docs/redesign.md) */
 :root {
     --toolbar-h: 64px;
+}
+
+/* Redesign */
+
+/* Input bar and search field redesign */
+#input-box {
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--line);
+	line-height: auto;
+	padding: 8px 12px;
+	box-sizing: border-box;
+}
+
+.search-field-border {
+	background-color: var(--surface) !important;
+	border: 1px solid var(--line) !important;
+	border-radius: var(--radius-l) !important;
+	margin-left: 52px !important;
+	width: calc(100% - 52px - 44px - 44px - 24px) !important;
+	height: 44px !important;
+	top: 0 !important;
+	box-sizing: border-box;
+}
+
+.search-field-border-focus {
+	background-color: var(--surface) !important;
+	border: 1px solid var(--focus) !important;
+}
+
+.search-field-border-nofocus {
+	background-color: var(--surface) !important;
+	border: 1px solid var(--line) !important;
+}
+
+.search-field-input {
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
+	border: none !important;
+	margin-left: 12px !important;
+	width: calc(100% - 56px) !important;
+	height: 28px !important;
+	line-height: 28px !important;
+	top: 8px !important;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+}
+
+.search-field-iocancel {
+	background-color: transparent !important;
+	background-image: url(../icons/entry-cancel.svg) !important;
+	background-size: 20px 20px !important;
+	width: 20px !important;
+	height: 20px !important;
+	right: 12px !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	border: none !important;
+	padding: 0 !important;
+	cursor: pointer;
+}
+
+.search-field-iocancel:hover {
+	opacity: 0.7;
+}
+
+/* Dropdown and buttons in input bar */
+#qrtextdropdown {
+	height: 44px !important;
+	width: 44px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	left: 0 !important;
+	top: 0 !important;
+	position: absolute !important;
+	background-color: var(--surface) !important;
+	border: 1px solid var(--line) !important;
+	border-radius: var(--radius-m) !important;
+	background-image: url(../icons/go-down.svg) !important;
+	background-size: 24px 24px !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	color: transparent !important;
+	font-size: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	z-index: 1;
+	box-sizing: border-box;
+}
+
+#qrtextdropdown:hover {
+	background-color: var(--tile) !important;
+}
+
+#qrtextdropdown:focus {
+	outline: 3px solid var(--focus);
+	outline-offset: 2px;
+}
+
+#generate-button {
+	height: 44px !important;
+	width: 44px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	position: absolute !important;
+	right: 0 !important;
+	top: 0 !important;
+	z-index: 1;
+	background-color: var(--ink) !important;
+	background-image: url(../icons/go-right.svg) !important;
+	background-size: 24px 24px !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-color: var(--ink) !important;
+	color: transparent !important;
+	border: none !important;
+	border-radius: var(--radius-m) !important;
+	box-sizing: border-box;
+}
+
+#generate-button:hover {
+	background-color: var(--ink-soft) !important;
+}
+
+#generate-button:active {
+	background-color: var(--control) !important;
+}
+
+/* Divider line under input box */
+#input-box hr {
+	display: none;
 }
