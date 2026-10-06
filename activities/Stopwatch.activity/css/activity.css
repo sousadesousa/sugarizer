@@ -437,85 +437,93 @@ button.remove {
 /* Redesign */
 /* Row dividers */
 #stopwatch-list li {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line) !important;
 }
 
 /* Time text styling */
 .counter {
-  font-family: var(--font-display);
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display) !important;
+  color: var(--ink) !important;
+  font-variant-numeric: tabular-nums !important;
 }
 
 /* Buttons pill styling - transparent background */
 .buttons-group {
-  background-color: transparent;
-  display: inline-flex;
-  gap: 0;
+  background-color: transparent !important;
+  display: inline-flex !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Individual buttons in the pill */
+/* Individual buttons in the pill - override all old styles */
 .buttons-group button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--target);
-  height: var(--target);
-  margin: 0;
-  padding: 0;
-  border-radius: var(--radius-m);
-  background-color: transparent;
-  border: none;
-  background-position: center;
-  background-size: 44px 44px;
-  background-repeat: no-repeat;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: var(--target) !important;
+  height: var(--target) !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  border-radius: var(--radius-m) !important;
+  background-color: transparent !important;
+  border: none !important;
+  background-position: center !important;
+  background-size: 44px 44px !important;
+  background-repeat: no-repeat !important;
 }
 
 .buttons-group button:first-child {
-  border-radius: var(--radius-m);
+  border-radius: var(--radius-m) !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 .buttons-group button:last-child {
-  border-radius: var(--radius-m);
+  border-radius: var(--radius-m) !important;
+  margin-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .buttons-group button:hover {
-  background-color: var(--tile);
+  background-color: var(--tile) !important;
 }
 
 .buttons-group button:active {
-  background-color: var(--control);
+  background-color: var(--control) !important;
 }
 
 /* Remove button styling */
 button.remove {
-  width: var(--target);
-  height: var(--target);
-  background-color: transparent;
-  background-size: var(--target);
-  border: none;
-  border-radius: var(--radius-m);
-  padding: 0;
-  margin: 0;
+  width: var(--target) !important;
+  height: var(--target) !important;
+  background-color: transparent !important;
+  background-size: var(--target) !important;
+  border: none !important;
+  border-radius: var(--radius-m) !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 button.remove:hover {
-  background-color: var(--tile);
+  background-color: var(--tile) !important;
 }
 
 button.remove:active {
-  background-color: var(--control);
+  background-color: var(--control) !important;
 }
 
 /* Add button styling - secondary style */
 #add-stopwatch {
-  background-color: var(--surface);
-  border: 1px solid var(--line-strong);
-  color: var(--ink);
-  height: var(--target);
-  padding: 0 20px;
-  border-radius: var(--radius-m);
-  font-family: var(--font-display);
-  width: auto;
-  background-image: none;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+  color: var(--ink) !important;
+  height: var(--target) !important;
+  padding: 0 20px !important;
+  border-radius: var(--radius-m) !important;
+  font-family: var(--font-display) !important;
+  width: auto !important;
+  background-image: none !important;
+  margin: 20px auto !important;
 }
