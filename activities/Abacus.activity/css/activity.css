@@ -329,3 +329,71 @@ introjs-overlay {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+/* Abacus type palette buttons: override inline colors #C0C0C0 (normal) and #808080 (selected) */
+#decimal-button[style*="#C0C0C0"],
+#soroban-button[style*="#C0C0C0"],
+#suanpan-button[style*="#C0C0C0"],
+#nepo-button[style*="#C0C0C0"],
+#hex-button[style*="#C0C0C0"],
+#binary-button[style*="#C0C0C0"],
+#schety-button[style*="#C0C0C0"],
+#fractions-button[style*="#C0C0C0"],
+#caacupe-button[style*="#C0C0C0"],
+#rods-button[style*="#C0C0C0"],
+#custom-button[style*="#C0C0C0"] {
+	background-color: var(--tile) !important;
+}
+
+#decimal-button[style*="#808080"],
+#soroban-button[style*="#808080"],
+#suanpan-button[style*="#808080"],
+#nepo-button[style*="#808080"],
+#hex-button[style*="#808080"],
+#binary-button[style*="#808080"],
+#schety-button[style*="#808080"],
+#fractions-button[style*="#808080"],
+#caacupe-button[style*="#808080"],
+#rods-button[style*="#808080"],
+#custom-button[style*="#808080"] {
+	background-color: var(--control) !important;
+}
+
+/* Custom palette: labels and inputs */
+#rods,
+#top,
+#bottom,
+#factor,
+#base {
+	background-color: var(--tile);
+	border: 2px solid var(--tile);
+	border-radius: var(--radius-m);
+	min-height: var(--target);
+	font-family: var(--font-body);
+	color: var(--ink);
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+label[for="rods"],
+label[for="top"],
+label[for="bottom"],
+label[for="factor"],
+label[for="base"] {
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-size: 13px;
+}
+
+/* Create button (primary) */
+#new-button {
+	background-color: var(--ink) !important;
+	color: var(--on-ink) !important;
+	min-height: var(--target);
+	border-radius: var(--radius-m);
+	width: auto;
+	height: auto;
+	padding: 8px 16px;
+	margin: 4px 2px;
+}

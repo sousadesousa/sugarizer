@@ -568,3 +568,36 @@ body {
 :root {
     --toolbar-h: 64px;
 }
+
+/* Redesign */
+
+/* Palette items styling: light surface with dark text */
+.palette-item {
+  min-height: var(--target);
+  color: var(--ink);
+}
+
+.selected {
+  background-color: var(--control) !important;
+}
+
+.palette-item:hover {
+  background-color: var(--tile) !important;
+}
+
+/* Promotion dialog styling: light surface with proper sizing */
+.dialog-header {
+  background-color: var(--tile);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.dialog-header h3 {
+  color: var(--ink);
+}
+
+.promotion-content {
+  background-color: var(--surface);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-pop);
+}

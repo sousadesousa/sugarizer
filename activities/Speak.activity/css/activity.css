@@ -499,3 +499,35 @@ body {
 input[type='range'] {
     width: 100% !important;
 }
+
+/* Palette wrapper styling - override black backgrounds */
+@media screen and (min-width: 890px) {
+	.thinpalette .wrapper {
+		background-color: var(--surface) !important;
+		border: 1px solid var(--line) !important;
+		border-radius: var(--radius-l) !important;
+		box-shadow: var(--shadow-pop) !important;
+	}
+
+	.widepalette .wrapper {
+		background-color: var(--surface) !important;
+		border: 1px solid var(--line) !important;
+		border-radius: var(--radius-l) !important;
+		box-shadow: var(--shadow-pop) !important;
+	}
+}
+
+/* Speech palette label styling */
+#ratelabel,
+#pitchlabel,
+#eyesnumber {
+	color: var(--ink) !important;
+}
+
+/* Activity palette textarea */
+#activity-palette textarea {
+	background-color: var(--tile) !important;
+	border: 1px solid var(--line) !important;
+	color: var(--ink) !important;
+	border-radius: var(--radius-m) !important;
+}
