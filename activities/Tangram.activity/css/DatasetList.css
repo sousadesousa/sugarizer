@@ -200,7 +200,8 @@
 
 /* Redesign */
 .dataset-list-bar-block {
-  background-color: var(--surface);
+  /* the script paints the bar with the user's colour inline: !important keeps the surface and readable ink */
+  background-color: var(--surface) !important;
   color: var(--ink);
   border: 1px solid var(--line);
   border-radius: var(--radius-l);
