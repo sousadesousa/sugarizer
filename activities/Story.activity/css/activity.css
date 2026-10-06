@@ -753,6 +753,36 @@ p {
   opacity: 0.8;
 }
 
+/* Override script-set inline colors for color palettes */
+.colorpalette .palette-invoker {
+  background-color: transparent !important;
+}
+
+.colorpalette .wrapper {
+  background-color: var(--surface) !important;
+}
+
+.colorpalette .colors,
+.colorpalette div {
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+}
+
+/* Color palette buttons text overlay for sliders */
+.colorpalette input[type='range'] {
+  background-color: var(--control) !important;
+}
+
+.colorpalette input[type='range']::-webkit-slider-thumb {
+  background-color: var(--surface) !important;
+  border-color: var(--ink) !important;
+}
+
+.colorpalette button {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
 /* Mobile adjustments for 390x844 */
 @media screen and (max-width: 767px) {
   #record,

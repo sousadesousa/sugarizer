@@ -279,48 +279,62 @@ blockquote {
 
 /* Container styling */
 #canvas {
-	padding: 24px;
-	display: flex;
+	padding: 24px !important;
+	display: flex !important;
 	gap: 24px;
 	flex-wrap: wrap;
-	height: calc(100% - var(--toolbar-h) - 48px);
+	background-color: var(--bg);
+	box-sizing: border-box;
 }
 
 .wmd-panel {
-	flex: 1 1 300px;
-	min-width: 300px;
-	display: flex;
+	width: 47% !important;
+	margin-left: 1% !important;
+	margin-top: 1% !important;
+	margin-right: 0 !important;
+	margin-bottom: 0 !important;
+	float: left !important;
+	display: flex !important;
 	flex-direction: column;
 	background-color: var(--surface);
-	border: 1px solid var(--line);
+	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-l);
 	overflow: hidden;
 	box-shadow: var(--shadow-card);
+	box-sizing: border-box;
+	min-height: 500px;
 }
 
 #wmd-button-bar-second {
-	background-color: var(--surface);
-	border-bottom: 1px solid var(--line);
-	padding: 12px 8px;
-	display: flex;
+	background-color: var(--surface) !important;
+	border-bottom: 1px solid var(--line) !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	padding: 12px 8px !important;
+	display: flex !important;
 	flex-wrap: wrap;
 	gap: 4px;
-	min-height: 56px;
 	align-items: center;
+	min-height: 56px;
+	width: 100% !important;
 }
 
 .wmd-input {
 	flex: 1;
-	width: 100%;
-	background-color: var(--surface);
-	color: var(--ink);
+	width: 100% !important;
+	height: auto !important;
+	min-height: 300px;
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
 	font-family: monospace;
 	font-size: 15px;
-	border: none;
-	padding: 24px;
-	box-sizing: border-box;
-	resize: none;
+	border: none !important;
+	padding: 24px !important;
+	box-sizing: border-box !important;
+	resize: vertical;
 	outline: none;
+	margin: 0 !important;
 }
 
 .wmd-input:focus {
@@ -329,17 +343,24 @@ blockquote {
 }
 
 #wmd-preview-second {
-	flex: 1 1 300px;
-	min-width: 300px;
-	background-color: var(--surface);
-	color: var(--ink);
+	width: 47% !important;
+	margin-right: 1% !important;
+	margin-top: 1.5% !important;
+	margin-left: 0 !important;
+	margin-bottom: 0 !important;
+	float: right !important;
+	display: block !important;
+	height: auto !important;
+	min-height: 500px;
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
 	font-family: var(--font-body);
-	padding: 24px;
-	border: 1px solid var(--line);
+	padding: 24px !important;
+	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-l);
 	box-shadow: var(--shadow-card);
 	overflow: auto;
-	box-sizing: border-box;
+	box-sizing: border-box !important;
 }
 
 /* Preview styling: headings, links, code blocks */
@@ -383,7 +404,7 @@ blockquote {
 	border-radius: 0;
 }
 
-blockquote {
+#wmd-preview-second blockquote {
 	border-left: 2px solid var(--accent);
 	padding-left: 16px;
 	margin-left: 0;
@@ -392,158 +413,118 @@ blockquote {
 
 /* Toolbar buttons inside the editor */
 #wmd-button-bar-second .wmd-button {
-	width: 44px;
-	height: 44px;
+	width: 44px !important;
+	height: 44px !important;
 	min-width: 44px;
 	min-height: 44px;
-	background-color: var(--control);
-	color: transparent;
-	border: 1px solid var(--line);
+	background-color: var(--control) !important;
+	color: transparent !important;
+	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-m);
 	cursor: pointer;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 60%;
 	flex-shrink: 0;
+	padding: 0 !important;
 }
 
 #wmd-button-bar-second .wmd-button:hover {
-	background-color: var(--tile);
+	background-color: var(--tile) !important;
 }
 
 #wmd-button-bar-second .wmd-button:active,
 #wmd-button-bar-second .wmd-button.active {
-	background-color: var(--control);
-	border-color: var(--focus);
+	background-color: var(--control) !important;
+	border-color: var(--focus) !important;
 }
 
 /* Dialog styling */
 .wmd-prompt-dialog {
-	background-color: var(--surface);
-	color: var(--ink);
-	padding: 24px;
-	border: 1px solid var(--line);
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
+	padding: 24px !important;
+	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-l);
 	box-shadow: var(--shadow-pop);
-	font-family: var(--font-body);
+	font-family: var(--font-body) !important;
 }
 
 .wmd-prompt-dialog input[type="text"] {
-	background-color: var(--surface);
-	color: var(--ink);
-	border: 1px solid var(--line);
-	padding: 8px 12px;
-	border-radius: var(--radius-m);
-	font-family: var(--font-body);
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
+	border: 1px solid var(--line) !important;
+	padding: 8px 12px !important;
+	border-radius: var(--radius-m) !important;
+	font-family: var(--font-body) !important;
 }
 
 .wmd-prompt-dialog input[type="text"]:focus {
-	outline: none;
-	border-color: var(--focus);
-	background-color: var(--surface);
+	outline: none !important;
+	border-color: var(--focus) !important;
+	background-color: var(--surface) !important;
 }
 
 .wmd-prompt-dialog button {
-	background-color: var(--ink);
-	color: var(--on-ink);
-	padding: 8px 24px;
-	border: none;
-	border-radius: var(--radius-m);
-	font-family: var(--font-display);
+	background-color: var(--ink) !important;
+	color: var(--on-ink) !important;
+	padding: 8px 24px !important;
+	border: none !important;
+	border-radius: var(--radius-m) !important;
+	font-family: var(--font-display) !important;
 	min-height: 44px;
 	cursor: pointer;
 	min-width: 100px;
 }
 
 .wmd-prompt-dialog button:hover {
-	background-color: var(--ink-soft);
+	background-color: var(--ink-soft) !important;
 }
 
-/* Toggle buttons on toolbar */
-#wmd-showHideEditor-button,
-#wmd-showHidePreview-button {
-	min-width: 44px;
-	min-height: 44px;
-	width: auto;
-	height: auto;
-}
-
-/* Responsive design for phone width */
-@media screen and (max-width: 480px) {
-	#canvas {
-		padding: 12px;
-		gap: 12px;
+/* Phone width responsiveness */
+@media screen and (max-width: 854px) {
+	.wmd-panel {
+		width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		margin-top: 1% !important;
+		float: none !important;
+		display: flex !important;
 		flex-direction: column;
-		height: auto;
-	}
-
-	.wmd-panel {
-		flex: 1 1 auto;
-		min-width: unset;
-		height: 60vh;
-	}
-
-	.wmd-input {
-		height: auto;
-		min-height: 400px;
+		min-height: 50vh;
 	}
 
 	#wmd-preview-second {
-		flex: 1 1 auto;
-		min-width: unset;
-		min-height: 400px;
+		width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		margin-top: 1% !important;
+		float: none !important;
+		min-height: 50vh;
 	}
 
-	#wmd-button-bar-second {
-		min-height: 44px;
-	}
-
-	#wmd-button-bar-second .wmd-button {
-		width: 44px;
-		height: 44px;
-	}
-
-	#wmd-showHidePreview-button,
-	#wmd-showHideEditor-button {
-		width: 44px;
-		height: 44px;
-		margin-top: 0;
-	}
-}
-
-/* Medium screens */
-@media screen and (min-width: 481px) and (max-width: 1200px) {
 	#canvas {
-		padding: 16px;
-		gap: 16px;
-	}
-
-	.wmd-panel {
-		flex: 1 1 45%;
-	}
-
-	.wmd-input {
-		padding: 16px;
-	}
-
-	#wmd-preview-second {
-		flex: 1 1 45%;
-		padding: 16px;
+		padding: 12px !important;
+		gap: 12px;
 	}
 }
 
 /* Large screens (1280+) */
 @media screen and (min-width: 1280px) {
 	#canvas {
-		padding: 24px;
+		padding: 24px !important;
 		gap: 24px;
 	}
 
 	.wmd-panel {
-		flex: 1 1 45%;
+		width: 47% !important;
+		margin-left: 1% !important;
+		margin-right: 0 !important;
 	}
 
 	#wmd-preview-second {
-		flex: 1 1 45%;
+		width: 47% !important;
+		margin-right: 1% !important;
+		margin-left: 0 !important;
 	}
 }

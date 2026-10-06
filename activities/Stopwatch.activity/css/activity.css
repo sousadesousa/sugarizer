@@ -452,18 +452,31 @@ button.remove {
   background-color: transparent;
   display: inline-flex;
   gap: 0;
-  border-radius: var(--radius-pill);
 }
 
 /* Individual buttons in the pill */
 .buttons-group button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: var(--target);
   height: var(--target);
   margin: 0;
-  padding: 0 !important;
+  padding: 0;
   border-radius: var(--radius-m);
   background-color: transparent;
   border: none;
+  background-position: center;
+  background-size: 44px 44px;
+  background-repeat: no-repeat;
+}
+
+.buttons-group button:first-child {
+  border-radius: var(--radius-m);
+}
+
+.buttons-group button:last-child {
+  border-radius: var(--radius-m);
 }
 
 .buttons-group button:hover {
@@ -483,6 +496,7 @@ button.remove {
   border: none;
   border-radius: var(--radius-m);
   padding: 0;
+  margin: 0;
 }
 
 button.remove:hover {
@@ -502,4 +516,6 @@ button.remove:active {
   padding: 0 20px;
   border-radius: var(--radius-m);
   font-family: var(--font-display);
+  width: auto;
+  background-image: none;
 }

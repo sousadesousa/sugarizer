@@ -432,9 +432,10 @@ select {
 #input-box {
 	background-color: var(--surface);
 	border-bottom: 1px solid var(--line);
-	line-height: auto;
+	line-height: 52px;
 	padding: 8px 12px;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .search-field-border {
@@ -442,10 +443,14 @@ select {
 	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-l) !important;
 	margin-left: 52px !important;
-	width: calc(100% - 52px - 44px - 44px - 24px) !important;
+	margin-right: 52px !important;
+	width: calc(100% - 52px - 52px - 24px) !important;
 	height: 44px !important;
-	top: 0 !important;
+	top: 8px !important;
 	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	position: absolute !important;
 }
 
 .search-field-border-focus {
@@ -462,13 +467,20 @@ select {
 	background-color: var(--surface) !important;
 	color: var(--ink) !important;
 	border: none !important;
-	margin-left: 12px !important;
-	width: calc(100% - 56px) !important;
+	margin: 0 !important;
+	padding: 0 12px !important;
+	flex: 1;
 	height: 28px !important;
 	line-height: 28px !important;
-	top: 8px !important;
 	font-size: 16px !important;
 	font-weight: 400 !important;
+	position: static !important;
+	top: auto !important;
+	width: auto !important;
+}
+
+.search-field-input::placeholder {
+	color: var(--ink-faint);
 }
 
 .search-field-iocancel {
@@ -477,27 +489,30 @@ select {
 	background-size: 20px 20px !important;
 	width: 20px !important;
 	height: 20px !important;
-	right: 12px !important;
-	top: 50% !important;
-	transform: translateY(-50%) !important;
 	border: none !important;
-	padding: 0 !important;
+	padding: 0 12px !important;
 	cursor: pointer;
+	position: static !important;
+	right: auto !important;
+	top: auto !important;
+	transform: none !important;
+	flex-shrink: 0;
+	display: inline-block;
 }
 
 .search-field-iocancel:hover {
 	opacity: 0.7;
 }
 
-/* Dropdown and buttons in input bar */
+/* Dropdown in input bar */
 #qrtextdropdown {
 	height: 44px !important;
 	width: 44px !important;
-	margin: 0 !important;
+	margin: 8px !important;
 	padding: 0 !important;
-	left: 0 !important;
-	top: 0 !important;
 	position: absolute !important;
+	left: 8px !important;
+	top: 8px !important;
 	background-color: var(--surface) !important;
 	border: 1px solid var(--line) !important;
 	border-radius: var(--radius-m) !important;
@@ -522,25 +537,25 @@ select {
 	outline-offset: 2px;
 }
 
+/* Generate button in input bar */
 #generate-button {
 	height: 44px !important;
 	width: 44px !important;
-	margin: 0 !important;
+	margin: 8px !important;
 	padding: 0 !important;
 	position: absolute !important;
-	right: 0 !important;
-	top: 0 !important;
-	z-index: 1;
+	right: 8px !important;
+	top: 8px !important;
 	background-color: var(--ink) !important;
 	background-image: url(../icons/go-right.svg) !important;
 	background-size: 24px 24px !important;
 	background-position: center !important;
 	background-repeat: no-repeat !important;
-	background-color: var(--ink) !important;
 	color: transparent !important;
 	border: none !important;
 	border-radius: var(--radius-m) !important;
 	box-sizing: border-box;
+	z-index: 1;
 }
 
 #generate-button:hover {
