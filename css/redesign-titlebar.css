@@ -56,3 +56,26 @@
 .rd-title .toolbar #game-editor-insert-mode-button { --rd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E"); }
 .rd-title .toolbar #game-editor-play-mode-button { --rd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 5l11 7-11 7z'/%3E%3C/svg%3E"); }
 .rd-title .toolbar #game-editor-clear-button { --rd-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3'/%3E%3C/svg%3E"); }
+
+/* Phones: one scrolling row instead of a wrapped bar that covers the game */
+@media screen and (max-width: 700px) {
+	.rd-title .toolbar {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	.rd-title .toolbar > * {
+		flex: none;
+		float: none;
+	}
+	.rd-title .toolbar .rd-name,
+	.rd-title .toolbar .rd-divider {
+		display: none;
+	}
+	.rd-title .toolbar .pull-right:first-of-type,
+	.rd-title .toolbar .pull-right {
+		order: 1;
+	}
+}
