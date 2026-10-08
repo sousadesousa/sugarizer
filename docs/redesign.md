@@ -32,6 +32,10 @@ Token names to know: `--ink`, `--ink-soft`, `--surface`, `--bg`, `--tile`, `--co
 
 Colours that the script or the user's colour set inline (the user colour, `gameOver` text, filter icons) need `!important` in the stylesheet to be overridden. Say so in a comment when you use it.
 
+## Title bar and line icons
+
+Memorize and Sprint Math have the title bar of the design: a Back button (does what Stop does), a divider, the activity icon and name, and line icons. To use it in another activity, add `<link rel="stylesheet" href="../../css/redesign-titlebar.css">` after `sugar-redesign.css` and `<script src="../../js/redesign-titlebar.js"></script>` before `</body>`. The script adds `body.rd-title`; the line icons are masks (`--rd-icon`) painted with `--ink`, listed by button id in `css/redesign-titlebar.css`. A button whose icon is set by the activity's script (the Memorize size button) keeps its own icon.
+
 ## Tutorial tooltip (intro.js)
 
 `css/sugar-redesign.css` also skins the tutorial tooltip for every activity (white card, dark header, primary Next button, secondary Prev). It uses `.introjs-tooltip.customTooltip` selectors because the activities' own `.customTooltip .introjs-button:focus` rules paint the buttons grey with `!important`. Do not restyle the tooltip again in an activity.
@@ -64,4 +68,4 @@ The service worker (`sw.js`) caches files as they are used, so the fonts are cac
 - All 61 activities open without a page error (Chromium, 1024x700, no server).
 - Memorize: mouse and touch, same-group tap feedback, mismatch, match; Sprint Math: right and wrong answer, low time, game over, four simple-mode cases, no flash.
 - Home: ring, popup, list, Journal with and without entries, settings and its dialogs, first screen, new user, tutorial, at 1280x800 and 390x844.
-- Not run: the unit tests (`npm run test:unit`) and the Playwright e2e suite, because the test runner is not installed in the working environment, and screenshot baselines.
+- Unit tests (`npm test:unit`, needs `libcairo2-dev` etc. for `canvas`): the same 3 tests fail on master (FilterBox, SelectBox), the other suites pass. Playwright e2e (`CHROMIUM_PATH=... npx playwright test`): 158 passed. Screenshot baselines not regenerated.
