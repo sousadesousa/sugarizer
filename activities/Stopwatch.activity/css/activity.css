@@ -447,42 +447,27 @@ button.remove {
   font-variant-numeric: tabular-nums !important;
 }
 
-/* Buttons pill styling - transparent background */
+/* Buttons pill styling - make pill transparent */
 .buttons-group {
   background-color: transparent !important;
-  display: inline-flex !important;
-  gap: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
-/* Individual buttons in the pill - override all old styles */
+/* Individual buttons - resize and restyle */
 .buttons-group button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: var(--target) !important;
-  height: var(--target) !important;
-  margin: 0 !important;
+  width: 44px !important;
+  height: 44px !important;
   margin-top: 0 !important;
   padding: 0 !important;
-  border-radius: var(--radius-m) !important;
+  border-radius: 8px !important;
   background-color: transparent !important;
   border: none !important;
-  background-position: center !important;
-  background-size: 44px 44px !important;
-  background-repeat: no-repeat !important;
 }
 
 .buttons-group button:first-child {
-  border-radius: var(--radius-m) !important;
-  margin-right: 0 !important;
   padding-left: 0 !important;
 }
 
 .buttons-group button:last-child {
-  border-radius: var(--radius-m) !important;
-  margin-left: 0 !important;
   padding-right: 0 !important;
 }
 
@@ -496,14 +481,12 @@ button.remove {
 
 /* Remove button styling */
 button.remove {
-  width: var(--target) !important;
-  height: var(--target) !important;
+  width: 44px !important;
+  height: 44px !important;
   background-color: transparent !important;
-  background-size: var(--target) !important;
   border: none !important;
-  border-radius: var(--radius-m) !important;
+  border-radius: 8px !important;
   padding: 0 !important;
-  margin: 0 !important;
 }
 
 button.remove:hover {
@@ -519,11 +502,27 @@ button.remove:active {
   background-color: var(--surface) !important;
   border: 1px solid var(--line-strong) !important;
   color: var(--ink) !important;
-  height: var(--target) !important;
+  height: 44px !important;
   padding: 0 20px !important;
-  border-radius: var(--radius-m) !important;
+  border-radius: 10px !important;
   font-family: var(--font-display) !important;
   width: auto !important;
-  background-image: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d2433' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
+  background-size: 22px 22px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   margin: 20px auto !important;
+}
+
+/* White icons made for the old dark pill: draw them dark */
+.buttons-group button,
+button.remove {
+  filter: invert(1) hue-rotate(180deg);
+}
+.buttons-group button:hover,
+.buttons-group button:active,
+button.remove:hover,
+button.remove:active {
+  background-color: transparent !important;
+  opacity: 0.6;
 }
