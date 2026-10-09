@@ -47,3 +47,5 @@ body {
     left: 85vw;
   }
 }
+
+:root { --toolbar-h: 64px; }

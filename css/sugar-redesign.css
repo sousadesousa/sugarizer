@@ -363,6 +363,10 @@ html body .introjs-overlay { background: rgba(29, 36, 51, .35) !important; backg
 /* Phones: one scrolling row of buttons, so the right-hand ones (help, fullscreen, stop) stay reachable
    instead of wrapping under the canvas. Stop stays at the right end. */
 @media screen and (max-width: 700px) {
+	html body .toolbar {
+		height: var(--toolbar-h);
+		flex-shrink: 0;
+	}
 	.toolbar {
 		display: flex;
 		flex-wrap: nowrap;

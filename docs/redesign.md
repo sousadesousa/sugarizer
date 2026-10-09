@@ -2,7 +2,7 @@
 
 The new look replaces the old one one activity at a time. This guide says what exists, how to move an activity to the new look and what to check.
 
-State: the Home, Memorize, Sprint Math and the games, tools and media activities of batches 1 to 6 (Blockrain, Implode, Gears, GameOfLife, Flip, MazeWeb, Falabracman, FractionBounce, Abacus, Reflection, XOEditor, Speak, Tangram, Chess, PhysicsJS, Moon, Stopwatch, Pomodoro, Calculate, GetThingsDone, QRCode, Markdown, Write, Story, Record, MediaViewer, Stickman, FotoToon, Gridpaint, Calligra, Jappy, SharedNotes, Chart, Clock, Constellation, Curriculum, DollarStreet, EbookReader, HumanBody, LabyrinthJS, Measure, Planets, Vote, XmasLights, 3DVolume, ColorMyWorld, Abecedarium, Chat, FoodChain, LastOneLoses, MindMath, Paint, TamTamMicro, TankOp, VideoViewer) use the new look. The other activities still have the old toolbar (55px, dark) and are not changed.
+State: the Home, Memorize, Sprint Math and the games, tools and media activities of batches 1 to 6 (Blockrain, Implode, Gears, GameOfLife, Flip, MazeWeb, Falabracman, FractionBounce, Abacus, Reflection, XOEditor, Speak, Tangram, Chess, PhysicsJS, Moon, Stopwatch, Pomodoro, Calculate, GetThingsDone, QRCode, Markdown, Write, Story, Record, MediaViewer, Stickman, FotoToon, Gridpaint, Calligra, Jappy, SharedNotes, Chart, Clock, Constellation, Curriculum, DollarStreet, EbookReader, HumanBody, LabyrinthJS, Measure, Planets, Vote, XmasLights, 3DVolume, ColorMyWorld, Scratch, Exerciser, Abecedarium, Chat, FoodChain, LastOneLoses, MindMath, Paint, TamTamMicro, TankOp, VideoViewer) use the new look. TurtleBlocksJS and Etoys keep their own look (see Special cases).
 
 ## What the new look is
 
@@ -54,6 +54,11 @@ Moving to a 64px bar breaks code that assumes 55px. Activities where it was foun
 - CSS with a literal 55 or 75 (toolbar, canvas offset, `calc(100vh - 55px)`): 3DVolume, Calligra, Calculate, Chart, ColorMyWorld, Curriculum, Fototoon, MindMath, Pomodoro, Record, Story, TankOp, VideoViewer, Vote.
 - Palettes with `55px` inline: Calculate, Calligra, Measure.
 - About fifteen more read `toolbar.offsetHeight` and need nothing (Chess, Tangram, MindMath, Falabracman, MazeWeb, Clock, TamTamMicro, HumanBody).
+
+## Special cases (batch 7)
+
+- Scratch and Exerciser: the shared sheets are linked, so the Sugarizer toolbar is light like the others. Scratch's own interface (blocks, stage, tabs) and the Exerciser's pages keep their look.
+- TurtleBlocksJS and Etoys are not moved: TurtleBlocksJS draws its own blue toolbar, palette and blocks on a canvas, and Etoys draws everything on a Squeak canvas (its page only shows a black loading screen). Their Sugarizer toolbar is hidden or does not exist, so there is nothing to restyle with the shared sheets. A different look for them needs changes inside their own code.
 
 ## Cannot be restyled with CSS alone
 
