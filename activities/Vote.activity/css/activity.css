@@ -337,7 +337,12 @@ p {
 	margin: 0;
 	vertical-align: top;
 }
+#app .search-field {
+	width: min(250px, 30vw);
+}
 #app .search-field .search-input {
+	width: 100%;
+	margin: 0;
 	height: var(--target);
 	min-height: var(--target);
 	color: var(--ink);

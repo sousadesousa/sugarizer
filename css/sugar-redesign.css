@@ -207,9 +207,7 @@ textarea:focus { background-color: var(--surface); border-color: var(--focus); }
 	font-size: 15px !important;
 	line-height: 1.4 !important;
 	padding: 16px !important;
-	display: flex !important;
-	align-items: center !important;
-	gap: 0.75rem !important;
+	display: block !important;
 }
 .introjs-skipbutton,
 .introjs-tooltip.customTooltip .introjs-skipbutton {
@@ -347,7 +345,7 @@ textarea:focus { background-color: var(--surface); border-color: var(--focus); }
 }
 
 .introjs-tooltip.customTooltip .introjs-disabled, .introjs-tooltip.customTooltip .introjs-disabled:hover { background-color: var(--surface) !important; color: var(--ink-faint) !important; }
-.introjs-overlay { background: rgba(29, 36, 51, .35) !important; }
+html body .introjs-overlay { background: rgba(29, 36, 51, .35) !important; background-color: rgba(29, 36, 51, .35) !important; opacity: 1 !important; }
 
 .introjs-skipbutton { background-image: none !important; }
 
@@ -361,3 +359,23 @@ textarea:focus { background-color: var(--surface); border-color: var(--focus); }
 .introjs-tooltip.customTooltip .introjs-button.introjs-disabled,
 .introjs-tooltip.customTooltip .introjs-button.introjs-disabled:focus,
 .introjs-tooltip.customTooltip .introjs-button.introjs-disabled:hover { background-color: var(--surface) !important; color: var(--ink-faint) !important; }
+
+/* Phones: one scrolling row of buttons, so the right-hand ones (help, fullscreen, stop) stay reachable
+   instead of wrapping under the canvas. Stop stays at the right end. */
+@media screen and (max-width: 700px) {
+	.toolbar {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+	.toolbar > * {
+		flex: none;
+		float: none;
+	}
+	.toolbar > .pull-right {
+		order: 1;
+	}
+}
