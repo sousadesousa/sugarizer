@@ -802,3 +802,20 @@ div[slider] > input[type=range]::-ms-tooltip {
 .popup-image {
 	background-color: var(--tile);
 }
+
+/* Phone width: the script places palettes at the invoker's x, which runs off the screen
+   for the right-hand toolbar buttons. Anchor them to the right edge instead. */
+@media screen and (max-width: 480px) {
+	.palette {
+		left: auto !important;
+		right: 8px !important;
+	}
+
+	.palette .wrapper {
+		max-width: calc(100vw - 16px) !important;
+	}
+
+	#incomepalette .wrapper {
+		width: calc(100vw - 16px) !important;
+	}
+}
