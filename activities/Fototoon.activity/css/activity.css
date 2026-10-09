@@ -461,3 +461,5 @@ background-size: 100% 1.2em;
 .pico-overlay {
   opacity: 0.66 !important;
 }
+
+:root { --toolbar-h: 64px; }

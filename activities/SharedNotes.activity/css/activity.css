@@ -396,3 +396,5 @@ body {
 .pico-overlay {
   opacity: 0.66 !important;
 }
+
+:root { --toolbar-h: 64px; }

@@ -24,3 +24,5 @@ button.icon span.html {
     font-family: "Noto Emoji";
     src: url("../fonts/NotoEmoji.woff") format('woff');
 }
+
+:root { --toolbar-h: 64px; }

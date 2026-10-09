@@ -64,7 +64,7 @@ function displayAudio(data) {
 
     audio.style.maxWidth = document.body.clientWidth - 55 + "px";
     audio.style.width = document.body.clientWidth - 60 + "px";
-    audio.style.marginTop = (document.body.clientHeight - 55 - audio.getBoundingClientRect().height) / 2 + "px"
+    audio.style.marginTop = (document.body.clientHeight - document.getElementById("main-toolbar").offsetHeight - audio.getBoundingClientRect().height) / 2 + "px"
 
     document.getElementById("media").appendChild(audio);
 }
@@ -77,13 +77,13 @@ function displayVideo(data) {
     if (document.body.clientWidth > document.body.clientHeight) {
         video.style.marginTop = "3px";
         video.style.width = "auto";
-        video.style.maxHeight = document.body.clientHeight - 55 + "px";
+        video.style.maxHeight = document.body.clientHeight - document.getElementById("main-toolbar").offsetHeight + "px";
         video.style.height = document.body.clientHeight - 60 + "px";
     } else {
         video.style.height = "auto";
         video.style.maxWidth = document.body.clientWidth - 55 + "px";
         video.style.width = document.body.clientWidth - 60 + "px";
-        video.style.marginTop = (document.body.clientHeight - 55 - video.getBoundingClientRect().height) / 4 + "px"
+        video.style.marginTop = (document.body.clientHeight - document.getElementById("main-toolbar").offsetHeight - video.getBoundingClientRect().height) / 4 + "px"
     }
 
     document.getElementById("media").appendChild(video);
@@ -96,13 +96,13 @@ function displayImage(data) {
     if (document.body.clientWidth > document.body.clientHeight) {
         img.style.marginTop = "3px";
         img.style.width = "auto";
-        img.style.maxHeight = document.body.clientHeight - 55 + "px";
+        img.style.maxHeight = document.body.clientHeight - document.getElementById("main-toolbar").offsetHeight + "px";
         img.style.height = document.body.clientHeight - 60 + "px";
     } else {
         img.style.height = "auto";
         img.style.maxWidth = document.body.clientWidth - 55 + "px";
         img.style.width = document.body.clientWidth - 60 + "px";
-        img.style.marginTop = (document.body.clientHeight - 55 - img.getBoundingClientRect().height) / 4 + "px"
+        img.style.marginTop = (document.body.clientHeight - document.getElementById("main-toolbar").offsetHeight - img.getBoundingClientRect().height) / 4 + "px"
     }
 
     document.getElementById("media").appendChild(img);

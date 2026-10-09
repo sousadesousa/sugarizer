@@ -10,3 +10,4 @@ body {
     position:absolute;
     display: none;
 }
+:root { --toolbar-h: 64px; }

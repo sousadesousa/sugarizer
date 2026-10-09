@@ -43,7 +43,7 @@ function eventInit(){
 }
 
 function computeSize() {
-	var toolbarHeight = (document.getElementById("unfullscreen-button").style.visibility!="visible"?55:0);
+	var toolbarHeight = (document.getElementById("unfullscreen-button").style.visibility!="visible"?document.getElementById("main-toolbar").offsetHeight:0);
 	var availableWidth = document.body.clientWidth;
 	var availableHeight = document.body.clientHeight - toolbarHeight;
 	zoom = Math.min(availableWidth/1024, availableHeight/748);

@@ -782,3 +782,4 @@ body {
 		flex-direction: column;
 	}
 }
+:root { --toolbar-h: 64px; }
