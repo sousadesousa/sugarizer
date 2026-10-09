@@ -439,13 +439,13 @@ body {
 
 /* Zoom palette: buttons are black (.zoombuttons) and carry inline 55px sizes (zoompalette.js:21), left as they are */
 .palette .zoombuttons {
-  background-color: transparent !important;
+  background-color: transparent;
   border: 0;
   border-radius: var(--radius-m) !important;
   color: var(--ink);
 }
-.palette .zoombuttons:hover { background-color: var(--tile) !important; }
-.palette .zoombuttons:active { background-color: var(--control) !important; }
+.palette .zoombuttons:hover { background-color: var(--tile); }
+.palette .zoombuttons:active { background-color: var(--control); }
 
 /* Dialogs from the background colour chooser (picoModal + journal chooser) */
 .pico-overlay {
@@ -455,9 +455,9 @@ body {
 .pico-content {
   font-family: var(--font-body);
   color: var(--ink);
-  border: 1px solid var(--line) !important;
-  border-radius: var(--radius-l) !important;
-  box-shadow: var(--shadow-pop) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-pop);
 }
 #journal-container > div[id^="color_"] {
   border-radius: var(--radius-m);

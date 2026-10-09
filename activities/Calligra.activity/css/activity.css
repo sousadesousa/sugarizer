@@ -637,6 +637,7 @@ button:disabled:hover {
 }
 
 .popup-input {
+	max-width: 100%;
 	color: var(--ink);
 	background-color: var(--surface);
 	border: 1px solid var(--line-strong);

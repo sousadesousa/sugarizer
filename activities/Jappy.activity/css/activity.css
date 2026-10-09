@@ -109,6 +109,24 @@ body {
     border: 0;
     border-radius: var(--radius-s);
 }
+.palette .menu button.icon {
+    padding: 10px 12px 10px 40px;
+}
+.palette .menu button.icon span {
+    top: 10px;
+    left: 10px;
+}
+.palette textarea {
+    color: var(--ink);
+    background-color: var(--tile);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    margin: 0;
+}
+.palette textarea:focus {
+    background-color: var(--surface);
+    border-color: var(--focus);
+}
 .palette .menu button:hover {
     color: var(--ink);
     background-color: var(--tile);
