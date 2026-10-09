@@ -292,7 +292,7 @@ var app = new Vue({
 			})
 			this.drawGrid();
 		},
-		resizeCanvas: function(scaleWidth = 55) {
+		resizeCanvas: function(scaleWidth = document.getElementById("main-toolbar").offsetHeight) {
 			this.canvas.width = window.innerWidth;
 			this.canvas.height = window.innerHeight - scaleWidth - (document.getElementById("axisScale").clientHeight);
 			this.calcTimeDomainData();
