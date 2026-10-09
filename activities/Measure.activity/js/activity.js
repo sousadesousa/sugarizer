@@ -308,7 +308,7 @@ var app = new Vue({
 				this.resizeCanvas(0);
 			}
 			else {
-				document.getElementById("main-toolbar").style.height = "55px";
+				document.getElementById("main-toolbar").style.height = "";
 				document.getElementById("unfullscreen-button").style.display = "none";
 				document.getElementById("fullscreen-button").style.display = "initial";
 				this.resizeCanvas();
