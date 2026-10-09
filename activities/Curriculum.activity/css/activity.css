@@ -20,7 +20,7 @@ p {
 
 #content {
 	position: relative;
-	height: calc(100vh - 55px);
+	height: calc(100vh - var(--toolbar-h));
 	overflow: auto;
 }
 

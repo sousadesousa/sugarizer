@@ -31,7 +31,7 @@
 }
 
 .poll-stats {
-	min-height: calc(100vh - 55px);
+	min-height: calc(100vh - var(--toolbar-h));
 	background: white;
 	display: flex;
 	flex-direction: column;

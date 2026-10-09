@@ -255,11 +255,11 @@ p {
 }
 
 .grid {
-	margin-top: 55px;
+	margin-top: var(--toolbar-h);
 	height: 400px;
 	display: inline;
 	overflow: hidden;
-	height: calc(100vh - 55px);
+	height: calc(100vh - var(--toolbar-h));
 }
 .grid.fullscreen {
 	margin-top: 0px;

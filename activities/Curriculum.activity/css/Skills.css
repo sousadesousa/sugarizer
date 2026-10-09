@@ -1,6 +1,6 @@
 .skills {
 	position: relative;
-	min-height: calc(100vh - 55px);
+	min-height: calc(100vh - var(--toolbar-h));
 	padding: 0 8vw;
 }
 #back-button {
@@ -96,7 +96,7 @@
 .skill-details {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - 55px);
+	height: calc(100vh - var(--toolbar-h));
 	overflow: auto;
 	padding: 0 10vw;
 }
