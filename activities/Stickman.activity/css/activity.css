@@ -209,7 +209,7 @@ body {
 
 /* Stickman canvas */
 #stickman-canvas {
-	height: calc(100vh - 180px);
+	height: calc(100vh - var(--toolbar-h) - 125px);
 	background-color: #ffffff;
 	width: 100%;
 }

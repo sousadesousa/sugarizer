@@ -26,7 +26,7 @@ define(["activity/recordrtc", "sugar-web/activity/activity", "sugar-web/datastor
 
         displayLoading: function () {
             var loading = document.getElementById("loading");
-            loading.style.top = parseInt(5 * document.body.clientHeight / 100) + "px";
+            loading.style.top = (document.getElementById("main-toolbar").offsetHeight + 12) + "px";
             loading.style.left = parseInt(5 * document.body.clientWidth / 100) + "px";
             loading.style.width = parseInt(90 * document.body.clientWidth / 100) + "px";
             loading.style.padding = "10px";
