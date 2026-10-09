@@ -84,7 +84,7 @@ function runactivity(act,xocolor,doc,colors,env,datastore,tutorial){
         });
         document.getElementById("unfullscreen-button").addEventListener('click', function() {
             document.getElementById("main-toolbar").style.opacity = 1;
-            document.getElementById("canvas").style.top = "55px";
+            document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
             canvas.height = window.innerHeight;
             stage = new createjs.Stage(canvas);
             stage.update();

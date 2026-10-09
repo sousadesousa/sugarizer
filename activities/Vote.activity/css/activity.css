@@ -311,3 +311,153 @@ p {
 
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Chrome of the activity restyled for the shared look. Rules are prefixed with #app or body
+   because the activity's other stylesheets (Polls, PollStats, Settings...) load after this file,
+   and palettes are attached to body. */
+
+/* Toolbar: the splitbar was a 40px dark rule; make it the shared 24px divider */
+#main-toolbar .splitbar {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+
+/* Toolbar search: 44px tall and centred in the bar */
+#app .search-field {
+	display: inline-flex;
+	align-items: center;
+	height: var(--toolbar-h);
+	margin: 0;
+	vertical-align: top;
+}
+#app .search-field .search-input {
+	height: var(--target);
+	min-height: var(--target);
+	color: var(--ink);
+	border-radius: var(--radius-m);
+}
+#app .search-field .search-icon,
+#app .search-field .search-cancel {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* Export palette: the format icons sat on black squares */
+body #export-formats button {
+	position: relative;
+	background-color: transparent;
+	background-size: 0 0 !important;
+	border-radius: var(--radius-m);
+}
+body #export-formats button:hover {
+	background-color: var(--tile);
+}
+body #export-formats button:active {
+	background-color: var(--control);
+}
+body #export-formats button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+
+/* Poll cards: the question type was grey */
+#app .poll-card .poll-details .poll-type {
+	color: var(--ink-soft);
+}
+
+/* Settings form (poll editor) */
+#app .settings form select {
+	min-height: var(--target);
+	padding: 0 12px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	background-color: var(--tile);
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-m);
+}
+#app .settings form button {
+	min-height: var(--target);
+}
+#app .settings form img {
+	border: solid 1px var(--line-strong);
+}
+#app #image-edit-button,
+#app #delete-image-button {
+	width: var(--target);
+	height: var(--target);
+	border-radius: var(--radius-m);
+}
+
+/* Poll answer page: the green submit button becomes the primary (ink) button; its arrow is white */
+#app .vote .vote-card .submit {
+	background-color: var(--ink);
+	box-shadow: var(--shadow-card);
+}
+#app .vote .vote-card .raise-hand {
+	background-color: var(--control);
+	border-radius: var(--radius-m);
+}
+
+/* Poll statistics: black header and footer bars */
+#app .poll-stats .poll-header {
+	background: var(--tile);
+	color: var(--ink);
+	border-bottom: 1px solid var(--line);
+}
+#app .poll-stats.is-result .poll-header {
+	color: var(--ink);
+	background: var(--tile);
+}
+#app .poll-stats .poll-footer {
+	background: var(--tile);
+	color: var(--ink);
+	border-top: 1px solid var(--line);
+}
+#app .poll-stats .stats-card {
+	color: var(--ink);
+}
+#app .text-popup {
+	background: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow-card);
+}
+
+/* Notifications (for example "Network not available"): black boxes become surfaces */
+body .humane,
+body .humane-libnotify,
+body .humane.humane-libnotify-info,
+body .humane.humane-libnotify-success,
+body .humane.humane-libnotify-error,
+body .humane-libnotify.humane-libnotify-info,
+body .humane-libnotify.humane-libnotify-success,
+body .humane-libnotify.humane-libnotify-error {
+	background-color: var(--surface);
+	background-image: none;
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	font-family: var(--font-body);
+}
+body .humane small,
+body .humane-libnotify small {
+	color: var(--ink-soft) !important;
+}

@@ -2623,7 +2623,7 @@ define([
 
 			const canvas = document.getElementById("canvas");
 			canvas.style.position = "";
-			canvas.style.top = "55px";
+			canvas.style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 			canvas.style.left = "";
 			canvas.style.width = "";
 			canvas.style.height = "";

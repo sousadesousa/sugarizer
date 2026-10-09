@@ -108,7 +108,7 @@ define(["sugar-web/activity/activity", "sugar-web/env", "sugar-web/datastore", "
 					// Switch to unfullscreen mode
 					document.getElementById("unfullscreen-button").addEventListener('click', function() {
 						document.getElementById("main-toolbar").style.opacity = 1;
-						document.getElementById("canvas").style.top = "55px";
+						document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 						document.getElementById("unfullscreen-button").style.visibility = "hidden";
 						document.getElementById("back-button").style.bottom = "685px";
 					});
