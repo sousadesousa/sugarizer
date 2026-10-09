@@ -636,8 +636,14 @@ button:disabled:hover {
 	box-shadow: var(--shadow-pop);
 }
 
+/* the field keeps 10px inside the dialog on each side (the original 400px width overran phones) */
+#popup-container {
+	margin-left: 0;
+}
+
 .popup-input {
-	max-width: 100%;
+	max-width: calc(100% - 20px);
+	margin: 0 10px;
 	color: var(--ink);
 	background-color: var(--surface);
 	border: 1px solid var(--line-strong);

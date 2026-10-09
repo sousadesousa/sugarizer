@@ -115,6 +115,7 @@ body {
 .palette .menu button.icon span {
     top: 10px;
     left: 10px;
+    filter: none;
 }
 .palette textarea {
     color: var(--ink);
