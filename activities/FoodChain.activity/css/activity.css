@@ -129,11 +129,11 @@
 /* Home: game description popup (dialog shown when a game is hovered) */
 #app .game-popup {
 	box-sizing: border-box;
-	padding: 16px 20px !important;
-	border: 1px solid var(--line) !important;
-	border-radius: var(--radius-l) !important;
-	background-color: var(--surface) !important;
-	box-shadow: var(--shadow-pop) !important;
+	padding: 16px 20px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	background-color: var(--surface);
+	box-shadow: var(--shadow-pop);
 	font-family: var(--font-body);
 	color: var(--ink);
 }
@@ -157,8 +157,8 @@
 	box-sizing: border-box;
 	max-width: calc(100% - 24px);
 	margin: 12px;
-	border: 1px solid var(--line) !important;
-	border-radius: var(--radius-l) !important;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
 	background-color: var(--surface) !important;
 	box-shadow: var(--shadow-pop);
 	color: var(--ink);

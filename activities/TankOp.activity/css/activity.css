@@ -168,10 +168,17 @@ body {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: .02em;
-  line-height: 1;
-  height: auto;
-  top: 22px;
-  margin-left: 30%;
+  line-height: 18px;
+  height: 18px;
+  margin: 0 0 0 30%;
+  top: 23px;
+}
+
+/* On phones the bar scrolls and the title would sit under the help button: it stays out of the way */
+@media screen and (max-width: 700px) {
+  #app .toolbar .title {
+    display: none;
+  }
 }
 
 /* Wave and score readout at the top right, beside the play field: ink and display font */

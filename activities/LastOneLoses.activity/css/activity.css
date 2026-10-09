@@ -307,3 +307,9 @@ body {
 #unfullscreen-button:hover {
 	background-color: var(--tile);
 }
+
+/* Palette text fields (activity title and description): at least 44px tall to be easy to hit */
+.palette input[type='text'] {
+	box-sizing: border-box;
+	min-height: var(--target);
+}

@@ -822,7 +822,11 @@ body {
 .video-title {
 	color: var(--ink);
 	font-family: var(--font-display);
+	margin-top: 10px;
+	margin-bottom: 0;
+	line-height: 1.2;
 }
+.video-close-button { right: 0; }
 
 /* Add library dialog */
 .module-dialog {
@@ -854,6 +858,7 @@ body {
 	font-size: 16px;
 }
 .next-button::after { filter: none; }
+.next-button { margin-left: auto; }
 
 /* Fullscreen exit button (shown only in fullscreen) */
 #unfullscreen-button {
