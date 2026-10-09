@@ -418,6 +418,14 @@ body {
 #main-toolbar #color-button {
   box-shadow: inset 0 0 0 1px var(--line-strong);
 }
+/* narrow screens: the Stop button (absolute since activity.css:385) had no offsets and fell off the bar */
+@media screen and (max-width: 515px) {
+  #main-toolbar #stop-button {
+    top: 0;
+    right: 12px;
+    margin: calc((var(--toolbar-h) - var(--target)) / 2) 0 0;
+  }
+}
 
 /* Note colour palette: the script paints its body black inline (notepalette.js), so !important is needed */
 .palette.colorpalette .wrapper,

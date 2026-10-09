@@ -136,7 +136,25 @@ body {
 }
 #canvas #newtab,
 #canvas #tray-button {
+    position: relative;
     background-color: var(--tile);
+    background-size: 0 0;
+}
+/* the gutter icons are white: they are drawn again inverted, like the toolbar icons */
+#canvas #newtab::after,
+#canvas #tray-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    filter: invert(1) hue-rotate(180deg);
+    pointer-events: none;
 }
 #canvas #closetab {
     background-color: var(--tile);
