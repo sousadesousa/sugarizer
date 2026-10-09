@@ -181,3 +181,33 @@ body{
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Leave-fullscreen button: a light chip, so it reads on the coloured page */
+#unfullscreen-button {
+  box-sizing: border-box;
+  width: var(--target);
+  height: var(--target);
+  margin: 0;
+  top: 10px;
+  right: 12px;
+  background-color: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+
+#unfullscreen-button:hover {
+  background-color: var(--tile);
+}
+
+/* Simon score and level: sit on the page background, so ink and the display font (not the pixel font) */
+/* ids win over css/styles.css, which loads after this file */
+#SimonLevel,
+#SimonScroe {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 3.4vh, 34px);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}

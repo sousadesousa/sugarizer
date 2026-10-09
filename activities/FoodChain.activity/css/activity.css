@@ -113,3 +113,64 @@
 	border: 0px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: styles.css puts the language flags 100px away from the activity button; keep them next to it */
+#main-toolbar #en-button {
+	margin-left: 12px !important;
+}
+
+#main-toolbar #fr-button,
+#main-toolbar #pt_BR-button {
+	margin-left: 2px !important;
+}
+
+/* Home: game description popup (dialog shown when a game is hovered) */
+#app .game-popup {
+	box-sizing: border-box;
+	padding: 16px 20px !important;
+	border: 1px solid var(--line) !important;
+	border-radius: var(--radius-l) !important;
+	background-color: var(--surface) !important;
+	box-shadow: var(--shadow-pop) !important;
+	font-family: var(--font-body);
+	color: var(--ink);
+}
+
+#app .game-popup .game-title {
+	margin: 0 0 6px;
+	font-family: var(--font-display);
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--ink);
+}
+
+#app .game-popup .game-description {
+	font-size: 16px;
+	line-height: 1.4;
+	color: var(--ink-soft);
+}
+
+/* Credits screen: a light dialog card over the board, with dark text (the frog, fly and snake picture keeps its own background) */
+#app .credits-popup {
+	box-sizing: border-box;
+	max-width: calc(100% - 24px);
+	margin: 12px;
+	border: 1px solid var(--line) !important;
+	border-radius: var(--radius-l) !important;
+	background-color: var(--surface) !important;
+	box-shadow: var(--shadow-pop);
+	color: var(--ink);
+}
+
+#app .credits-popup .credit-title {
+	font-family: var(--font-display);
+	font-weight: 500;
+	color: var(--ink);
+}
+
+#app .credits-popup .credit-name {
+	font-family: var(--font-body);
+	color: var(--ink-soft);
+}

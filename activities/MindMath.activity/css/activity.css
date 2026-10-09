@@ -546,3 +546,147 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: the divider after the activity button, in the 1px / 24px recipe */
+#main-toolbar .splitbar {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 0;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  border: 0;
+  border-right: 1px solid var(--line-strong);
+}
+
+/* Palettes (timer, difficulty, compulsory operators, hint, activity) */
+.palette .palette-item {
+  box-sizing: border-box;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  padding: 0 14px;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+
+.palette div.palette-item {
+  display: flex;
+  align-items: center;
+  min-height: var(--target);
+}
+
+.palette .palette-item:hover { background-color: var(--tile); }
+.palette .palette-item-selected,
+.palette .palette-item-selected:hover { background-color: var(--control); color: var(--ink); }
+
+.palette .palette-text { color: var(--ink); font-family: var(--font-display); }
+
+.palette input#title.expand,
+.palette textarea#description.expand,
+.palette input[type='text'].expand {
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* Result screen: score bars, solution panels, footer buttons */
+#result-view .result-bar-block {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+#result-view .result-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+}
+
+#result-view .my-solution,
+#result-view .best-solution {
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+
+#result-view .info-block {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+/* Leaderboard screen: header, rows, footer buttons */
+#leaderboard-view .leaderboard-main {
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+#leaderboard-view .leaderboard-main-header {
+  background-color: var(--tile) !important;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+}
+
+#leaderboard-view .leaderboard-item {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+#leaderboard-view .leaderboard-panel-container {
+  background-color: var(--surface);
+  border-width: 2px;
+  border-style: solid;
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+/* Footer buttons of the result and leaderboard screens (inline fill colour overridden) */
+#result-view .btn-general-block,
+#leaderboard-view .btn-general-block {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+#result-view .btn-general-block:hover,
+#leaderboard-view .btn-general-block:hover {
+  background-color: var(--tile) !important;
+}
+
+#result-view .page-no,
+#leaderboard-view .page-no {
+  color: var(--ink);
+  font-size: 18px;
+}
+
+/* Game screen chrome around the play field: score and time boxes, footer action buttons */
+#game-view .detail-block {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+#game-view .slots-area-footer-button {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+#game-view .slots-area-footer-button:hover {
+  background-color: var(--tile) !important;
+}
+
+#game-view .slots-area-footer-button:active {
+  background-color: var(--control) !important;
+}

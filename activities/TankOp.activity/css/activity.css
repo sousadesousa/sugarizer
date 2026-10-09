@@ -158,3 +158,34 @@ body {
   border: 2px solid #808080;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: the activity title was white on the white bar; it is ink now, in the display font */
+#app .toolbar .title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1;
+  height: auto;
+  top: 22px;
+  margin-left: 30%;
+}
+
+/* Wave and score readout at the top right, beside the play field: ink and display font */
+#app .status-line {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* Credits dialog: light frame, rounded corners and the pop shadow of the shared recipe.
+   The grass picture stays as the dialog background; the list scrolls on small screens */
+.tankop-scrim .credits-popup {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-pop);
+  overflow-y: auto;
+}

@@ -1110,3 +1110,135 @@
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Fullscreen return button: it sits outside the toolbar, so it gets the card recipe itself */
+#unfullscreen-button {
+	box-sizing: border-box;
+	width: var(--target);
+	height: var(--target);
+	top: 10px;
+	right: 10px;
+	margin: 0;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	background-color: var(--surface);
+	background-size: 55%;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: var(--shadow-card);
+}
+
+/* Word cards in learn and play: light surface, thin line, soft shadow instead of the 3D frame */
+.entry,
+.theme,
+.collection,
+.play-type-button {
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+}
+
+.entry {
+	background-color: var(--surface);
+}
+
+.entryText,
+.themeText,
+.collectionText {
+	color: var(--ink);
+}
+
+/* Selected and feedback states (set after the base card rules so they win) */
+.itemTheme-selected,
+.itemCollection-selected {
+	border-color: var(--focus);
+	border-width: 3px;
+	color: var(--ink);
+}
+
+.itemLetter-selected {
+	border-color: var(--focus);
+}
+
+.entryPlaySelected {
+	border-width: 3px;
+	border-color: var(--focus);
+	color: var(--ink);
+}
+
+.entryPlayWrong {
+	background-color: var(--bad-tint);
+	border-color: var(--bad);
+}
+
+.entryPlayRight {
+	background-color: var(--ok-tint);
+	border-color: var(--ok);
+}
+
+/* Page labels on the page background */
+.pageCount,
+.itemCount {
+	font-family: var(--font-display);
+	color: var(--ink-soft);
+}
+
+.gameFinsihed-message {
+	font-family: var(--font-display);
+	color: var(--ink);
+}
+
+.replayButton {
+	background-color: var(--ink) !important;
+}
+
+/* Popups (filter, credits): white card over a dimmed scrim */
+.abcd-scrim {
+	background-color: transparent;
+}
+
+.abcd-scrim::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	background-color: var(--ink);
+	opacity: 0.4;
+}
+
+.abcd-popup {
+	padding: 12px;
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-xl);
+	box-shadow: var(--shadow-pop);
+}
+
+.filter-popup,
+.credits-popup {
+	color: var(--ink);
+}
+
+.credit-title {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+.credit-name {
+	color: var(--ink-soft);
+}
+
+/* Trash button of the filter popup: its icon is white, so it sits on an ink disc */
+.trashButton {
+	background-color: var(--ink);
+	border-radius: var(--radius-pill);
+	box-sizing: border-box;
+	padding: 6px;
+}

@@ -390,3 +390,37 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Canvas page: light surface and dark ink (the white canvas is the design) */
+body {
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* The colour palettes open a tab over their colour square (fill and stroke): let the square show through,
+   so the chosen colour stays visible while the palette is open */
+.palette:has(.colors) > .palette-invoker {
+  background-color: transparent;
+}
+
+/* Notifications (for example "Image saved to journal!"): light card instead of the black box */
+.humane,
+.humane-libnotify,
+.humane.humane-libnotify-info,
+.humane-libnotify.humane-libnotify-info,
+.humane.humane-libnotify-success,
+.humane-libnotify.humane-libnotify-success,
+.humane.humane-libnotify-error,
+.humane-libnotify.humane-libnotify-error {
+  background: var(--surface) !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 16px;
+}

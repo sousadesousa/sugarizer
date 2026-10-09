@@ -738,3 +738,126 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: search field */
+.search-field-border {
+	border-radius: var(--radius-pill);
+	height: 36px;
+	box-sizing: border-box;
+}
+.search-field-border-focus {
+	background-color: var(--surface);
+	border: 1px solid var(--focus);
+}
+.search-field-border-nofocus {
+	background-color: var(--tile);
+	border: 1px solid var(--tile);
+}
+.search-field-input,
+.search-field-input:focus {
+	background-color: transparent;
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 16px;
+}
+.search-field-input::placeholder { color: var(--ink-faint); }
+
+/* Palettes (filter by category) */
+.palette .palette-button {
+	min-height: var(--target);
+	height: auto;
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-size: 14px;
+	background-color: transparent;
+	border-radius: var(--radius-m);
+}
+.palette .palette-button.filter-item { color: var(--ink); }
+.palette .palette-button:hover { background-color: var(--tile); }
+.palette .palette-button.palette-button-selected { background-color: var(--control); color: var(--ink); }
+.palette .palette-button.palette-button-notselected { background-color: transparent; }
+
+/* Library dialog and its cards */
+.library-dialog {
+	top: calc(var(--toolbar-h) + 12px);
+	bottom: 16px;
+	height: auto;
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+.library { border-radius: var(--radius-m); overflow: hidden; }
+.libraryOverlay {
+	background-color: var(--surface);
+	opacity: 0.92;
+}
+.libraryTitle {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* Video cards: the title band (the thumbnail itself is the content) */
+.item {
+	background-color: var(--surface);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+}
+.itemOverlay {
+	background-color: var(--surface);
+	opacity: 0.92;
+}
+.itemTitle {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* Video dialog (full-screen, opened from a card) */
+.video-dialog {
+	background-color: var(--surface);
+}
+.video-title {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* Add library dialog */
+.module-dialog {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+.module-dialog > .toolbar {
+	border-bottom: 1px solid var(--line);
+	border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+.module-text {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+.server-message,
+.server-httplabel { color: var(--ink-soft); font-family: var(--font-body); font-size: 16px; }
+
+/* Page footer: count and paging arrows */
+.viewer-footer {
+	background-color: var(--surface);
+	border-bottom: 0;
+	border-top: 1px solid var(--line);
+}
+.page-count {
+	color: var(--ink-soft);
+	font-family: var(--font-display);
+	font-size: 16px;
+}
+.next-button::after { filter: none; }
+
+/* Fullscreen exit button (shown only in fullscreen) */
+#unfullscreen-button {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+}

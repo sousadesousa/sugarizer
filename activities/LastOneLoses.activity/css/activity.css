@@ -267,3 +267,43 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Message popups (libnotify, used for players joining or leaving): black boxes become light cards */
+.humane,
+.humane-libnotify {
+	width: 200px;
+	box-sizing: border-box;
+	padding: 12px;
+	background: var(--surface) none !important;
+	color: var(--ink) !important;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	font-family: var(--font-body);
+}
+
+/* End of game: the result picture sits on a light card, centred over the board */
+#lOLGameApp .end-message {
+	left: 50%;
+	width: 260px;
+	margin-left: -130px;
+	box-sizing: border-box;
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-xl);
+	box-shadow: var(--shadow-pop);
+}
+
+/* Full screen exit button: a light chip instead of the grey default button */
+#unfullscreen-button {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	box-shadow: var(--shadow-card);
+}
+
+#unfullscreen-button:hover {
+	background-color: var(--tile);
+}
