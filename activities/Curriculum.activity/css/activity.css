@@ -639,3 +639,8 @@ body .humane-libnotify.humane-libnotify-error {
 	box-shadow: var(--shadow-pop);
 	font-family: var(--font-body);
 }
+/* Rewards.js writes style="color:#d3d3d3" inline on the small "Achievement Acquired" label: !important is the only way to override it */
+body .humane small,
+body .humane-libnotify small {
+	color: var(--ink-soft) !important;
+}

@@ -137,7 +137,7 @@ var app = new Vue({
 		},
 		unfullscreen: function() {
 			document.getElementById("main-toolbar").style.opacity = 1;
-			document.getElementById("canvas").style.top = "55px";
+			document.getElementById("canvas").style.top = (document.getElementById("main-toolbar")?document.getElementById("main-toolbar").offsetHeight:55) + "px";
 			document.getElementById("unfullscreen-button").style.visibility = "hidden";
 			if (this.currentView === EbookReader) {
 				var reader = this.$refs.view;

@@ -211,3 +211,38 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* World and projection palettes: the script paints every entry black (inline style) and the selected one grey.
+   Entries become light; the selected one keeps a tinted fill. */
+#world-palette button,
+#view-palette button {
+	background-color: var(--surface) !important;
+	color: var(--ink) !important;
+	font-family: var(--font-display);
+	min-height: var(--target);
+	border: 0;
+	border-radius: var(--radius-s);
+}
+#world-palette button:hover,
+#view-palette button:hover {
+	background-color: var(--tile) !important;
+}
+#world-palette button[style*="grey"],
+#view-palette button[style*="grey"] {
+	background-color: var(--control) !important;
+	font-weight: 500;
+}
+/* Phone width: nine 44px buttons do not fit in 390px. The toolbar scrolls sideways instead of wrapping,
+   so Fullscreen and Tutorial stay on the bar (under the canvas before). */
+@media screen and (max-width: 560px) {
+	#main-toolbar {
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: nowrap;
+	}
+	#main-toolbar .pull-right {
+		float: none;
+		display: inline-block;
+	}
+}

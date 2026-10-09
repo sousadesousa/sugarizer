@@ -73,7 +73,7 @@ var Family = {
 			let body = document.getElementById("body");
 			let small = (body.offsetWidth<750);
 			document.getElementById("family-description").style.width = (body.offsetWidth - (small?256:512) - 100 - 19)+"px";
-			document.getElementById("family-things").style.height = (body.offsetHeight - (small?170:341) - 20 - (app.$refs.SugarToolbar&&app.$refs.SugarToolbar.isHidden()?0:55))+"px";
+			document.getElementById("family-things").style.height = (body.offsetHeight - (small?170:341) - 20 - (app.$refs.SugarToolbar&&app.$refs.SugarToolbar.isHidden()?0:(document.getElementById("main-toolbar")?document.getElementById("main-toolbar").offsetHeight:55)))+"px";
 		},
 
 		goBack: function() {
