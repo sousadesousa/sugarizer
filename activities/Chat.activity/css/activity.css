@@ -564,7 +564,6 @@ body,
 	border-radius: var(--radius-l);
 	background-color: var(--surface);
 	box-shadow: var(--shadow-card);
-	overflow: hidden;
 }
 
 .chat-textarea {
@@ -602,7 +601,7 @@ body,
 	justify-content: center;
 	background: var(--ink);
 	border: none;
-	border-radius: 0;
+	border-radius: 0 calc(var(--radius-l) - 1px) calc(var(--radius-l) - 1px) 0;
 }
 
 .send-btn svg path {
@@ -658,4 +657,9 @@ body,
 
 .dot {
 	background: var(--ink-faint);
+}
+
+/* Fullscreen: the collapsed toolbar keeps no bottom line */
+#main-toolbar.fullscreen {
+	border-bottom: 0;
 }
