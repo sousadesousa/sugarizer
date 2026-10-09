@@ -192,3 +192,98 @@ body {
   border: 0px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Recording panel (capture-helper.js displayLoading): a light card instead of the grey block */
+#loading {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
+    font-family: var(--font-display);
+}
+
+#timer-start,
+#timer-end {
+    color: var(--ink-soft);
+    font-family: var(--font-display);
+}
+
+#loading-progress {
+    height: 8px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background-color: var(--control);
+    accent-color: var(--accent);
+    vertical-align: middle;
+    margin: 0 8px;
+}
+
+#loading-progress::-webkit-progress-bar {
+    background-color: var(--control);
+    border-radius: var(--radius-pill);
+}
+
+#loading-progress::-webkit-progress-value {
+    background-color: var(--accent);
+    border-radius: var(--radius-pill);
+}
+
+#loading-progress::-moz-progress-bar {
+    background-color: var(--accent);
+    border-radius: var(--radius-pill);
+}
+
+/* Captured items in the list: a thin light frame (inline borders and fills from capture-helper.js, so !important) */
+#records > div {
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    background-color: var(--surface) !important;
+}
+
+/* Audio item placeholder: a tile tint instead of a black block */
+#records > div:has(> img[src$="audio.svg"]) {
+    background-color: var(--tile) !important;
+}
+
+/* Full-size viewer (capture-helper.js generatePopup): a light popup with a dark title */
+body > div:has(> .delbtn) {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-pop);
+}
+
+body > div:has(> .delbtn) > span {
+    background-color: transparent !important;
+    color: var(--ink) !important;
+    font-family: var(--font-display);
+    font-size: 20px !important;
+    padding: 12px 16px !important;
+}
+
+body > div:has(> .delbtn) > button:not(.delbtn) {
+    width: var(--target) !important;
+    height: var(--target) !important;
+    border-radius: var(--radius-m) !important;
+    background-color: var(--control);
+}
+
+body > div:has(> .delbtn) > button:not(.delbtn):hover {
+    background-color: var(--control-hover);
+}
+
+/* Delete button of the viewer: 44px target instead of 55 x 56 */
+.delbtn {
+    height: var(--target);
+    width: var(--target);
+    border-radius: var(--radius-m);
+    background-color: var(--control);
+}
+
+.delbtn:hover {
+    background-color: var(--control-hover);
+}
