@@ -601,3 +601,4 @@ p {
 	min-width: 305px;
 	max-width: 350px;
 }
+:root { --toolbar-h: 64px; }

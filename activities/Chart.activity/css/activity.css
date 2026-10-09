@@ -611,3 +611,4 @@ p {
 	}
 	.data-labels,.input-group input,.cell-group .cell { font-size: 14px; }
 }
+:root { --toolbar-h: 64px; }

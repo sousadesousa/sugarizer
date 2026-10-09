@@ -309,3 +309,5 @@ p {
 	border: 0px;
   }
 
+
+:root { --toolbar-h: 64px; }

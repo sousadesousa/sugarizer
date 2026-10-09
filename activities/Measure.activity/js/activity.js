@@ -285,7 +285,7 @@ var app = new Vue({
 		init: function() {
 
 			this.canvas.width = window.innerWidth;
-			this.canvas.height = window.innerHeight - 55 - (document.getElementById("axisScale").clientHeight);
+			this.canvas.height = window.innerHeight - document.getElementById("main-toolbar").offsetHeight - (document.getElementById("axisScale").clientHeight);
 
 			window.addEventListener("resize", () => {
 				this.resizeCanvas()

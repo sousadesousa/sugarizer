@@ -460,3 +460,5 @@ p {
 	left: 50%;
 	width: 8%;
 }
+
+:root { --toolbar-h: 64px; }

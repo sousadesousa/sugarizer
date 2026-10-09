@@ -121,7 +121,7 @@ var app = new Vue({
 		// Resize dynamically grid
 		let message = document.getElementById("message");
 		var computeHeight = function() {
-			let available = (document.getElementById("body").offsetHeight-(vm.$refs.SugarToolbar&&vm.$refs.SugarToolbar.isHidden()?0:55));
+			let available = (document.getElementById("body").offsetHeight-(vm.$refs.SugarToolbar&&vm.$refs.SugarToolbar.isHidden()?0:(document.getElementById("main-toolbar")?document.getElementById("main-toolbar").offsetHeight:55)));
 			let grid = document.getElementById("grid");
 			let detail = document.getElementById("detail");
 			if (detail) { detail.style.height = available+"px"; }

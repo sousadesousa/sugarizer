@@ -353,3 +353,5 @@ canvas {
     font-size: 12px;
   }
 }
+
+:root { --toolbar-h: 64px; }

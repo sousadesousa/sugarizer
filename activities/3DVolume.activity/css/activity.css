@@ -611,3 +611,5 @@ body {
     display: none;
   }
 }
+
+:root { --toolbar-h: 64px; }

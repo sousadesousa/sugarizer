@@ -470,3 +470,5 @@ body {
    position: absolute;
  }
 }
+
+:root { --toolbar-h: 64px; }

@@ -465,3 +465,4 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+:root { --toolbar-h: 64px; }

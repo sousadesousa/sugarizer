@@ -209,3 +209,5 @@ body {
   visibility: hidden;
   z-index: 5;
 }
+
+:root { --toolbar-h: 64px; }

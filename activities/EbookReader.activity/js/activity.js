@@ -173,7 +173,7 @@ var app = new Vue({
 		},
 		settingsShown: function() {
 			var vm = this;
-			document.getElementById('popup-container').style.height = (document.getElementById("popup-toolbar").parentNode.offsetHeight - 55*2) + "px";
+			document.getElementById('popup-container').style.height = (document.getElementById("popup-toolbar").parentNode.offsetHeight - (document.getElementById("main-toolbar")?document.getElementById("main-toolbar").offsetHeight:55)*2) + "px";
 			document.getElementById('popup-ok-button').addEventListener('click', function() {
 				vm.$refs.settings.close(true);
 			});
