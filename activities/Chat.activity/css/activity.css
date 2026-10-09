@@ -501,3 +501,161 @@ body,
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Fullscreen button: the dark #282828 square becomes a light card with the shared shadow */
+#main-toolbar.fullscreen #fullscreen-button {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	box-shadow: var(--shadow-card);
+}
+
+/* Messages: a light tint of the sender's colour, a thin line and a soft radius instead of the solid frame */
+.msg-text,
+.msg-tag {
+	background-color: var(--surface);
+	background-color: color-mix(in srgb, var(--fill) 30%, var(--surface));
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-l);
+	color: var(--ink);
+}
+
+.msg-text {
+	padding: 12px 16px;
+	font-family: var(--font-body);
+}
+
+.msg-sender {
+	color: var(--ink-soft);
+	font-family: var(--font-display);
+	font-size: 15px;
+	-webkit-text-stroke: 0;
+	text-stroke: 0;
+}
+
+.msg-remove {
+	color: var(--ink-soft);
+}
+
+.msg-img .msg-remove {
+	background: var(--surface);
+	border: 1px solid var(--line);
+}
+
+.msg-img img {
+	border-radius: var(--radius-l);
+}
+
+.msg-tag {
+	padding: 6px 12px;
+	font-family: var(--font-display);
+	font-weight: 500;
+}
+
+.msg-tag-name {
+	color: var(--ink);
+}
+
+/* Message input: a light field with a thin line; the send arrow sits on an ink square */
+.chat-input {
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-l);
+	background-color: var(--surface);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+}
+
+.chat-textarea {
+	color: var(--ink);
+}
+
+.chat-textarea.disabled::placeholder {
+	color: var(--ink-soft);
+}
+
+/* the journal button sits in a .toolbar, which the shared sheet makes toolbar-height: keep it inline */
+.chat-group .toolbar {
+	height: auto;
+	border: 0;
+	margin: 0;
+}
+
+.chat-group .toolbar .toolbutton {
+	margin: 0;
+}
+
+#insert-journal:hover,
+#insert-journal:active,
+#insert-journal:focus-visible,
+.emoji-btn:focus-visible {
+	background-color: var(--tile);
+}
+
+.send-btn,
+.send-btn:active {
+	min-width: var(--target);
+	padding: 0 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--ink);
+	border: none;
+	border-radius: 0;
+}
+
+.send-btn svg path {
+	fill: var(--on-ink);
+}
+
+.send-btn:disabled {
+	background: var(--control);
+}
+
+.send-btn:disabled svg path {
+	fill: var(--ink-faint);
+}
+
+/* Emojis */
+.smiley-btn,
+.smiley-btn:hover {
+	color: var(--ink);
+}
+
+.emoji-popup {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+
+.emoji-category-container {
+	border-top: 1px solid var(--line);
+}
+
+.emoji-category.active {
+	background-color: var(--control);
+}
+
+.emoji-category:not(:last-child) {
+	border-right: 1px solid var(--line);
+}
+
+.emoji-btn {
+	color: var(--ink);
+}
+
+.emoji-btn:hover {
+	background-color: var(--tile);
+}
+
+/* Typing line and dots */
+.loader-container {
+	color: var(--ink-soft);
+	font-family: var(--font-body);
+}
+
+.dot {
+	background: var(--ink-faint);
+}
