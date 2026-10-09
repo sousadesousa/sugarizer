@@ -612,3 +612,206 @@ p {
 	.data-labels,.input-group input,.cell-group .cell { font-size: 14px; }
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+body {
+	color: var(--ink);
+	background: var(--surface);
+}
+
+/* Toolbar leftovers: no grey hover border, short hairline dividers, transparent */
+#main-toolbar .toolbutton:hover {
+	border: 0;
+}
+.seprator-line,
+#config-toolbar hr {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+#config-toolbar hr {
+	margin: 0 10px;
+	margin-top: calc((var(--toolbar-h) - 24px) / 2);
+}
+#app.fullscreen #fullscreen-button {
+	background-color: var(--surface);
+	box-shadow: var(--shadow-card);
+}
+#export-formats button {
+	position: relative;
+	margin: 5px;
+	width: var(--target);
+	height: var(--target);
+	border-radius: var(--radius-m);
+	background-color: transparent;
+	background-size: 0 0;
+}
+#export-formats button:hover {
+	background-color: var(--tile);
+}
+#export-formats button:active {
+	background-color: var(--control);
+}
+#export-formats button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 78%;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+#sub-toolbar .colorpalette,
+.colorpalette .palette-invoker {
+	border: 2px solid var(--line-strong);
+}
+
+/* Colour palette: its script paints the body black inline, so override it (!important) */
+.colorpalette [style*="background-color: black"] {
+	background-color: var(--surface) !important;
+}
+.colorpalette .colors button {
+	border-color: var(--line-strong);
+}
+
+/* Font palette: the script marks the chosen font with an inline red border */
+.palette button[lineheight] {
+	border: 1px solid var(--line) !important;
+	background-color: var(--surface) !important;
+	border-radius: var(--radius-m);
+}
+.palette button[lineheight]:hover {
+	background-color: var(--tile) !important;
+}
+.palette button[lineheight][style*="solid red"] {
+	border: 2px solid var(--ink) !important;
+	background-color: var(--control) !important;
+}
+
+/* Layout: the page fills the window, so the table's buttons stay on screen with or without the config row */
+#app:not(.fullscreen) {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+#app:not(.fullscreen) > .activity-container {
+	flex: 1 1 0;
+	min-height: 0;
+}
+#app:not(.fullscreen) .activity-container .chart-container {
+	height: auto;
+	min-height: 0;
+}
+#app:not(.fullscreen) .activity-container .data-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+#app:not(.fullscreen) .activity-container .data-container .input-container {
+	flex: 1 1 auto;
+	height: auto;
+	min-height: 0;
+}
+.data-container .swap-fields {
+	flex-shrink: 0;
+}
+.data-container .swap-fields .toolbutton {
+	margin: 0 2px;
+}
+.csv-container {
+	top: var(--toolbar-h);
+	height: calc(100vh - var(--toolbar-h) - 42px);
+	background-color: var(--surface);
+}
+
+/* Data table (left) */
+.data-container {
+	width: 22%;
+	border-right: 1px solid var(--line);
+}
+.data-labels {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1rem;
+	background-color: var(--tile);
+	color: var(--ink);
+}
+.data-label {
+	border: 1px solid var(--line);
+	color: var(--ink);
+}
+.input-group input,
+.cell-group .cell {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	color: var(--ink);
+	font-family: var(--font-body);
+}
+.input-group.active input {
+	border-color: var(--accent);
+}
+.input-group.active::after,
+.cell.active::after,
+.cell.active.last,
+.csv-header .cell.active::after {
+	border-color: var(--accent);
+}
+.select-group .data-label.active {
+	background-color: var(--control);
+}
+.select-group .data-label.disabled {
+	color: var(--ink-faint);
+}
+
+/* CSV view: same table recipe as the data table */
+.csv-container .csv-header .cell {
+	background-color: var(--tile) !important;
+	color: var(--ink);
+}
+.csv-container .cell-group .cell:nth-of-type(1),
+.csv-container .cell-group .cell:nth-of-type(2) {
+	background-color: var(--ok-tint);
+}
+.csv-container .cell-group .cell {
+	background-color: var(--surface);
+	color: var(--ink);
+}
+.csv-header .cell.invalid {
+	background-color: var(--bad-tint) !important;
+}
+.csv-container .csv-header .marker {
+	color: var(--ink);
+	background-color: var(--tile);
+}
+.csv-container .marker {
+	border: 1px solid var(--line);
+	color: var(--ink-soft);
+	background-color: var(--surface);
+}
+
+/* Narrow screens: the table needs room for its labels */
+@media (max-width: 800px) {
+	.data-container {
+		width: 40%;
+	}
+	.chart-container {
+		width: 60%;
+	}
+	.data-label {
+		padding: .5rem;
+	}
+	.input-group input,
+	.cell-group .cell {
+		padding-inline: 8px;
+	}
+}

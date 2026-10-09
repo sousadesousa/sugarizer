@@ -355,3 +355,91 @@ canvas {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+body {
+  color: var(--ink);
+  background-color: var(--bg);
+}
+
+/* Toolbar leftovers: 1px short dividers in the shared colour */
+.toolbar hr {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1px;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  border: 0;
+  background-color: var(--line-strong);
+}
+
+.icon-button {
+  height: var(--target);
+  border: 0;
+  border-radius: var(--radius-m);
+  background-color: var(--control);
+  color: var(--ink);
+}
+
+/* Fullscreen exit button: a small light tile over the clock */
+#unfullscreen-button {
+  background-color: var(--surface);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+
+/* Digital readout under the clock (set time to target): the "??" is yellow by script (inline style), unreadable on white */
+#text-time [style*="FFFF00" i] {
+  color: var(--ink-soft) !important;
+}
+#text-time {
+  color: var(--ink);
+}
+
+/* Global time palette (opened from the globe button): white surface, dark text */
+.global-time-palette {
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  border-radius: var(--radius-l);
+}
+
+.global-time-title {
+  color: var(--ink);
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+.global-time-list {
+  background-color: var(--surface);
+  padding: 0 8px 4px;
+}
+
+.global-time-item {
+  box-sizing: border-box;
+  min-height: var(--target);
+  padding: 10px 12px;
+  color: var(--ink);
+  font-size: 14px;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+.global-time-item:hover {
+  background-color: var(--tile);
+  outline: none;
+}
+
+.global-time-item.active {
+  background-color: var(--control);
+  border: 0;
+}
+
+.global-time-offset {
+  color: var(--ink);
+}
+/* js/activity.js:289 sets #canvas top to a literal 55px when leaving fullscreen; the toolbar is --toolbar-h tall */
+#canvas[style*="top: 55px"] {
+  top: var(--toolbar-h) !important;
+}

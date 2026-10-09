@@ -701,3 +701,104 @@ div[slider] > input[type=range]::-ms-tooltip {
 	border: 0px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: dividers and the fullscreen-return button */
+#main-toolbar .splitbar {
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+
+#main-toolbar #unfullscreen-button {
+	border-radius: var(--radius-m);
+	background-color: transparent;
+}
+
+#main-toolbar #unfullscreen-button:hover {
+	background-color: var(--tile);
+}
+
+/* Empty and loading states (the page background, outside the game field) */
+#nomatchingtext {
+	color: var(--ink-soft);
+	font-family: var(--font-display);
+}
+
+#cloudwarning {
+	left: 50%;
+	top: 50%;
+	margin: 0;
+	transform: translate(-50%, -50%);
+}
+
+/* Palettes: rows are white with dark text. The scripts paint the rows black
+   (grey when selected) with inline styles, so the rules below use !important. */
+#regionpalette div[style*="border-radius"],
+#thingpalette div[style*="border-radius"] {
+	display: flex !important;
+	align-items: center;
+	box-sizing: border-box;
+	min-height: var(--target);
+	padding: 0 8px 0 0;
+	border-radius: var(--radius-m) !important;
+	background: transparent !important;
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+#regionpalette div[style*="border-radius"]:hover,
+#thingpalette div[style*="border-radius"]:hover {
+	background: var(--tile) !important;
+}
+
+/* selected region: the script sets rgb(127, 127, 127) on it (listed after :hover so it wins) */
+#regionpalette div[style*="border-radius"][style*="127, 127, 127"] {
+	background: var(--control) !important;
+}
+
+/* the pictograms are white for a black row: invert them to dark ink */
+#regionpalette img,
+[id^="pthingimg"] {
+	filter: invert(1);
+}
+
+/* income slider: track, handles and the range the script paints in the user colour */
+[slider] > div > [inverse-left],
+[slider] > div > [inverse-right] {
+	background-color: var(--control);
+}
+
+[slider] > div > [range] {
+	background-color: var(--ink) !important;
+}
+
+[slider] > div > [thumb] {
+	box-sizing: border-box;
+	background-color: var(--surface);
+	border: 2px solid var(--ink);
+}
+
+#slider-min,
+#slider-max,
+.family-income,
+.family-name {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+.family-bymonth,
+.family-content {
+	color: var(--ink-soft);
+}
+
+/* Photo frames and the photo viewer: light instead of grey and black */
+.family-image-container,
+.popup-image {
+	background-color: var(--tile);
+}

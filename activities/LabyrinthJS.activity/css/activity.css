@@ -472,3 +472,164 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Sub toolbar: text idea, colour, font row */
+#sub-toolbar {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+
+/* dividers of both toolbars */
+.toolbar .splitbar {
+  width: 1px;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  background-color: var(--line-strong);
+  background-image: none;
+}
+
+/* the activity hides dividers below 905px (visibility only): keep them out of the layout too */
+@media screen and (max-width: 905px) {
+  .toolbar .splitbar {
+    width: 0;
+    margin: 0;
+  }
+}
+
+/* Text field (grey pill in the old look) */
+#sub-toolbar .search-field-border.search-field-border-nofocus,
+#sub-toolbar .search-field-border.search-field-border-focus {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  top: 10px;
+  height: var(--target);
+  margin-left: 12px;
+  background-color: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+}
+
+#sub-toolbar .search-field-border:focus-within {
+  border-color: var(--focus);
+}
+
+#sub-toolbar .search-field-input {
+  top: 0;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0 44px 0 12px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 40px;
+}
+
+#sub-toolbar .search-field-input::placeholder {
+  color: var(--ink-faint);
+}
+
+#sub-toolbar .search-field-border .search-field-iocancel {
+  top: 0;
+  right: 0;
+  width: var(--target);
+  height: 100%;
+  margin: 0;
+  transform: none;
+  background-color: transparent;
+  background-size: 20px 20px;
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+}
+
+#sub-toolbar .search-field-border .search-field-iocancel:hover {
+  background-color: var(--tile);
+}
+
+/* Colour of the text: the swatch of the current colour, and the white one, which needs an edge */
+#background-button {
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+#foreground-button:before {
+  border-top-color: var(--on-ink);
+}
+
+/* Palettes: white surface, dark text, 44px rows */
+.palette .wrapper {
+  color: var(--ink);
+}
+
+/* colour palette body is painted black inline by the script: chrome, so !important */
+.palette .container {
+  background-color: var(--surface) !important;
+  color: var(--ink);
+}
+
+/* white colour swatch needs an edge on the white palette */
+.palette .colors button {
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.palette .menu button,
+.palette .row button {
+  min-height: var(--target);
+}
+
+.palette .zoombuttons {
+  background-color: var(--surface);
+  border: 0;
+  border-radius: var(--radius-m);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.palette .zoombuttons:hover {
+  background-color: var(--tile);
+}
+
+.palette .zoombuttons:active {
+  background-color: var(--control);
+}
+
+/* font palette: the script draws the selected font with an inline red border; use the focus colour */
+#fontpalette button:hover {
+  background-color: var(--tile) !important;
+}
+
+#fontpalette button[style*="255, 0, 0"] {
+  border: 2px solid var(--focus) !important;
+}
+
+/* palette text fields (activity title, description) */
+.palette input[type='text'],
+.palette textarea {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  color: var(--ink);
+}
+
+.palette input[type='text']:focus,
+.palette textarea:focus {
+  background-color: var(--surface);
+  border-color: var(--focus);
+}
+
+/* libnotify toast (PNG export): light surface instead of the black panel */
+.humane,
+.humane-libnotify {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-body);
+}

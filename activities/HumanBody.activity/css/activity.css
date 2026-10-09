@@ -561,3 +561,163 @@ body {
     border: 0px; 
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* toolbar dividers: 1px x 24px, centred in the bar */
+.seprator-line {
+    box-sizing: border-box;
+    width: 1px;
+    height: 24px;
+    margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+    vertical-align: top;
+    background-color: var(--line-strong);
+}
+
+/* selected toolbar and palette buttons: var(--control), overriding the old .active #656565 */
+.toolbar .toolbutton.active,
+.palette .toolbutton.active {
+    background-color: var(--control) !important;
+}
+
+/* palette buttons (zoom, model, colour) lose their black fills and draw dark icons */
+.palette .toolbutton:hover {
+    background-color: var(--tile) !important;
+}
+.zoom-palette .toolbutton,
+.model-palette .toolbutton {
+    background-color: transparent !important;
+    border: 0;
+    border-radius: var(--radius-m);
+    min-width: var(--target);
+    min-height: var(--target);
+}
+.model-palette .toolbutton.active {
+    background-color: var(--control) !important;
+}
+
+/* colour button of the toolbar: keep the chosen colour, give it a ring */
+#color-button-fill {
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+/* colour palette */
+.color-palette {
+    background-color: var(--surface);
+    border: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+}
+.color-palette label {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 15px;
+}
+.color-fill {
+    box-sizing: border-box;
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--line-strong);
+}
+
+/* settings palette: rows of at least 44px, dark text, icons drawn dark */
+.settings-palette .settings-button {
+    box-sizing: border-box;
+    width: auto;
+    margin: 4px;
+    padding: 10px 16px;
+    min-height: var(--target);
+    color: var(--ink);
+    background-color: transparent;
+    border-radius: var(--radius-m);
+    font-family: var(--font-display);
+    font-weight: 500;
+    cursor: pointer;
+}
+.settings-palette .settings-button img {
+    filter: invert(1) hue-rotate(180deg);
+}
+.settings-palette .settings-button:hover {
+    background-color: var(--tile);
+}
+.settings-palette .settings-button.active {
+    background-color: var(--control) !important;
+}
+
+/* dialogs and popups: surface, ink, one hairline, rounded */
+.custom-modal {
+    background-color: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-pop);
+    font-family: var(--font-display);
+    font-weight: 500;
+    padding: 24px;
+}
+.paint-modal {
+    background-color: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-pop);
+    font-family: var(--font-display);
+}
+.leaderboard {
+    background-color: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-pop);
+    font-family: var(--font-body);
+}
+.leaderboard h2 {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 500;
+}
+.leaderboard th {
+    background-color: var(--tile);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+}
+.leaderboard td {
+    border-bottom: 1px solid var(--line);
+}
+
+/* unfullscreen button (shown only in fullscreen): light chip with a dark icon */
+#unfullscreen-button {
+    background-color: var(--surface);
+    background-size: 0 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-m);
+}
+#unfullscreen-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 78%;
+    filter: invert(1) hue-rotate(180deg);
+    pointer-events: none;
+}
+/* phones: the colour palette is pinned under the toolbar instead of running off the right edge */
+@media (max-width: 600px) {
+    .palette .wrapper {
+        position: fixed !important;
+        top: calc(var(--toolbar-h) + 8px) !important;
+        left: 8px !important;
+        right: 8px !important;
+        width: auto !important;
+        max-width: none !important;
+        border-radius: var(--radius-l) !important;
+    }
+    .color-palette {
+        width: auto !important;
+    }
+}

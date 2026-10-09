@@ -351,3 +351,116 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: dividers and the fullscreen-return button */
+#main-toolbar .splitbar {
+	background-image: none;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+
+#unfullscreen-button {
+	border-radius: var(--radius-m);
+	background-color: transparent;
+}
+
+#unfullscreen-button:hover {
+	background-color: var(--tile);
+}
+
+/* Page background (the user's colour is painted inline by the script: !important here) */
+#canvas {
+	background-color: var(--bg) !important;
+}
+
+/* Empty and loading states: centred on the page */
+#cloudwarning,
+#spinner {
+	left: 50%;
+	top: 50%;
+	margin: 0;
+	transform: translate(-50%, -50%);
+}
+
+/* Offline library: cards on the page, with a 16px gutter at the sides */
+#canvas > .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.library-col {
+	padding: 8px 16px;
+}
+
+.library-item {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+	color: var(--ink-soft);
+	font-family: var(--font-body);
+}
+
+.library-item-title {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* Settings popup (picoModal): card with the redesign's border, radius and shadow */
+.pico-overlay {
+	background-color: var(--ink) !important;
+	opacity: .35 !important;
+}
+
+.pico-content {
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+
+#popup-toolbar {
+	border-radius: var(--radius-l) var(--radius-l) 0 0;
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+#popup-toolbar > div {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+
+/* the script sizes this from a 55px toolbar (too short for the 44px field): let it size itself */
+#popup-container {
+	height: auto !important;
+}
+
+.popup-label {
+	color: var(--ink-soft);
+	font-family: var(--font-display);
+}
+
+.popup-input {
+	box-sizing: border-box;
+	width: min(400px, 100%);
+	height: var(--target);
+	padding: 0 12px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	background-color: var(--tile);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 16px;
+	outline: 0;
+}
+
+.popup-input:focus {
+	background-color: var(--surface);
+	border-color: var(--focus);
+}

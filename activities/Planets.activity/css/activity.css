@@ -307,3 +307,70 @@ canvas {
   -webkit-transition-timing-function: ease;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* planet info popup: a light panel beside the 3D view, dark ink */
+#planet-info {
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+}
+#planet-info .info p {
+    color: var(--ink);
+    font-size: 15px;
+}
+#planet-info .info p:first-of-type {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 500;
+}
+
+/* back arrow of the planet view: light chip so its icon reads on the panel */
+#back-button {
+    background-color: var(--surface);
+    background-size: 0 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-m);
+    box-sizing: border-box;
+    width: var(--target);
+    height: var(--target);
+}
+#back-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 78%;
+    filter: invert(1) hue-rotate(180deg);
+    pointer-events: none;
+}
+#back-button:hover {
+    background-color: var(--tile);
+}
+
+/* unfullscreen chip: light surface with a dark icon */
+#unfullscreen-button {
+    background-color: var(--surface);
+    background-size: 0 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-m);
+}
+#unfullscreen-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 78%;
+    filter: invert(1) hue-rotate(180deg);
+    pointer-events: none;
+}

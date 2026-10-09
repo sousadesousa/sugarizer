@@ -462,3 +462,28 @@ p {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Toolbar: a narrow phone toolbar scrolls sideways instead of hiding its right-hand buttons */
+#main-toolbar.toolbar { overflow-x: auto; overflow-y: hidden; }
+#main-toolbar .splitbar { box-sizing: border-box; display: inline-block; vertical-align: top; height: 24px; border-right: 1px solid var(--line-strong); margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0; }
+.toolbar .toolbutton:hover { background-color: var(--tile); }
+.toolbar .toolbutton.active, .toolbar .toolbutton:active { background-color: var(--control); }
+
+/* Palettes: dark text, selected = control, targets 44px */
+.palette { color: var(--ink); }
+.palette .toolbutton { color: var(--ink); }
+.palette .toolbutton:hover { background-color: var(--tile); }
+.palette .toolbutton.active, .palette .toolbutton:active { background-color: var(--control); color: var(--ink); }
+.zoombuttons { background-color: var(--tile); border-radius: var(--radius-m); min-width: var(--target); min-height: var(--target); }
+.zoombuttons:hover, .zoombutton:active { background-color: var(--control); }
+
+/* Lights editing screen (opened by the settings button): page background, white zones, ink labels */
+.detailBg, #detail { background-color: var(--bg); }
+.label-drag { font-family: var(--font-display); color: var(--ink); }
+#drag-icons-zone, #drop-icons-zone, #drag-colors-zone, #drop-colors-zone { background-color: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-l); }
+.delete-button { top: 0; width: var(--target); height: var(--target); border-radius: var(--radius-pill); }
+#empty-text-icon, #empty-text-color { color: var(--ink-soft); font-family: var(--font-display); }
+
+/* Start screen background: white surface (the icon grid is the design) */
+.gridBg { background-color: var(--surface); }

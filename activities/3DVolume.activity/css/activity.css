@@ -613,3 +613,27 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Toolbar: a narrow phone toolbar scrolls sideways instead of hiding its right-hand buttons */
+.toolbar { overflow-x: auto; overflow-y: hidden; }
+.toolbar hr { box-sizing: border-box; display: inline-block; width: 1px; height: 24px; margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0; vertical-align: top; border: 0; background-color: var(--line-strong); }
+/* selected shape / clear button: control colour (overrides the dark grey .active of this activity) */
+.active { background-color: var(--control) !important; }
+/* shape and volume buttons: no black tiles */
+.button-background { background-color: transparent; }
+
+/* Palettes: white surfaces, dark text, selected = control, targets 44px */
+.palette .toolbutton { background-color: transparent; }
+.palette .toolbutton:hover { background-color: var(--tile); }
+#zoom-in-button, #zoom-out-button, #zoom-equal-button, #zoom-to-button { background-color: var(--tile); border-radius: var(--radius-m); }
+#zoom-in-button:hover, #zoom-out-button:hover, #zoom-equal-button:hover, #zoom-to-button:hover { background-color: var(--control); }
+.bg-select { background-color: var(--surface); color: var(--ink); width: fit-content; }
+.bg-select h4 { color: var(--ink); font-family: var(--font-display); font-weight: 500; }
+.bg-select-item { color: var(--ink); min-height: var(--target); border-radius: var(--radius-m); }
+.bg-select-item:hover { background-color: var(--tile); }
+.bg-select-item div { color: var(--ink); }
+.color-palette { background-color: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-l); max-width: calc(100vw - 32px); box-sizing: border-box; }
+.color-fill, .color-text { border: 2px solid var(--line-strong); }
+.slider-container label { color: var(--ink); font-family: var(--font-display); }
+#color-button-fill, #color-button-text { border: 1px solid var(--line-strong); box-sizing: border-box; }

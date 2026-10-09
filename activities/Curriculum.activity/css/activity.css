@@ -394,3 +394,248 @@ p {
 	border: 0px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Chrome of the activity restyled for the shared look. Rules are prefixed with #app or body
+   because the activity's other stylesheets (TemplateSelection, Skills, Settings...) load after this file. */
+
+/* Toolbar: the splitbar was a 40px black rule; make it the shared 24px divider */
+#main-toolbar .splitbar {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	vertical-align: top;
+	border: 0;
+	background-color: var(--line-strong);
+}
+
+/* Start screen: template cards and the round add button */
+#app .template-selection {
+	color: var(--ink);
+}
+#app .template {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-card);
+	color: var(--ink);
+}
+#app .template .template-image {
+	background-color: var(--surface);
+}
+#app .template span {
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+#app .template-selection #add-button {
+	background-color: var(--ink);
+	box-shadow: var(--shadow-card);
+}
+#app .template-selection #add-button:hover {
+	background-color: var(--ink-soft);
+}
+
+/* Add Template dialog */
+#app .template-popup {
+	background: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	font-family: var(--font-body);
+}
+#app .template-popup .popup-header {
+	background: var(--surface);
+	color: var(--ink);
+	border-bottom: 1px solid var(--line);
+	border-radius: var(--radius-l) var(--radius-l) 0 0;
+	padding: 12px 12px 12px 16px;
+}
+#app .template-popup .popup-header h2 {
+	font-family: var(--font-display);
+	font-size: 17px;
+	font-weight: 500;
+	color: var(--ink);
+}
+#app .template-popup .popup-header .popup-buttons button {
+	position: relative;
+	width: var(--target);
+	height: var(--target);
+	background-color: transparent;
+	background-size: 0 0 !important;
+	border-radius: var(--radius-m);
+}
+#app .template-popup .popup-header .popup-buttons button:hover {
+	background-color: var(--tile);
+}
+#app .template-popup .popup-header .popup-buttons button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 78%;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+#app .template-popup .popup-body {
+	color: var(--ink-soft);
+}
+#app .template-popup .popup-body input {
+	box-sizing: border-box;
+	min-height: var(--target);
+	padding: 0 12px;
+	color: var(--ink);
+	font-family: var(--font-body);
+	background-color: var(--tile);
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-m);
+}
+#app .template-popup .popup-body input:focus {
+	background-color: var(--surface);
+	border-color: var(--focus);
+}
+
+/* Export palette: the format icons sat on black squares */
+body #export-formats button {
+	position: relative;
+	background-color: transparent;
+	background-size: 0 0 !important;
+	border-radius: var(--radius-m);
+}
+body #export-formats button:hover {
+	background-color: var(--tile);
+}
+body #export-formats button:active {
+	background-color: var(--control);
+}
+body #export-formats button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+
+/* Notation palette: black rows, grey selected row */
+body #notation-selector button {
+	min-height: var(--target);
+	color: var(--ink);
+	background-color: transparent;
+	border-radius: var(--radius-m);
+}
+body #notation-selector button:hover {
+	background-color: var(--tile);
+}
+body #notation-selector button.active,
+body #notation-selector button:active {
+	color: var(--ink);
+	background-color: var(--control);
+}
+body #notation-selector .medal span {
+	color: var(--ink-soft);
+}
+
+/* Upload Media palette: black column with white icons */
+body #media-upload button {
+	min-height: var(--target);
+	background-color: transparent;
+	border-radius: var(--radius-m);
+}
+body #media-upload button:hover {
+	background-color: var(--tile);
+}
+body #media-upload button img {
+	filter: invert(1) hue-rotate(180deg);
+}
+
+/* Settings: selected colour and image frames */
+#app .settings form .colors .color.selected {
+	border: solid 2px var(--ink);
+}
+#app .settings form img {
+	border: solid 1px var(--line-strong);
+}
+#app .settings-row button {
+	width: var(--target);
+	height: var(--target);
+}
+
+/* Uploaded proofs and their popup */
+#app .uploaded-item {
+	background: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+}
+#app .popup {
+	background: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+#app #popup-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: var(--target);
+	height: var(--target);
+	background-color: transparent;
+	background-size: 0 0 !important;
+	border-radius: var(--radius-m);
+}
+#app #popup-close:hover {
+	background-color: var(--tile);
+}
+#app #popup-close::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: inherit;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}
+
+/* Rewards: captions were grey on white, now the shared text colours */
+#app .trophy-card h4,
+#app .trophy-card p {
+	color: var(--ink-soft);
+}
+
+/* Achievement and other notifications: black boxes become surfaces */
+body .humane,
+body .humane-libnotify,
+body .humane.humane-libnotify-info,
+body .humane.humane-libnotify-success,
+body .humane.humane-libnotify-error,
+body .humane-libnotify.humane-libnotify-info,
+body .humane-libnotify.humane-libnotify-success,
+body .humane-libnotify.humane-libnotify-error {
+	background-color: var(--surface);
+	background-image: none;
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	font-family: var(--font-body);
+}

@@ -602,3 +602,98 @@ p {
 	max-width: 350px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar leftovers: dividers, dark text and fonts of the old look */
+#main-toolbar .splitbar {
+  width: 1px;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  border: 0;
+  background-color: var(--line-strong);
+  background-image: none;
+}
+
+/* the activity hides dividers below 905px (visibility only): keep them out of the layout too */
+@media screen and (max-width: 905px) {
+  #main-toolbar .splitbar {
+    width: 0;
+    margin: 0;
+  }
+}
+
+/* Graph area text under the oscilloscope grid (the grid itself is the design and stays black) */
+#axisScale {
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+}
+
+#axisScale #domainName {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+/* Palettes: white surface, dark text, rows of at least 44px, selected = var(--control) */
+.palette .wrapper {
+  color: var(--ink);
+}
+
+.palette .palette-item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: auto;
+  min-height: var(--target);
+  padding: 0 12px;
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.palette .palette-item:hover {
+  background-color: var(--tile);
+}
+
+/* the script selects a row with an inline grey background: chrome, so !important */
+.palette .palette-item[style*="darkgray"] {
+  background-color: var(--control) !important;
+}
+
+/* export palette: the two buttons are black squares with white icons; keep the icons, drop the black */
+#export-formats button {
+  background-color: transparent;
+  border-radius: var(--radius-m);
+  filter: invert(1) hue-rotate(180deg);
+}
+
+#export-formats button:hover {
+  opacity: .7;
+}
+
+/* palette text fields and their surfaces */
+.palette input[type='text'],
+.palette textarea {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  color: var(--ink);
+}
+
+.palette input[type='text']:focus,
+.palette textarea:focus {
+  background-color: var(--surface);
+  border-color: var(--focus);
+}
+
+/* libnotify toast (PNG or CSV export): light surface instead of the black panel */
+.humane,
+.humane-libnotify {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-body);
+}

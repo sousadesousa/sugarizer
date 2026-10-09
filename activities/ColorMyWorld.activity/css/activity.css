@@ -466,3 +466,87 @@ body {
 	align-items: center;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+/* Colour palette: the script paints its container black (inline style); it becomes a light surface */
+.colorpalette .container {
+	background-color: var(--surface) !important;
+	color: var(--ink);
+	font-family: var(--font-display);
+}
+.palette .colors button {
+	border: 1px solid var(--line-strong);
+}
+/* the green swatch on the toolbar (its fill is set by script) gets an edge that reads on white */
+#color-button {
+	border: 1px solid var(--line-strong);
+	box-sizing: border-box;
+}
+/* Mode and region labels: white on white before, now ink */
+.modelabel,
+.regionlabel,
+.languagelabel {
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-size: 18px;
+	font-weight: 500;
+}
+/* the region icon is a white svg (made for the dark bar): inverted so it reads on white */
+.regionlabel {
+	filter: invert(1) hue-rotate(180deg);
+}
+.palette-button-selected {
+	background-color: var(--control);
+}
+/* Zoom palette: hover was a grey block */
+.zoombuttons:hover {
+	background-color: var(--tile);
+}
+/* Popups: country information and the end-of-game message (shared #popup element) */
+#popup {
+	box-sizing: border-box;
+	background-color: var(--surface);
+	color: var(--ink);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	padding: 16px;
+	font-family: var(--font-body);
+}
+#popup h1,
+#popup h3 {
+	font-family: var(--font-display);
+	color: var(--ink);
+	margin: 8px 0;
+}
+#popup h3 {
+	color: var(--ink-soft);
+}
+/* Phone width: the colour palette is 372px wide from the script and runs off the right edge. Stack swatches above the sliders and keep the palette inside the screen. */
+@media screen and (max-width: 560px) {
+	.colorpalette .wrapper {
+		max-width: calc(100vw - 124px) !important;
+	}
+	.colorpalette .container {
+		height: auto !important;
+		overflow: visible !important;
+	}
+	.colorpalette .colors > div {
+		width: auto !important;
+	}
+	.colorpalette .colors > div > div {
+		float: none !important;
+		width: auto !important;
+		padding-top: 4px !important;
+	}
+}
+/* Phone width: the toolbar buttons no longer fit on one row, so the Tutorial button wrapped under the canvas and could not be pressed. Tighter gutters keep all eight buttons on the bar; they stay 44px. */
+@media screen and (max-width: 560px) {
+	#main-toolbar {
+		padding: 0 4px;
+	}
+	#main-toolbar .toolbutton {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
