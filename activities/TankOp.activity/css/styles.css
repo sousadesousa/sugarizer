@@ -65,7 +65,7 @@
 
 .status-line {
 	position: absolute;
-	top: 55px;
+	top: calc(var(--toolbar-h) + 8px);
 	right: 1%;
 	font-family: 'Conv_BlackOpsOne-Regular';
 	font-size: 24px;
