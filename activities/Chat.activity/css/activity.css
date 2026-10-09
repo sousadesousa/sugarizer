@@ -504,7 +504,7 @@ body,
 
 /* Redesign */
 
-/* Fullscreen button: the dark #282828 square becomes a light card with the shared shadow */
+/* Fullscreen button: the dark square becomes a light card with the shared shadow */
 #main-toolbar.fullscreen #fullscreen-button {
 	background-color: var(--surface);
 	border: 1px solid var(--line);
