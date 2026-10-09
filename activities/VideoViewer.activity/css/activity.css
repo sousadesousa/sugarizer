@@ -736,3 +736,5 @@ body {
 	padding: 0;
 	vertical-align: top;
 }
+
+:root { --toolbar-h: 64px; }

@@ -112,3 +112,4 @@
 	box-shadow: 0 0 0 0rem rgba(158, 158, 158, .5);
 	border: 0px;
 }
+:root { --toolbar-h: 64px; }

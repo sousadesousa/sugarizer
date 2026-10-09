@@ -179,3 +179,5 @@ body{
     right: 3%;
   }
 }
+
+:root { --toolbar-h: 64px; }
