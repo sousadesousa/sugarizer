@@ -548,3 +548,161 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: one row that scrolls sideways on narrow screens, so the right-hand buttons stay reachable */
+#main-toolbar {
+	display: flex;
+	align-items: flex-start;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+#main-toolbar > * {
+	flex: 0 0 auto;
+}
+
+#main-toolbar .pull-right {
+	margin-left: 0;
+}
+
+/* the first right-hand button is pushed to the right edge */
+#main-toolbar #stop-button {
+	margin-left: auto;
+}
+
+/* dividers: 1px wide, 24px high, no icon */
+.splitbar {
+	display: block;
+	box-sizing: border-box;
+	width: 1px;
+	height: 24px;
+	margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+	background-image: none;
+	background-color: var(--line-strong);
+}
+
+/* disabled stays visible (dark icon at reduced strength), without a hover box */
+button:disabled {
+	opacity: .45 !important;
+}
+
+button:disabled:hover {
+	background-color: transparent;
+}
+
+/* palette of letter styles (templates) */
+.palette-item {
+	width: calc(var(--target) + 12px);
+	height: calc(var(--target) + 12px);
+	border-radius: var(--radius-m);
+}
+
+.palette-item:hover {
+	background-color: var(--tile);
+}
+
+.palette-item:active {
+	background-color: var(--control);
+}
+
+/* palette text: dark ink, body font */
+.palette input#title.expand,
+.palette textarea#description.expand {
+	color: var(--ink);
+	font-family: var(--font-body);
+}
+
+/* zoom palette: light buttons instead of black ones */
+.zoombuttons {
+	border: 0;
+	background-color: var(--tile);
+	border-radius: var(--radius-m) !important;
+}
+
+.zoombuttons:hover {
+	background-color: var(--control);
+}
+
+.zoombuttons:active {
+	background-color: var(--control);
+}
+
+/* text popup (picoModal box and its field) */
+.pico-content {
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+}
+
+.popup-input {
+	color: var(--ink);
+	background-color: var(--surface);
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-l);
+}
+
+.popup-input:focus {
+	border-color: var(--focus);
+	outline: none;
+}
+
+/* icon buttons on the page (editor and player): no grey square, touch size */
+.editor-add,
+.editor-remove,
+.editor-addpath,
+.editor-removepath,
+.player-restart,
+.player-next {
+	width: var(--target);
+	height: var(--target);
+	background-color: transparent;
+	border-color: transparent;
+	border-radius: var(--radius-pill);
+}
+
+.editor-add:hover,
+.editor-remove:hover,
+.editor-addpath:hover,
+.editor-removepath:hover,
+.player-restart:hover,
+.player-next:hover {
+	background-color: var(--tile);
+}
+
+.editor-add:disabled,
+.editor-remove:disabled,
+.editor-addpath:disabled,
+.editor-removepath:disabled,
+.player-restart:disabled {
+	background-color: transparent;
+}
+
+/* fullscreen exit button: light, with a dark icon drawn on a pseudo-element */
+#unfullscreen-button {
+	background-image: none;
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-m);
+	box-shadow: var(--shadow-card);
+	margin: 0;
+	width: var(--target);
+	height: var(--target);
+	top: calc((var(--toolbar-h) - var(--target)) / 2);
+}
+
+#unfullscreen-button::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url(../icons/view-return.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 78%;
+	filter: invert(1) hue-rotate(180deg);
+	pointer-events: none;
+}

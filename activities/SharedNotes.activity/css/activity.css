@@ -398,3 +398,69 @@ body {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Toolbar: dividers, colour button, no leftover dark art */
+.toolbar .splitbar {
+  box-sizing: border-box;
+  width: 1px;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  border: 0;
+  background-image: none;
+  background-color: var(--line-strong);
+}
+@media screen and (max-width: 905px) {
+  .toolbar .splitbar { visibility: hidden; width: 0; margin: 0; }
+}
+#main-toolbar #color-button {
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+/* Note colour palette: the script paints its body black inline (notepalette.js), so !important is needed */
+.palette.colorpalette .wrapper,
+.palette.colorpalette .container {
+  background-color: var(--surface) !important;
+}
+.palette .colors button {
+  border-color: var(--line-strong);
+  border-radius: var(--radius-m);
+}
+
+/* Zoom palette: buttons are black (.zoombuttons) and carry inline 55px sizes (zoompalette.js:21), left as they are */
+.palette .zoombuttons {
+  background-color: transparent !important;
+  border: 0;
+  border-radius: var(--radius-m) !important;
+  color: var(--ink);
+}
+.palette .zoombuttons:hover { background-color: var(--tile) !important; }
+.palette .zoombuttons:active { background-color: var(--control) !important; }
+
+/* Dialogs from the background colour chooser (picoModal + journal chooser) */
+.pico-overlay {
+  background-color: var(--ink) !important;
+  opacity: .35 !important;
+}
+.pico-content {
+  font-family: var(--font-body);
+  color: var(--ink);
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-l) !important;
+  box-shadow: var(--shadow-pop) !important;
+}
+#journal-container > div[id^="color_"] {
+  border-radius: var(--radius-m);
+}
+#journal-container > div[id^="color_"]:hover { background-color: var(--tile); }
+#journal-container > div[id^="color_"][style*="128, 128, 128"] { background-color: var(--control) !important; }
+#journal-container div[id^="colorText_"] {
+  color: var(--ink) !important;
+  font-family: var(--font-display) !important;
+}
+#journal-empty > div:last-child {
+  color: var(--ink-soft) !important;
+  font-family: var(--font-body);
+}

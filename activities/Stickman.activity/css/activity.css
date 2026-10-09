@@ -805,6 +805,8 @@ body {
 	background-color: var(--line-strong);
 }
 
+#main-toolbar { overflow-x: auto; overflow-y: hidden; }
+
 #minus-button:disabled { opacity: .35; }
 
 /* remove mode paints the button grey by script (inline style): show it as the active state */
@@ -1050,12 +1052,14 @@ body {
 
 .preview-add:hover { background-color: var(--ink-soft); }
 
-/* unfullscreen control floats over the canvas: dark pill, white icon */
+/* unfullscreen control floats over the canvas; its icon has its own white plate, so it sits on a surface card */
 #unfullscreen-button {
 	width: var(--target);
 	height: var(--target);
 	top: 10px;
 	right: 20px;
-	background-color: var(--ink);
+	background-color: var(--surface);
+	border: 1px solid var(--line);
 	border-radius: var(--radius-m);
+	box-shadow: var(--shadow-card);
 }

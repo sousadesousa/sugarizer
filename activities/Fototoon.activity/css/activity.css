@@ -463,3 +463,170 @@ background-size: 100% 1.2em;
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Page background: the ruled paper stays, the rules use the tokens */
+#canvas {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(90deg, transparent 79px, var(--line) 79px, var(--line) 81px, transparent 81px),
+    linear-gradient(var(--tile) .1em, transparent .1em);
+  background-size: 100% 1.2em;
+}
+
+#canvas p {
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+}
+
+/* Toolbar dividers: 1px x 24px line instead of the split image */
+.splitbar {
+  box-sizing: border-box;
+  width: 1px;
+  height: 24px;
+  margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+  vertical-align: top;
+  background-image: none;
+  background-color: var(--line-strong);
+}
+
+/* Page counter: white pill */
+#page-counter {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: var(--target);
+  min-width: var(--target);
+  padding: 0 16px;
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+#page-counter span {
+  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+/* Wait indicator: light card instead of the black disc */
+#wait {
+  box-sizing: border-box;
+  color: var(--ink);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  opacity: 1;
+}
+
+/* Text palette: the bold and italic toggles are set to grey by the script */
+#text-set-bold[style*="grey"],
+#text-set-italic[style*="grey"] {
+  background-color: var(--control) !important;
+}
+
+/* Text palette: colour swatches. The script sets the border inline, so these win with !important */
+.color-picker {
+  box-sizing: border-box;
+  border: 2px solid var(--line-strong) !important;
+}
+
+.color-picker[style*="5px solid"] {
+  border: 3px solid var(--ink) !important;
+}
+
+/* Toolbar palettes: item rows at least 44px, dark text */
+.palette .menu button {
+  box-sizing: border-box;
+  min-height: var(--target);
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+/* Globe menu: the icons were painted on the button in white, so they vanished on white.
+   They are now drawn on the span inside the button, which the shared sheet inverts to dark. */
+button.icon {
+  background-image: none !important;
+}
+
+button.icon > span {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 33px;
+  height: 33px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: 33px;
+}
+
+button#GLOBE.icon > span { background-image: url(../icons/globe.svg); }
+button#EXCLAMATION.icon > span { background-image: url(../icons/exclamation.svg); }
+button#WHISPER.icon > span { background-image: url(../icons/whisper.svg); }
+button#RECTANGLE.icon > span { background-image: url(../icons/box.svg); }
+button#CLOUD.icon > span { background-image: url(../icons/think.svg); }
+
+.palette .menu button.icon:active span {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Clean-all warning: picoModal paints it black with white text inline, so !important is needed */
+.pico-overlay {
+  background-color: var(--ink) !important;
+}
+
+.pico-content {
+  box-sizing: border-box !important;
+  padding: 16px !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-l) !important;
+  box-shadow: var(--shadow-pop) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body);
+}
+
+.pico-content div {
+  color: var(--ink) !important;
+}
+
+.pico-content b {
+  font-family: var(--font-display);
+}
+
+.pico-content .warningbox-refresh-button {
+  min-height: var(--target);
+  background-color: var(--ink) !important;
+  color: var(--on-ink) !important;
+  border: 0 !important;
+  border-radius: var(--radius-m);
+}
+
+.pico-content .warningbox-refresh-button:hover {
+  background-color: var(--ink-soft) !important;
+}
+
+.pico-content .warningbox-cancel-button {
+  min-height: var(--target);
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--radius-m);
+}
+
+.pico-content .warningbox-cancel-button:hover {
+  background-color: var(--tile) !important;
+}
+
+.pico-content .warningbox-cancel-button img {
+  filter: invert(1) hue-rotate(180deg);
+}

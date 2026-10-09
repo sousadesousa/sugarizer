@@ -26,3 +26,118 @@ button.icon span.html {
 }
 
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* The sugar 72dpi sheet (phone widths) loads after the shared sheet and paints the toolbar,
+   tabs and palettes dark: the light look is stated again here. */
+body {
+    color: var(--ink);
+    background-color: var(--bg);
+}
+#canvas {
+    color: var(--ink);
+    background-color: var(--bg);
+}
+
+/* Toolbar */
+.toolbar {
+    color: var(--ink);
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+.toolbar hr {
+    width: 1px;
+    height: 24px;
+    margin: calc((var(--toolbar-h) - 24px) / 2) 8px 0;
+    border: 0;
+    background-color: var(--line-strong);
+}
+@media (max-width: 800px) {
+    /* the phone toolbar is 40px high (sugar 72dpi), so the separators are centred there */
+    .toolbar hr {
+        margin: 8px 8px 0;
+    }
+}
+.toolbar .toolbutton {
+    color: transparent;
+    background-color: transparent;
+    border-radius: var(--radius-m);
+}
+.toolbar .toolbutton:hover {
+    background-color: var(--tile);
+}
+.toolbar .toolbutton:active,
+.toolbar .toolbutton.active {
+    background-color: var(--control);
+}
+
+/* Palettes opened from the toolbar (light surface, dark text, 44px rows) */
+.palette {
+    color: var(--ink);
+    font-family: var(--font-display);
+}
+.palette-invoker {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: var(--radius-m) var(--radius-m) 0 0;
+}
+.palette-invoker:before {
+    background-color: var(--surface);
+}
+.palette .wrapper {
+    color: var(--ink);
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0 var(--radius-l) var(--radius-l) var(--radius-l);
+    box-shadow: var(--shadow-pop);
+}
+.palette .header {
+    color: var(--ink);
+}
+.palette hr {
+    height: 1px;
+    border: 0;
+    background-color: var(--line);
+}
+.palette .menu button {
+    min-height: var(--target);
+    padding: 10px 12px;
+    color: var(--ink);
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--radius-s);
+}
+.palette .menu button:hover {
+    color: var(--ink);
+    background-color: var(--tile);
+}
+.palette .menu button:active {
+    color: var(--ink);
+    background-color: var(--control);
+}
+
+/* Code editor tabs: the file tab is light (ink text on tile), the gutters beside it too.
+   The code area itself (cream, solarized) is the activity's own design and is kept. */
+#canvas #tabs button {
+    color: var(--ink);
+    background-color: var(--tile);
+    border: 0;
+    border-radius: 0;
+}
+#canvas #tabs button:hover {
+    background-color: var(--control);
+}
+#canvas #tabs button.selected {
+    color: var(--ink);
+    background-color: var(--tile);
+    box-shadow: inset 0 -3px 0 var(--ink);
+}
+#canvas #newtab,
+#canvas #tray-button {
+    background-color: var(--tile);
+}
+#canvas #closetab {
+    background-color: var(--tile);
+}
