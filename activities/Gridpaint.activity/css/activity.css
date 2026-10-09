@@ -159,3 +159,46 @@
 	border: 0px;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+
+/* Gallery: the panel and the sides around it (the thumbnails and the drawing grid keep their own colours) */
+#thumbframe { background-color: var(--bg); }
+#frame { background-color: var(--tile); }
+
+/* Selected thumbnail: its inline border is 0px when not selected, and "3px solid black" when selected */
+#thumbframe canvas[style*="solid"] {
+	border: 3px solid var(--ink) !important;
+	border-radius: var(--radius-s);
+}
+
+/* Clear confirmation dialog (opened from the toolbar, not part of the drawing) */
+#clear-dialog-overlay.clear-dialog-overlay {
+	background-color: var(--ink);
+	opacity: .45;
+}
+#clear-dialog.clear-dialog {
+	background-color: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius-l);
+	box-shadow: var(--shadow-pop);
+	padding: 24px;
+	color: var(--ink);
+	font-family: var(--font-body);
+}
+#clear-dialog p { color: var(--ink); }
+#clear-dialog .clear-dialog-button {
+	min-height: var(--target);
+	padding: 0 24px;
+	border-radius: var(--radius-m);
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+#clear-dialog .confirm-button { background-color: var(--ink); color: var(--on-ink); border: 1px solid var(--ink); }
+#clear-dialog .confirm-button:hover { background-color: var(--ink-soft); }
+#clear-dialog .confirm-button:active { background-color: var(--ink); }
+#clear-dialog .cancel-button { background-color: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); }
+#clear-dialog .cancel-button:hover { background-color: var(--tile); }
+#clear-dialog .cancel-button:active { background-color: var(--control); }

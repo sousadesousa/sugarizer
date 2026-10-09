@@ -11,3 +11,12 @@ body {
     display: none;
 }
 :root { --toolbar-h: 64px; }
+
+/* Redesign */
+#EmptyMessage #emptytext,
+#EmptyMessage #emptytext p {
+    color: var(--ink-soft);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.4;
+}
