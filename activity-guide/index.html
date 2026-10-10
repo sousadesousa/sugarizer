@@ -1,0 +1,330 @@
+<title>Sugarizer Activity Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@500;600;700&display=swap">
+<style>
+/* Layout: a calm reference page. Sticky filter bar, activities grouped by category in a card grid,
+   then the server dashboard as a sidebar-and-screenshot viewer that mirrors the dashboard's own menu. */
+:root {
+  --bg: #f3f6f2;
+  --surface: #ffffff;
+  --ink: #18211c;
+  --soft: #52605a;
+  --line: #d6ded8;
+  --accent: #0b7a4d;
+  --accent-ink: #ffffff;
+  --accent-tint: #e1f1e8;
+  --shadow: 0 1px 2px rgba(20, 40, 30, .08), 0 4px 14px rgba(20, 40, 30, .06);
+  --c0: #2358c4; --c1: #b0540c; --c2: #a1247b; --c3: #0b7d84;
+  --c4: #6b3dc0; --c5: #4f6b10; --c6: #b0301f; --c7: #475a78;
+  --display: "Lexend", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1511; --surface: #172019; --ink: #e5ece7; --soft: #9dada3; --line: #2a362e;
+    --accent: #4ccf8d; --accent-ink: #07160e; --accent-tint: #173325;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .25);
+    --c0: #7ea3f2; --c1: #f0a066; --c2: #ec8ccb; --c3: #55cbd2;
+    --c4: #b49af0; --c5: #a9cc62; --c6: #f2907f; --c7: #a5b6d3;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1511; --surface: #172019; --ink: #e5ece7; --soft: #9dada3; --line: #2a362e;
+  --accent: #4ccf8d; --accent-ink: #07160e; --accent-tint: #173325;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .25);
+  --c0: #7ea3f2; --c1: #f0a066; --c2: #ec8ccb; --c3: #55cbd2;
+  --c4: #b49af0; --c5: #a9cc62; --c6: #f2907f; --c7: #a5b6d3;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: 16px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.2; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* header */
+.top { padding-block: 40px 20px; }
+.top h1 { font-size: clamp(1.9rem, 4.5vw, 2.9rem); font-weight: 700; letter-spacing: -.01em; }
+.top p { max-width: 62ch; margin: 12px 0 0; color: var(--soft); font-size: 1.05rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 18px 0 0; padding: 0; list-style: none; font-family: var(--display); font-size: .92rem; }
+.facts b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.facts span { color: var(--soft); }
+.jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.jump a { display: inline-block; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-family: var(--display); font-size: .9rem; font-weight: 500; }
+.jump a:hover { border-color: var(--accent); }
+
+/* filters */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-block: 1px solid var(--line); }
+.bar .wrap { display: grid; gap: 10px; padding-block: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-width: 0; }
+.search { flex: 1 1 220px; min-width: 0; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: inherit; }
+.pill { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 .85rem var(--display); cursor: pointer; display: inline-flex; gap: 7px; align-items: center; }
+.pill[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot, var(--soft)); display: inline-block; }
+.pill[aria-pressed="true"] i { box-shadow: 0 0 0 2px var(--bg); }
+.pill small { font: inherit; opacity: .7; font-variant-numeric: tabular-nums; }
+.lbl { font: 600 .75rem var(--display); letter-spacing: .07em; text-transform: uppercase; color: var(--soft); margin-right: 2px; }
+.check { display: inline-flex; gap: 8px; align-items: center; font-size: .92rem; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+.count { margin-left: auto; color: var(--soft); font-size: .9rem; font-variant-numeric: tabular-nums; }
+
+/* gallery */
+.cat { padding-top: 34px; }
+.cat > h2 { display: flex; align-items: baseline; gap: 12px; font-size: 1.45rem; font-weight: 600; margin-bottom: 16px; }
+.cat > h2 i { width: 12px; height: 12px; border-radius: 3px; background: var(--dot); flex: none; align-self: center; }
+.cat > h2 small { font: 400 .95rem var(--body); color: var(--soft); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+.shot { display: block; width: 100%; padding: 0; border: 0; border-bottom: 1px solid var(--line); background: var(--line); cursor: zoom-in; aspect-ratio: 16 / 10; }
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.body { padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; flex: 1; }
+.head { display: flex; flex-wrap: wrap; gap: 4px 10px; justify-content: space-between; align-items: baseline; }
+.head h3 { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
+.age { flex: none; font: 600 .8rem var(--display); padding: 2px 9px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); white-space: nowrap; }
+.card p { margin: 0; color: var(--ink); font-size: .95rem; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: .82rem; color: var(--soft); }
+.tag { color: var(--dot); font-weight: 700; }
+.need { padding: 1px 8px; border-radius: 6px; border: 1px dashed var(--line); }
+.none { padding: 40px 0; color: var(--soft); }
+
+/* dashboard */
+.dash { margin-top: 64px; padding-block: 44px 10px; border-top: 1px solid var(--line); }
+.dash h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 700; }
+.dash .lead { max-width: 68ch; color: var(--soft); margin: 10px 0 0; }
+.viewer { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 22px; margin-top: 24px; align-items: start; }
+.menu { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.menu button { width: 100%; text-align: left; padding: 10px 14px; border: 0; border-radius: 8px; background: transparent; color: var(--ink); font: 500 .95rem var(--display); cursor: pointer; }
+.menu button:hover { background: var(--accent-tint); }
+.menu button[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.stage { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.stage .shot { aspect-ratio: 16 / 10; }
+.stage .body { padding: 16px 20px 20px; }
+.stage h3 { font-size: 1.2rem; font-weight: 600; }
+.stage p { max-width: 70ch; }
+.route { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82rem; color: var(--soft); }
+
+/* notes */
+.notes { margin-top: 56px; padding-block: 36px 70px; border-top: 1px solid var(--line); }
+.notes h2 { font-size: 1.5rem; font-weight: 600; }
+.notes ul { max-width: 74ch; padding-left: 1.1em; margin: 14px 0 0; display: grid; gap: 10px; }
+
+/* lightbox */
+.lb { position: fixed; inset: 0; z-index: 20; background: rgba(8, 14, 10, .82); display: grid; place-items: center; padding: 16px; }
+.lb[hidden] { display: none; }
+.lb figure { margin: 0; max-width: min(1100px, 100%); max-height: 100%; display: grid; gap: 10px; justify-items: center; }
+.lb img { max-width: 100%; max-height: calc(100vh - 120px); border-radius: 8px; background: #fff; }
+.lb figcaption { color: #fff; font-family: var(--display); font-size: .95rem; }
+.lb button { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: 14px; padding: 8px 14px; border-radius: 8px; border: 0; background: #fff; color: #111; font: 600 .9rem var(--display); cursor: pointer; }
+
+@media (max-width: 760px) {
+  .viewer { grid-template-columns: minmax(0, 1fr); }
+  .menu { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; padding-bottom: 6px; }
+  .menu button { white-space: nowrap; }
+  .count { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card { transition: transform .15s ease, box-shadow .15s ease; }
+  .card:hover { transform: translateY(-2px); }
+}
+</style>
+
+<header class="top wrap">
+  <h1>Sugarizer Activity Guide</h1>
+  <p>Every activity of Sugarizer 2.0 with a screenshot, what it does, a suggested age and a category, followed by a tour of the admin dashboard of Sugarizer Server.</p>
+  <ul class="facts">
+    <li><b>61</b> <span>activities</span></li>
+    <li><b>8</b> <span>categories</span></li>
+    <li><b>3+</b> <span>youngest suggested age</span></li>
+    <li><b>11</b> <span>dashboard pages</span></li>
+  </ul>
+  <nav class="jump" aria-label="Sections">
+    <a href="#activities">Activities</a>
+    <a href="#dashboard">Admin dashboard</a>
+    <a href="#notes">Notes and limits</a>
+  </nav>
+</header>
+
+<div class="explorer" id="activities">
+<section class="bar" aria-label="Filters">
+  <div class="wrap">
+    <div class="row">
+      <input class="search" id="q" type="search" placeholder="Search activities" aria-label="Search activities" autocomplete="off">
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div class="row" id="cats" role="group" aria-label="Category"><span class="lbl">Category</span></div>
+    <div class="row" role="group" aria-label="Age">
+      <span class="lbl">Age</span>
+      <span id="ages" class="row"></span>
+      <label class="check"><input type="checkbox" id="solo"> Works on its own</label>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="gallery"></main>
+</div>
+
+<section class="wrap dash" id="dashboard">
+  <h2>Admin dashboard</h2>
+  <p class="lead">Sugarizer Server comes with a dashboard for teachers and for whoever runs the server. It manages users and classrooms, chooses which activities appear on the home screen, and shows statistics. It is opened in a browser at <span class="route">/dashboard</span> on the server. Choose a page below.</p>
+  <div class="viewer">
+    <ul class="menu" id="menu" aria-label="Dashboard pages"></ul>
+    <div class="stage">
+      <button class="shot" id="dshot" type="button" aria-label="Enlarge screenshot"><img id="dimg" alt="" width="1280" height="800"></button>
+      <div class="body"><h3 id="dtitle"></h3><p id="ddesc"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap notes" id="notes">
+  <h2>Notes and limits</h2>
+  <ul>
+    <li>Ages and categories are my suggestions, not Sugarizer's. They come from each activity's own welcome text and from opening it, and I could not test with children.</li>
+    <li>Screenshots show the start screen, except Paint, Physics JS and Get Things Done, where I added a little content.</li>
+    <li>3D Volume, Human Body and Gears appear empty: the 3D scenes did not draw in my test browser and no gears appeared when I tried to add some, so I could not confirm those three beyond their start screen.</li>
+    <li>Dollar Street, Video Viewer and Ebook Reader show an offline message without the Internet, Chat needs a Sugarizer Server, and Record and Measure need a camera or microphone.</li>
+    <li>Jappy shows an error while a new instance starts, and Constellation sometimes shows a script error while loading.</li>
+    <li>3D Volume, Exerciser, Gears, Get Things Done, Markdown, MediaViewer, Pomodoro and Stickman have no welcome text of their own, so I described them from their toolbar and start screen.</li>
+    <li>The dashboard screenshots come from a test server with sample students. Its Journals and Assignments pages are empty because I could not add entries to the test database.</li>
+  </ul>
+</section>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screenshot">
+  <button type="button" id="lbx">Close</button>
+  <figure><img id="lbi" alt=""><figcaption id="lbc"></figcaption></figure>
+</div>
+
+<script>
+const DATA = {"cats": ["Numbers, time and data", "Reading, writing and words", "Art, music and making", "Science and nature", "Puzzles and strategy games", "Coding and computing", "World and culture", "Tools and sharing"], "items": [{"n": "3D Volume", "c": 0, "age": "7+", "min": 7, "need": "", "d": "Pick a 3D solid (cube, tetrahedron, octahedron, dodecahedron, icosahedron), color it and explore its volume.", "img": "img/00-3d-volume.jpg"}, {"n": "Abacus", "c": 0, "age": "5+ with an adult", "min": 5, "need": "", "d": "Move beads on a counting frame and watch the number build up (\"20 + 3 = 23\"). An adult should choose the Decimal type and 3 rods first.", "img": "img/37-abacus.jpg"}, {"n": "Calculate", "c": 0, "age": "8+", "min": 8, "need": "", "d": "A calculator that also handles formulas, variables and simple graphs.", "img": "img/18-calculate.jpg"}, {"n": "Chart", "c": 0, "age": "8+", "min": 8, "need": "", "d": "Type in data and turn it into bar, pie or line charts.", "img": "img/59-chart.jpg"}, {"n": "Clock Web", "c": 0, "age": "5+", "min": 5, "need": "", "d": "Learn to read and tell the time on an analog and a digital clock.", "img": "img/20-clock-web.jpg"}, {"n": "Fraction", "c": 0, "age": "7+", "min": 7, "need": "", "d": "Nudge a bouncing ball so it lands on the fraction or percentage shown on it.", "img": "img/09-fraction.jpg"}, {"n": "MindMath", "c": 0, "age": "9+", "min": 9, "need": "", "d": "Reach a target number from five given numbers using + − × ÷, like the Countdown numbers round.", "img": "img/06-mindmath.jpg"}, {"n": "Sprint Math", "c": 0, "age": "6+", "min": 6, "need": "", "d": "Answer as many mental arithmetic questions as you can before the time runs out.", "img": "img/38-sprint-math.jpg"}, {"n": "Stopwatch", "c": 0, "age": "6+", "min": 6, "need": "", "d": "Several independent digital stopwatches for timing things.", "img": "img/40-stopwatch.jpg"}, {"n": "Tank Operation", "c": 0, "age": "6+", "min": 6, "need": "", "d": "An arcade game to practise math facts, with several levels of difficulty.", "img": "img/29-tank-operation.jpg"}, {"n": "Abecedarium", "c": 1, "age": "3+", "min": 3, "need": "", "d": "Learn the alphabet with pictures, sounds and words.", "img": "img/25-abecedarium.jpg"}, {"n": "Calligra", "c": 1, "age": "4+", "min": 4, "need": "", "d": "Practise cursive handwriting of letters and numbers.", "img": "img/51-calligra.jpg"}, {"n": "Ebook Reader", "c": 1, "age": "6+", "min": 6, "need": "Internet for the library", "d": "Read electronic books in ePub format from a library.", "img": "img/50-ebook-reader.jpg"}, {"n": "Falabracman", "c": 1, "age": "7+", "min": 7, "need": "", "d": "A maze game where you collect the letters of a target word in order, without falling into ponds.", "img": "img/10-falabracman.jpg"}, {"n": "Markdown", "c": 1, "age": "10+", "min": 10, "need": "", "d": "Write in Markdown and see the formatted text beside it.", "img": "img/44-markdown.jpg"}, {"n": "Speak", "c": 1, "age": "4+", "min": 4, "need": "", "d": "A talking face that reads out loud whatever you type.", "img": "img/22-speak.jpg"}, {"n": "Story", "c": 1, "age": "6+", "min": 6, "need": "", "d": "Pictures prompt you to write a story that ties them together.", "img": "img/21-story.jpg"}, {"n": "Write", "c": 1, "age": "6+", "min": 6, "need": "", "d": "A simple word processor for children: format text, change colors and add images.", "img": "img/55-write.jpg"}, {"n": "FotoToon", "c": 2, "age": "7+", "min": 7, "need": "", "d": "Make a comic strip from your pictures, drawings and images in a few minutes.", "img": "img/47-fototoon.jpg"}, {"n": "Grid Paint", "c": 2, "age": "4+", "min": 4, "need": "", "d": "Color a grid of triangles to make patterns and pictures.", "img": "img/31-grid-paint.jpg"}, {"n": "Paint", "c": 2, "age": "4+", "min": 4, "need": "", "d": "Draw with pens, stamps, text and colors, fill areas, copy and paste, and save to the Journal.", "img": "img/14-paint.jpg"}, {"n": "Record", "c": 2, "age": "5+", "min": 5, "need": "A camera and microphone", "d": "Capture photos, video and sound.", "img": "img/24-record.jpg"}, {"n": "Stickman", "c": 2, "age": "7+", "min": 7, "need": "", "d": "Pose a stick figure frame by frame to make an animation.", "img": "img/60-stickman.jpg"}, {"n": "TamTam Micro", "c": 2, "age": "4+", "min": 4, "need": "", "d": "Play many kinds of instruments, sounds and noises.", "img": "img/15-tamtam-micro.jpg"}, {"n": "Xmas Lights", "c": 2, "age": "4+", "min": 4, "need": "", "d": "Make blinking Christmas-light displays from Sugarizer icons and colors.", "img": "img/01-xmas-lights.jpg"}, {"n": "XO Editor", "c": 2, "age": "3+", "min": 3, "need": "", "d": "Choose the colors of your own buddy icon.", "img": "img/35-xo-editor.jpg"}, {"n": "Constellation", "c": 3, "age": "8+", "min": 8, "need": "", "d": "An offline planetarium showing what is visible in the sky from any place on Earth.", "img": "img/54-constellation.jpg"}, {"n": "FoodChain", "c": 3, "age": "5+", "min": 5, "need": "", "d": "Learn animal names and how to say them, and discover who eats whom in a food chain.", "img": "img/27-foodchain.jpg"}, {"n": "Gears", "c": 3, "age": "7+", "min": 7, "need": "", "d": "Build chains of gears and watch them turn together.", "img": "img/12-gears.jpg"}, {"n": "Human Body", "c": 3, "age": "7+", "min": 7, "need": "", "d": "Explore the human body in 3D with layers, highlight parts and play a quiz.", "img": "img/03-human-body.jpg"}, {"n": "Measure", "c": 3, "age": "9+", "min": 9, "need": "A microphone", "d": "Learn how sound works by viewing sound signals as they happen.", "img": "img/58-measure.jpg"}, {"n": "Moon", "c": 3, "age": "7+", "min": 7, "need": "", "d": "See the current phase of the Moon, with information on the next phases and eclipses.", "img": "img/23-moon.jpg"}, {"n": "Physics JS", "c": 3, "age": "6+", "min": 6, "need": "", "d": "Drop circles, boxes and triangles into a world with gravity and watch them move and collide.", "img": "img/17-physics-js.jpg"}, {"n": "Planets", "c": 3, "age": "5+", "min": 5, "need": "", "d": "Explore 3D models of the planets.", "img": "img/56-planets.jpg"}, {"n": "Blockrain", "c": 4, "age": "7+", "min": 7, "need": "", "d": "A tile-matching game of falling blocks, inspired by Tetris.", "img": "img/39-blockrain.jpg"}, {"n": "Chess", "c": 4, "age": "6+", "min": 6, "need": "", "d": "Play chess against the computer or a friend; hovering a piece shows its legal moves.", "img": "img/08-chess.jpg"}, {"n": "Flip", "c": 4, "age": "6+", "min": 6, "need": "", "d": "Flip discs until they are all the same color; each win makes the next one harder.", "img": "img/41-flip.jpg"}, {"n": "Implode", "c": 4, "age": "7+", "min": 7, "need": "", "d": "Remove groups of three or more same-colored blocks until none are left.", "img": "img/57-implode.jpg"}, {"n": "Last One Loses", "c": 4, "age": "6+", "min": 6, "need": "", "d": "Take items in turn and avoid taking the last one, against the computer or another player.", "img": "img/32-last-one-loses.jpg"}, {"n": "Maze Web", "c": 4, "age": "5+", "min": 5, "need": "", "d": "Guide the red smiley through mazes that get bigger at each level.", "img": "img/13-maze-web.jpg"}, {"n": "Memorize", "c": 4, "age": "4+", "min": 4, "need": "", "d": "Find matching pairs of cards (numbers, letters, sounds), or make your own game.", "img": "img/16-memorize.jpg"}, {"n": "Reflection", "c": 4, "age": "6+", "min": 6, "need": "", "d": "Learn mirror symmetry by reproducing a pattern on the other side of a line.", "img": "img/36-reflection.jpg"}, {"n": "Tangram", "c": 4, "age": "5+", "min": 5, "need": "", "d": "Rebuild animals and objects from the seven classic tangram pieces.", "img": "img/04-tangram.jpg"}, {"n": "Etoys", "c": 5, "age": "8+", "min": 8, "need": "", "d": "Build interactive projects and simulations by dragging scripts (Squeak Etoys).", "img": "img/49-etoys.jpg"}, {"n": "Game Of Life", "c": 5, "age": "9+", "min": 9, "need": "", "d": "Watch cells live, die and multiply by simple rules, from a pattern, at random or your own.", "img": "img/46-game-of-life.jpg"}, {"n": "Jappy", "c": 5, "age": "10+", "min": 10, "need": "", "d": "Write and run programs in a Python-like language.", "img": "img/42-jappy.jpg"}, {"n": "QRCode", "c": 5, "age": "8+", "min": 8, "need": "", "d": "Create and read QR codes.", "img": "img/43-qrcode.jpg"}, {"n": "Scratch", "c": 5, "age": "7+", "min": 7, "need": "", "d": "Scratch 3.0 visual programming: build stories, games and animations from blocks.", "img": "img/45-scratch.jpg"}, {"n": "Turtle Blocks JS", "c": 5, "age": "8+", "min": 8, "need": "", "d": "Snap blocks together to make a turtle draw colorful art: an easy first step into programming.", "img": "img/19-turtle-blocks-js.jpg"}, {"n": "Color My World", "c": 6, "age": "5+", "min": 5, "need": "", "d": "Color the countries of a world map, play a geography game and take a virtual tour.", "img": "img/34-color-my-world.jpg"}, {"n": "Dollar Street", "c": 6, "age": "8+", "min": 8, "need": "Internet", "d": "Browse photos of homes and everyday things from families around the world, filtered by income.", "img": "img/02-dollar-street.jpg"}, {"n": "Video Viewer", "c": 6, "age": "8+", "min": 8, "need": "Internet", "d": "Browse and watch educational videos from Khan Academy, Canopé and more.", "img": "img/26-video-viewer.jpg"}, {"n": "Chat", "c": 7, "age": "7+", "min": 7, "need": "A Sugarizer Server", "d": "Chat with other users on the same network.", "img": "img/30-chat.jpg"}, {"n": "Curriculum", "c": 7, "age": "With an adult", "min": null, "need": "", "d": "Evaluate skills (kindergarten, primary, Montessori sets) and attach pictures or media as proof.", "img": "img/07-curriculum.jpg"}, {"n": "Exerciser", "c": 7, "age": "7+", "min": 7, "need": "", "d": "Do exercises prepared by others, such as word puzzles or reordering lists (Roman numerals, vehicles).", "img": "img/11-exerciser.jpg"}, {"n": "Get Things Done", "c": 7, "age": "7+", "min": 7, "need": "", "d": "A simple to-do list.", "img": "img/48-get-things-done.jpg"}, {"n": "Labyrinth JS", "c": 7, "age": "9+", "min": 9, "need": "", "d": "Make a mind map: link ideas around a central word.", "img": "img/28-labyrinth-js.jpg"}, {"n": "MediaViewer", "c": 7, "age": "4+", "min": 4, "need": "A picture, video or sound in the Journal", "d": "View a picture, video or sound from the Journal.", "img": "img/52-mediaviewer.jpg"}, {"n": "Pomodoro", "c": 7, "age": "8+", "min": 8, "need": "", "d": "A timer for focused work sessions with breaks.", "img": "img/53-pomodoro.jpg"}, {"n": "Shared Notes", "c": 7, "age": "6+", "min": 6, "need": "", "d": "Pin small sticky notes on a board and share them with other users.", "img": "img/33-shared-notes.jpg"}, {"n": "Vote", "c": 7, "age": "7+", "min": 7, "need": "", "d": "Create a poll (yes/no, rating, multiple choice, text, images) and let others vote in real time.", "img": "img/05-vote.jpg"}], "admin": [{"id": "login", "t": "Sign in", "d": "Sign in with an admin account. The first admin account is created with the add-admin.sh script, run on the server machine.", "img": "admin/login.jpg"}, {"id": "home", "t": "Home", "d": "Totals for students, activities, Journal entries and classrooms, the top contributors and top activities, and the most recent students and entries.", "img": "admin/home.jpg"}, {"id": "users", "t": "Users", "d": "Search users and filter them by role or classroom. Add, import or export users, then open, edit or delete one.", "img": "admin/users.jpg"}, {"id": "users-add", "t": "User editor", "d": "Name, language, role (student, teacher or admin), buddy color, password and classrooms of one user.", "img": "admin/users-add.jpg"}, {"id": "activities", "t": "Activities", "d": "The activities installed on the server. Star the ones shown on the home screen, reorder them, or launch one.", "img": "admin/activities.jpg"}, {"id": "classrooms", "t": "Classrooms", "d": "Groups of students with their student counts. Add, edit or delete a classroom.", "img": "admin/classrooms.jpg"}, {"id": "classrooms-add", "t": "Classroom editor", "d": "Name, color and students of a classroom.", "img": "admin/classrooms-add.jpg"}, {"id": "journal", "t": "Journals", "d": "Pick a user, or the shared journals, to browse their Journal entries and view, edit or remove them. Empty here: I could not add entries to the test database.", "img": "admin/journal.jpg"}, {"id": "assignments", "t": "Assignments", "d": "Give students work and follow their deliveries, filtered by status. Empty here for the same reason as the Journals.", "img": "admin/assignments.jpg"}, {"id": "stats", "t": "Statistics", "d": "Charts of active students in the last month, entries per student, which clients connect (web app or app) and how students launch activities. You can add your own charts.", "img": "admin/stats.jpg"}, {"id": "profile", "t": "Profile", "d": "The admin's own name, language and password, and two-factor authentication.", "img": "admin/profile.jpg"}]};
+const cats = DATA.cats, items = DATA.items;
+const state = { cat: -1, age: "all", q: "", solo: false };
+const $ = (id) => document.getElementById(id);
+const dot = (c) => `var(--c${c})`;
+
+// age buckets by the youngest suggested age
+const buckets = [
+  ["all", "All"], ["3-5", "3 to 5"], ["6-7", "6 to 7"], ["8-9", "8 to 9"], ["10", "10+"], ["adult", "With an adult"]
+];
+function inBucket(it, b) {
+  if (b === "all") return true;
+  if (b === "adult") return it.min === null;
+  if (it.min === null) return false;
+  if (b === "3-5") return it.min <= 5;
+  if (b === "6-7") return it.min >= 6 && it.min <= 7;
+  if (b === "8-9") return it.min >= 8 && it.min <= 9;
+  return it.min >= 10;
+}
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+function pill(label, pressed, onClick, color, count) {
+  const b = el("button", "pill"); b.type = "button"; b.setAttribute("aria-pressed", String(pressed));
+  if (color != null) { const i = el("i"); b.style.setProperty("--dot", dot(color)); b.appendChild(i); }
+  b.appendChild(document.createTextNode(label));
+  if (count != null) b.appendChild(el("small", "", String(count)));
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function visible(it) {
+  if (state.cat !== -1 && it.c !== state.cat) return false;
+  if (!inBucket(it, state.age)) return false;
+  if (state.solo && it.need) return false;
+  if (state.q) {
+    const hay = (it.n + " " + it.d + " " + cats[it.c]).toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function renderFilters() {
+  const box = $("cats");
+  box.replaceChildren(el("span", "lbl", "Category"));
+  box.appendChild(pill("All", state.cat === -1, () => { state.cat = -1; update(); }, null, items.length));
+  cats.forEach((name, c) => {
+    const n = items.filter((it) => it.c === c).length;
+    box.appendChild(pill(name, state.cat === c, () => { state.cat = c; update(); }, c, n));
+  });
+  const ages = $("ages");
+  ages.replaceChildren();
+  buckets.forEach(([id, label]) => ages.appendChild(pill(label, state.age === id, () => { state.age = id; update(); })));
+}
+
+function card(it) {
+  const a = el("article", "card");
+  a.style.setProperty("--dot", dot(it.c));
+  const shot = el("button", "shot"); shot.type = "button"; shot.setAttribute("aria-label", "Enlarge the " + it.n + " screenshot");
+  const img = el("img"); img.src = it.img; img.alt = it.n + " screenshot"; img.loading = "lazy"; img.width = 1024; img.height = 640;
+  shot.appendChild(img);
+  shot.addEventListener("click", () => openLightbox(it.img, it.n));
+  const body = el("div", "body");
+  const head = el("div", "head");
+  head.appendChild(el("h3", "", it.n));
+  head.appendChild(el("span", "age", it.min === null ? "With an adult" : "Age " + it.min + "+"));
+  body.appendChild(head);
+  body.appendChild(el("p", "", it.d));
+  const meta = el("div", "meta");
+  meta.appendChild(el("span", "tag", cats[it.c]));
+  if (it.min !== null && /adult/i.test(it.age)) meta.appendChild(el("span", "need", "With an adult"));
+  if (it.need) meta.appendChild(el("span", "need", "Needs: " + it.need));
+  body.appendChild(meta);
+  a.append(shot, body);
+  return a;
+}
+
+function renderGallery() {
+  const main = $("gallery");
+  main.replaceChildren();
+  let total = 0;
+  cats.forEach((name, c) => {
+    const list = items.filter((it) => it.c === c && visible(it));
+    if (!list.length) return;
+    total += list.length;
+    const sec = el("section", "cat"); sec.style.setProperty("--dot", dot(c));
+    const h = el("h2"); h.appendChild(el("i")); h.appendChild(document.createTextNode(name)); h.appendChild(el("small", "", list.length + (list.length === 1 ? " activity" : " activities")));
+    const grid = el("div", "grid");
+    list.forEach((it) => grid.appendChild(card(it)));
+    sec.append(h, grid);
+    main.appendChild(sec);
+  });
+  if (!total) main.appendChild(el("p", "none", "No activity matches these filters."));
+  $("count").textContent = total + " of " + items.length + " activities";
+}
+
+function update() { renderFilters(); renderGallery(); }
+
+// lightbox
+let lastFocus = null;
+function openLightbox(src, caption) {
+  lastFocus = document.activeElement;
+  $("lbi").src = src; $("lbi").alt = caption; $("lbc").textContent = caption;
+  $("lb").hidden = false; $("lbx").focus();
+}
+function closeLightbox() { $("lb").hidden = true; if (lastFocus) lastFocus.focus(); }
+$("lbx").addEventListener("click", closeLightbox);
+$("lb").addEventListener("click", (e) => { if (e.target === $("lb")) closeLightbox(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("lb").hidden) closeLightbox(); });
+
+// dashboard viewer
+let current = 1;
+function renderAdmin() {
+  const menu = $("menu");
+  menu.replaceChildren();
+  DATA.admin.forEach((p, i) => {
+    const li = el("li"); const b = el("button", "", p.t); b.type = "button";
+    if (i === current) b.setAttribute("aria-current", "true");
+    b.addEventListener("click", () => { current = i; renderAdmin(); });
+    li.appendChild(b); menu.appendChild(li);
+  });
+  const p = DATA.admin[current];
+  $("dimg").src = p.img; $("dimg").alt = "Dashboard page: " + p.t;
+  $("dtitle").textContent = p.t; $("ddesc").textContent = p.d;
+}
+$("dshot").addEventListener("click", () => { const p = DATA.admin[current]; openLightbox(p.img, "Dashboard: " + p.t); });
+
+$("q").addEventListener("input", (e) => { state.q = e.target.value.trim().toLowerCase(); renderGallery(); });
+$("solo").addEventListener("change", (e) => { state.solo = e.target.checked; renderGallery(); });
+update();
+renderAdmin();
+</script>
