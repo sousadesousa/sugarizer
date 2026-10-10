@@ -155,7 +155,7 @@ var app = new Vue({
     unfullscreen: function() {
       var vm = this;
       document.getElementById("main-toolbar").style.opacity = 1;
-      document.getElementById("canvas").style.top = "55px";
+      document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
       document.getElementById("unfullscreen-button").style.visibility = "hidden";
       window.dispatchEvent(new Event('resize'));
     },

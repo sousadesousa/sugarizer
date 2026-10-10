@@ -294,7 +294,7 @@ define(["sugar-web/activity/activity", "sugar-web/datastore", "notepalette", "zo
 			textValue.style.backgroundColor = node.style().backgroundColor;
 			var delta = 100 * zoom - 200 * zoom;
 			textValue.style.left = (position.x + delta) + "px";
-			textValue.style.top = (55 + position.y + delta) + "px";
+			textValue.style.top = (document.getElementById("main-toolbar").offsetHeight + position.y + delta) + "px";
 			textValue.style.width = 190 * zoom + "px";
 			textValue.style.height = 190 * zoom + "px";
 			textValue.style.resize = 'none';

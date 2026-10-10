@@ -43,7 +43,7 @@ define(['activity/data-model', 'activity/draw', 'l10n', 'sugar-web/env', 'sugar-
     //Return to normal size
     document.getElementById("unfullscreen-button").addEventListener('click', function() {
       document.getElementById("main-toolbar").style.display = "block";
-      document.getElementById("panel-container").style.top = "55px";
+      document.getElementById("panel-container").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
       document.getElementById("panel-container").style.height = "100%";
       document.getElementById("unfullscreen-button").style.visibility = "hidden";
       updateSizes();

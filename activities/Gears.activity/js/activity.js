@@ -347,7 +347,7 @@ define(["sugar-web/activity/activity","sugar-web/graphics/radiobuttonsgroup","ge
         });
         document.getElementById("unfullscreen-button").addEventListener('click', function() {
             document.getElementById("main-toolbar").style.opacity = 1;
-            document.getElementById("canvas").style.top = "55px";
+            document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
             gearSketch.canvasOffsetY = gearSketch.canvas.getBoundingClientRect().top;
             gearSketch.updateCanvasSize();
             document.getElementById("unfullscreen-button").style.visibility = "hidden";

@@ -4,7 +4,6 @@
 
 define(["activity/sample-ressources", "activity/palettes/template-palette", "activity/palettes/size-palette", "activity/lz-string", "sugar-web/graphics/journalchooser", 'sugar-web/datastore', "tutorial"], function (SampleRessources, templatePalette, sizePalette, lzString, chooser, datastore, tutorial) {
 
-        var FOUND_COLOR = "#84f060";
         var MODE_CLASSIC = "classic";
         var MODE_SPLITTED = "splitted";
         var MODE_EQUAL = "equal";
@@ -329,7 +328,6 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
                 div.innerHTML = card.text;
                 div.style.lineHeight = minSize + "px";
                 div.style.fontSize = minSize + 'px';
-                div.style.color = "#000";
                 div.style.width = minSize + "px";
                 div.style.height = minSize + "px";
 
@@ -367,9 +365,7 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
             fullCardDiv.cardPosition = i;
             fullCardDiv.webkitPerspective = "500px";
             fullCardDiv.perspective = "500px";
-            fullCardDiv.style.border = "3px solid #fff";
-            fullCardDiv.style.borderRadius = "6px";
-            fullCardDiv.style.margin = "3px";
+            fullCardDiv.className = "mz-card";
             fullCardDiv.style.webkitTransition = "transform 0.5s";
             fullCardDiv.style.transition = "transform 0.5s";
             if (MemorizeApp.game.template.mode == MODE_SPLITTED) {
@@ -414,18 +410,13 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
 
         function createFrontDiv(i, middle, minSize) {
             var front = document.createElement("div");
-            if (MemorizeApp.game.mode == MODE_CLASSIC) {
-                front.style.background = "#777";
-            }
+            front.className = "mz-back";
             if (MemorizeApp.game.mode == MODE_SPLITTED) {
-                if (i < middle) {
-                    front.style.background = "#777 url(icons/number1.svg)";
-                } else {
-                    front.style.background = "#777 url(icons/number2.svg)";
-                }
+                // the group (1 or 2) is written on the back by the stylesheet
+                front.classList.add(i < middle ? "mz-g1" : "mz-g2");
+                front.setAttribute("data-group", i < middle ? "1" : "2");
             }
             front.zIndex = 2;
-            front.style.borderRadius = "6px";
             front.style.webkitBackfaceVisibility = "hidden";
             front.style.backfaceVisibility = "hidden";
 
@@ -453,12 +444,11 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
             div.style.transform = "rotateY(180deg)";
             div.style.top = "0px";
             div.style.left = "0px";
-            div.style.borderRadius = "6px";
             div.style.width = minSize + "px";
-            div.style.background = "#fff";
+            div.className = "mz-face";
 
             if (card.solved) {
-                div.style.backgroundColor = FOUND_COLOR;
+                div.classList.add("mz-found");
             }
 
             return div;
@@ -562,8 +552,8 @@ define(["activity/sample-ressources", "activity/palettes/template-palette", "act
                 var div1 = MemorizeApp.game.selectedCards[0].resultDiv;
                 var div2 = t.resultDiv;
                 setTimeout(function () {
-                    div1.style.backgroundColor = FOUND_COLOR;
-                    div2.style.backgroundColor = FOUND_COLOR;
+                    div1.classList.add("mz-found");
+                    div2.classList.add("mz-found");
                 }, 1000);
 
                 MemorizeApp.game.selectedCards = [];

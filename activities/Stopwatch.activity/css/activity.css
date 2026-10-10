@@ -428,3 +428,101 @@ button.remove {
     margin: 0 10px;
   }
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
+
+/* Redesign */
+/* Row dividers */
+#stopwatch-list li {
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* Time text styling */
+.counter {
+  font-family: var(--font-display) !important;
+  color: var(--ink) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Buttons pill styling - make pill transparent */
+.buttons-group {
+  background-color: transparent !important;
+}
+
+/* Individual buttons - resize and restyle */
+.buttons-group button {
+  width: 44px !important;
+  height: 44px !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.buttons-group button:first-child {
+  padding-left: 0 !important;
+}
+
+.buttons-group button:last-child {
+  padding-right: 0 !important;
+}
+
+.buttons-group button:hover {
+  background-color: var(--tile) !important;
+}
+
+.buttons-group button:active {
+  background-color: var(--control) !important;
+}
+
+/* Remove button styling */
+button.remove {
+  width: 44px !important;
+  height: 44px !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+}
+
+button.remove:hover {
+  background-color: var(--tile) !important;
+}
+
+button.remove:active {
+  background-color: var(--control) !important;
+}
+
+/* Add button styling - secondary style */
+#add-stopwatch {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+  color: var(--ink) !important;
+  height: 44px !important;
+  padding: 0 20px !important;
+  border-radius: 10px !important;
+  font-family: var(--font-display) !important;
+  width: auto !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d2433' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
+  background-size: 22px 22px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  margin: 20px auto !important;
+}
+
+/* White icons made for the old dark pill: draw them dark */
+.buttons-group button,
+button.remove {
+  filter: invert(1) hue-rotate(180deg);
+}
+.buttons-group button:hover,
+.buttons-group button:active,
+button.remove:hover,
+button.remove:active {
+  background-color: transparent !important;
+  opacity: 0.6;
+}

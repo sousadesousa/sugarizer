@@ -17,7 +17,7 @@ define(["sugar-web/activity/activity","sugar-web/datastore", "sugar-web/env", "l
 		});
 
 		// Compute size of QR Code
-		var toolbarSize = 55;
+		var toolbarSize = document.getElementById("main-toolbar").offsetHeight;
 		var headerSize = toolbarSize + 40;
 		var marginPercent = 20;
 		var qrSize = document.getElementById("canvas").parentNode.offsetHeight - headerSize;
@@ -186,7 +186,7 @@ define(["sugar-web/activity/activity","sugar-web/datastore", "sugar-web/env", "l
 		document.getElementById("unfullscreen-button").addEventListener('click', function() {
 			document.getElementById("main-toolbar").style.opacity = 1;
 			document.getElementById("input-box").style.opacity = 1;
-			document.getElementById("canvas").style.top = "55px";
+			document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 			document.getElementById("unfullscreen-button").style.visibility = "hidden";
 			resizeHandler();
 		});

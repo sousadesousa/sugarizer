@@ -75,7 +75,7 @@ define(["sugar-web/activity/activity", "sugar-web/env", "picoModal", "l10n", "tu
         //Handle unfullscreen mode
         document.getElementById("unfullscreen-button").addEventListener("click", function(){
             document.getElementById("main-toolbar").style.display = "block";
-            document.getElementById("canvas").style.top = "55px";
+            document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
             document.getElementById("unfullscreen-button").style.visibility = "hidden";
             fullScreenMode = false;
             if(game_status == "won"){
@@ -189,16 +189,25 @@ define(["sugar-web/activity/activity", "sugar-web/env", "picoModal", "l10n", "tu
                 document.getElementById("easy").style.backgroundColor = "grey";
                 document.getElementById("medium").style.backgroundColor = "#282828";
                 document.getElementById("hard").style.backgroundColor = "#282828";
+                document.getElementById("easy").classList.add("active");
+                document.getElementById("medium").classList.remove("active");
+                document.getElementById("hard").classList.remove("active");
             }
             else if(level == 1){
                 document.getElementById("easy").style.backgroundColor = "#282828";
                 document.getElementById("medium").style.backgroundColor = "grey";
                 document.getElementById("hard").style.backgroundColor = "#282828";
+                document.getElementById("easy").classList.remove("active");
+                document.getElementById("medium").classList.add("active");
+                document.getElementById("hard").classList.remove("active");
             }
             else{
                 document.getElementById("easy").style.backgroundColor = "#282828";
                 document.getElementById("medium").style.backgroundColor = "#282828";
                 document.getElementById("hard").style.backgroundColor = "grey";
+                document.getElementById("easy").classList.remove("active");
+                document.getElementById("medium").classList.remove("active");
+                document.getElementById("hard").classList.add("active");
             }
         }
 
@@ -806,7 +815,7 @@ define(["sugar-web/activity/activity", "sugar-web/env", "picoModal", "l10n", "tu
         function stage_resize(){
             //This function resizes stage
 
-            document.getElementById("activity-palette").style.left = (window.innerWidth>770)?"55px":"8px";
+            document.getElementById("activity-palette").style.left = (window.innerWidth>770)?document.getElementById("main-toolbar").offsetHeight+"px":"8px";
             var flag = false;
             var row_empty = 0;
             var col_empty = 0;

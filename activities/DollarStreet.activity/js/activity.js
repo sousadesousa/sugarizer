@@ -328,7 +328,7 @@ var app = new Vue({
 		computeSize: function() {
 			let vm = this;
 			let body = document.getElementById("body");
-			let available = (body.offsetHeight-(vm.$refs.SugarToolbar&&vm.$refs.SugarToolbar.isHidden()?0:55));
+			let available = (body.offsetHeight-(vm.$refs.SugarToolbar&&vm.$refs.SugarToolbar.isHidden()?0:(document.getElementById("main-toolbar")?document.getElementById("main-toolbar").offsetHeight:55)));
 			let content = document.getElementById("content");
 			content.style.height = available+"px";
 			if (vm.currentView==viewList) {

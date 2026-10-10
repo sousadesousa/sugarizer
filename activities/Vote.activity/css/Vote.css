@@ -1,5 +1,5 @@
 .vote {
-	min-height: calc(100vh - 55px);
+	min-height: calc(100vh - var(--toolbar-h));
 	padding: 0 5vw;
 	display: flex;
 	align-items: center;

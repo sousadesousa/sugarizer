@@ -174,3 +174,52 @@
     font-size: 3vw;
   }
 }
+
+/* Redesign */
+.category-form-bar-block {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+.category-form-panel-primary form label {
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.category-form-panel-primary form input {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  font-family: var(--font-body);
+}
+
+.category-form-panel-primary form button {
+  background-color: var(--control);
+  color: var(--ink);
+  border: none;
+  border-radius: var(--radius-m);
+  font-family: var(--font-display);
+}
+
+.category-form-panel-primary form button:hover {
+  background-color: var(--control-hover);
+}
+
+.category-form-panel-primary form img {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+
+.category-form-alerts .alert-block {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}

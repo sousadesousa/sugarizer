@@ -421,3 +421,81 @@ body {
 	box-shadow: 0 0 0 0rem rgba(158, 158, 158, .5);
 	border: 0px;
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
+
+/* Redesign */
+
+/* Color palette: override the black background and white text from colorpalette.js */
+.colorpalette .container {
+    background-color: var(--surface) !important;
+    color: var(--ink) !important;
+}
+
+.colorpalette .colors {
+    color: var(--ink) !important;
+}
+
+/* Color buttons in the palette: add border and proper sizing */
+.palette .colors button {
+    border: 1px solid var(--line-strong) !important;
+    border-radius: var(--radius-s) !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin: 6px !important;
+    padding: 0 !important;
+}
+
+/* RGB label text in color palette */
+.colorpalette .wrapper {
+    font-family: var(--font-body);
+}
+
+/* Input range sliders styling */
+.colorpalette .wrapper input[type='range'] {
+    background-color: var(--control) !important;
+}
+
+/* Font palette buttons */
+.palette center button {
+    background-color: var(--surface) !important;
+    border: none !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: var(--radius-m) !important;
+    color: var(--ink) !important;
+    margin: 6px !important;
+}
+
+.palette center button:hover {
+    background-color: var(--tile) !important;
+}
+
+.palette center button:active {
+    background-color: var(--control) !important;
+}
+
+/* Format text palette buttons */
+.palette-button {
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.palette .menu button {
+    min-height: 44px !important;
+}
+
+/* Color swatch buttons (invokers) - show current color with border */
+#color-button-1,
+#color-button-2 {
+    border: 1px solid var(--line-strong) !important;
+    border-radius: var(--radius-s) !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 6px !important;
+}

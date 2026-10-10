@@ -1,6 +1,6 @@
 .history-container {
 	position: relative;
-	min-height: calc(100vh - 55px);
+	min-height: calc(100vh - var(--toolbar-h));
 	background: white;
 }
 .history-container #go-back {

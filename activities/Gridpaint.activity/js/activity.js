@@ -79,7 +79,7 @@ define(["sugar-web/activity/activity","sugar-web/datastore","sugar-web/env","l10
 		});
 		var unfullscreen = function(e) {
 			document.getElementById("main-toolbar").style.display = "block";
-			document.getElementById("canvas").style.top = "55px";
+			document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 			document.getElementById("unfullscreen-button").style.visibility = "hidden";
 			computeSize();
 		};

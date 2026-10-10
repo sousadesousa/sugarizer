@@ -285,14 +285,14 @@ var app = new Vue({
 		init: function() {
 
 			this.canvas.width = window.innerWidth;
-			this.canvas.height = window.innerHeight - 55 - (document.getElementById("axisScale").clientHeight);
+			this.canvas.height = window.innerHeight - document.getElementById("main-toolbar").offsetHeight - (document.getElementById("axisScale").clientHeight);
 
 			window.addEventListener("resize", () => {
 				this.resizeCanvas()
 			})
 			this.drawGrid();
 		},
-		resizeCanvas: function(scaleWidth = 55) {
+		resizeCanvas: function(scaleWidth = document.getElementById("main-toolbar").offsetHeight) {
 			this.canvas.width = window.innerWidth;
 			this.canvas.height = window.innerHeight - scaleWidth - (document.getElementById("axisScale").clientHeight);
 			this.calcTimeDomainData();
@@ -308,7 +308,7 @@ var app = new Vue({
 				this.resizeCanvas(0);
 			}
 			else {
-				document.getElementById("main-toolbar").style.height = "55px";
+				document.getElementById("main-toolbar").style.height = "";
 				document.getElementById("unfullscreen-button").style.display = "none";
 				document.getElementById("fullscreen-button").style.display = "initial";
 				this.resizeCanvas();

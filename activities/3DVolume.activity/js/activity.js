@@ -69,7 +69,7 @@ define([
 			.addEventListener("click", function () {
 				document.getElementById("main-toolbar").style.visibility =
 					"visible";
-				document.getElementById("game-container").style.top = "55px";
+				document.getElementById("game-container").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 				document.getElementById(
 					"unfullscreen-button"
 				).style.visibility = "hidden";

@@ -268,7 +268,7 @@ define(["sugar-web/activity/activity","mustache", "sugar-web/env", "tutorial", "
     //Return to normal size
     document.getElementById("unfullscreen-button").addEventListener('click', function() {
         document.getElementById("main-toolbar").style.display = "block";
-        document.getElementById("canvas").style.top = "55px";
+        document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
         document.getElementById("unfullscreen-button").style.visibility = "hidden";
 
     });

@@ -1,3 +1,7 @@
+:root {
+    --toolbar-h: 64px;
+}
+
 #main-toolbar #activity-button {
     background-image: url(../activity/activity-icon.svg);
     outline: none;
@@ -457,4 +461,276 @@ and (orientation: landscape) {
     }
 
 
+}
+
+/* Redesign: game area */
+
+html {
+    background-color: var(--bg);
+}
+
+#canvas {
+    background-color: var(--bg);
+}
+
+#container {
+    height: auto;
+    margin: 5vh auto;
+    padding: 40px 20px;
+    border-radius: 0;
+    background-color: transparent;
+    position: relative;
+    max-width: 100%;
+}
+
+#time_score_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+#time,
+#score {
+    float: none !important;
+    padding: 0;
+    text-align: center;
+    font-size: 30px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+    border-radius: 0;
+    color: var(--ink);
+    flex: 1 1 auto;
+    min-width: 120px;
+}
+
+#time {
+    text-align: left;
+}
+
+#score {
+    text-align: right;
+}
+
+#time span:first-child,
+#score span:first-child {
+    color: var(--ink-soft);
+    margin-right: 4px;
+}
+
+#time span:last-child,
+#score span:last-child {
+    color: var(--ink);
+}
+
+#question {
+    height: auto;
+    margin: 0 auto 10px auto;
+    font-size: clamp(64px, 11vw, 148px);
+    font-weight: 500;
+    font-family: var(--font-display);
+    text-align: center;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 20px;
+    width: 100%;
+}
+
+#answer {
+    /* a reserved slot between the sum and the answers: showing Correct or Wrong must not move anything */
+    height: 44px;
+    margin: 0 0 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#correct {
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 18px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--ok);
+    border-radius: 0;
+    display: none;
+    width: 100%;
+}
+
+#wrong {
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 18px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--bad);
+    border-radius: 0;
+    display: none;
+    width: 100%;
+}
+
+#choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 36px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.box {
+    background-color: var(--control) !important;
+    height: 128px;
+    width: clamp(140px, 22vw, 210px);
+    font-size: 44px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    line-height: 128px;
+    border: 2px solid var(--control);
+    border-radius: 18px;
+    cursor: pointer;
+    color: var(--ink);
+    transition: background-color 150ms ease, border-color 150ms ease;
+    flex: 0 0 clamp(140px, 22vw, 210px);
+}
+
+.box:hover {
+    background-color: var(--control-hover) !important;
+    border-color: var(--control-hover);
+    font-size: 44px;
+    font-weight: 500;
+}
+
+.box:active {
+    background-color: var(--control-hover) !important;
+    border-color: var(--control-hover);
+}
+
+#gameOver {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 40px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+    border-radius: 0;
+    display: none;
+    background-color: transparent;
+    margin: 40px auto;
+    width: 100%;
+}
+
+/* Phone portrait responsiveness */
+@media only screen and (max-width: 600px) {
+    #container {
+        margin: 3vh auto;
+        padding: 20px 16px;
+    }
+
+    #time_score_container {
+        margin-bottom: 30px;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    #time,
+    #score {
+        font-size: 22px;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    #question {
+        margin: 0 auto 10px auto;
+        font-size: clamp(48px, 10vw, 80px);
+        padding: 0 10px;
+    }
+
+    #answer {
+        margin-bottom: 20px;
+    }
+
+    #choices {
+        gap: 24px;
+        padding: 0 16px;
+        justify-content: center;
+    }
+
+    .box {
+        width: calc(50% - 12px);
+        height: 100px;
+        font-size: 32px;
+        line-height: 100px;
+        min-width: 44px;
+        min-height: 44px;
+        flex: 0 0 calc(50% - 12px);
+        max-width: 160px;
+    }
+
+    #gameOver {
+        padding: 30px 16px;
+        font-size: 28px;
+        margin: 30px auto;
+    }
+}
+#wrong span, #wrong * { color: var(--bad) !important; }
+
+/* feedback hooks added by the script */
+#time.time-low #timeremaining { color: var(--bad); }
+
+.box.box-wrong {
+    background-color: var(--bad-tint) !important;
+    border-color: var(--bad);
+    color: var(--bad);
+    opacity: .75;
+}
+
+/* the script paints the final score with the user's colours inline: the design wants plain ink on the page */
+#gameOver {
+    background-color: transparent !important;
+    color: var(--ink) !important;
+}
+
+/* palettes (Filter and Level): the old text was white for a black palette */
+.palette-button {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 160px;
+    height: 44px;
+    margin: 2px 0;
+    padding: 0 16px;
+    text-align: left;
+    background-size: 0 0 !important;
+    border-radius: var(--radius-m);
+}
+
+.palette-button::after { display: none; }
+
+.filter-item {
+    color: var(--ink) !important;
+    font: 500 15px var(--font-display);
+}
+
+.palette-button:hover { background-color: var(--tile); }
+
+.palette-button-selected,
+.palette-button-selected:hover {
+    background-color: var(--control);
 }

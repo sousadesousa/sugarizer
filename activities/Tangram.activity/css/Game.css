@@ -234,3 +234,30 @@
     font-size: 3.5vw;
   }
 }
+
+/* Redesign */
+.detail-block {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background-color: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+.detail-block-content div {
+  color: var(--ink);
+}
+
+.gameOver-block {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background-color: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-display);
+}
+
+.gameOver-block-content div {
+  color: var(--ink);
+}

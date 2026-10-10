@@ -51,7 +51,7 @@ define(["sugar-web/activity/activity","tutorial","l10n","sugar-web/env"], functi
 		var innerHeight = body.offsetHeight;
 		var prevWidth = innerWidth;
 		var prevHeight = innerHeight;
-		var toolbarHeight = 55;
+		var toolbarHeight = document.getElementById("main-toolbar").offsetHeight;
 		var outerWidth = 0; // Use to determine if items could disappear, could be 300;
 		var init = false;
 		var gravityMode = 0;
@@ -409,7 +409,7 @@ define(["sugar-web/activity/activity","tutorial","l10n","sugar-web/env"], functi
 			document.getElementById("unfullscreen-button").addEventListener('click', function() {
 				document.getElementById("main-toolbar").style.zIndex = 2;
 				document.getElementById("unfullscreen-button").style.visibility = "hidden";
-				toolbarHeight = 55;
+				toolbarHeight = document.getElementById("main-toolbar").offsetHeight;
 				document.dispatchEvent(new Event('resize'));
 				event.preventDefault();
 			});

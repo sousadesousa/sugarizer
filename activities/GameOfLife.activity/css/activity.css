@@ -261,3 +261,19 @@ canvas {
   box-shadow: 0 0 0 0rem rgba(158, 158, 158, .5);
   border: 0px;
 }
+
+/* Redesign: toolbar height (see docs/redesign.md) */
+:root {
+    --toolbar-h: 64px;
+}
+
+/* Redesign */
+.generation-status {
+    color: var(--ink-soft) !important;
+    font-family: var(--font-display);
+}
+
+.generation-count {
+    color: var(--ink) !important;
+    font-family: var(--font-display);
+}

@@ -1,6 +1,10 @@
+:root {
+    --toolbar-h: 64px;
+}
+
 .toolbar {
     height: auto !important;
-    min-height: 55px !important;
+    min-height: var(--toolbar-h) !important;
     position:block;
 }
 
@@ -323,4 +327,60 @@ textarea {
 
 .card-highlight {
 	animation: cardHighlight 1.2s ease-in-out;
+}
+
+/* Cards (redesign): colours and shapes live here, the script only sets sizes and the flip */
+.mz-card {
+    box-sizing: content-box;
+    border: 3px solid transparent;
+    border-radius: var(--radius-l);
+    margin: 3px;
+}
+
+.mz-back, .mz-face {
+    border-radius: 11px;
+    box-sizing: border-box;
+}
+
+.mz-back {
+    background: var(--control);
+    border: 2px solid var(--control);
+}
+
+.mz-g1 {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--on-ink);
+}
+
+.mz-g2 {
+    background: var(--control);
+    border-color: var(--control);
+    color: var(--ink);
+}
+
+.mz-back[data-group]::before {
+    content: attr(data-group);
+    position: absolute;
+    top: 9px;
+    left: 12px;
+    font: 500 14px var(--font-display);
+    opacity: .85;
+}
+
+.mz-face {
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    color: var(--ink);
+}
+
+.mz-face.mz-found {
+    background: var(--ok-tint);
+    border-color: var(--ok-tint);
+    color: var(--ok);
+}
+
+.mz-face .textCard {
+    font-family: var(--font-display);
+    font-weight: 500;
 }

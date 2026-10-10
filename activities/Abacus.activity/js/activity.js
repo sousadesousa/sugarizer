@@ -30,7 +30,7 @@ function runactivity(act,doc,colors,env,datastore,fraction,abacuspalette,customp
 	function init(){
 		canvas = document.getElementById('actualcanvas');
 		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight-55;
+		canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 		stage = new createjs.Stage(canvas);
 		stage.update();
 		stage.mouseEventsEnabled = true;
@@ -58,7 +58,7 @@ function runactivity(act,doc,colors,env,datastore,fraction,abacuspalette,customp
 
 		document.getElementById("unfullscreen-button").addEventListener('click', function() {
 			document.getElementById("main-toolbar").style.opacity = 1;
-			document.getElementById("canvas").style.top = "55px";
+			document.getElementById("canvas").style.top = document.getElementById("main-toolbar").offsetHeight + "px";
 			document.getElementById("unfullscreen-button").style.visibility = "hidden";
 			resizeCanvas();
 		});
@@ -67,11 +67,11 @@ function runactivity(act,doc,colors,env,datastore,fraction,abacuspalette,customp
 		function resizeCanvas() {
 			if (document.getElementById("unfullscreen-button").style.visibility === "hidden") {
 			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight-55;
+			canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 			g.resize();
 			} else {
 				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight-55;
+				canvas.height = window.innerHeight-document.getElementById("main-toolbar").offsetHeight;
 				g.resize();
 			}
 		}

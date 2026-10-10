@@ -49,6 +49,6 @@
 	justify-content: center;
 	align-items: flex-start;
 	padding: 20px 5vw;
-	min-height: calc(100vh - 55px);
+	min-height: calc(100vh - var(--toolbar-h));
 	background: white;
 }
